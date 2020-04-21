@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-<meta name="google-site-verification" content="Af8SVngb0DDTakbpwV3mTIv5viM_03tYvp-BYrFfvfk" />
-<meta name="baidu-site-verification" content="0oO86cqQxc" />
+<meta name="google-site-verification" content="Af8SVngb0DDTakbpwV3mTIv5viM_03tYvp-BYrFfvfk">
+<meta name="baidu-site-verification" content="0oO86cqQxc">
   <link rel="apple-touch-icon" sizes="180x180" href="/SmileJet/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/SmileJet/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/SmileJet/images/favicon-16x16-next.png">
@@ -25,25 +25,25 @@
   <meta name="description" content="语句覆盖每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句（来源：软件开发的技术基础）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别">
-<meta property="og:url" content="https://smilejet.gitee.io/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:url" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Home">
 <meta property="og:description" content="语句覆盖每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句（来源：软件开发的技术基础）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg">
+<meta property="og:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg">
 <meta property="article:published_time" content="2020-04-21T09:03:40.169Z">
 <meta property="article:modified_time" content="2020-04-21T09:20:57.948Z">
 <meta property="article:author" content="Smile">
 <meta property="article:tag" content="软件测试">
 <meta property="article:tag" content="白盒测试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://smilejet.gitee.io/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
+<meta name="twitter:image" content="https://smilejet.gitee.io/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
 
-<link rel="canonical" href="https://smilejet.gitee.io/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
+<link rel="canonical" href="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
 
 
 <script id="page-configurations">
@@ -150,9 +150,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
@@ -190,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/SmileJet/images/smile.jpg">
@@ -228,7 +226,7 @@
             </span>
 
           
-            <span id="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别" title="阅读次数">
+            <span id="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -255,17 +253,17 @@
         <h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础）</p>
 <a id="more"></a>
 
-<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg" alt="img"></p>
+<p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg" alt="img"></p>
 <h1 id="判定覆盖（分支覆盖）"><a href="#判定覆盖（分支覆盖）" class="headerlink" title="判定覆盖（分支覆盖）"></a>判定覆盖（分支覆盖）</h1><p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
-<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"></p>
+<p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"></p>
 <h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
 <p><strong>另注</strong>：条件覆盖保证判断中的每个条件都被覆盖（来源：软件开发的技术基础）</p>
-<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"></p>
+<p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"></p>
 <h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值 </p>
-<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"></p>
+<p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"></p>
 <h1 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h1><p>判定-条件覆盖的加强版 </p>
-<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"></p>
-<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"></p>
+<p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"></p>
+<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p><img src="/SmileJet/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"></p>
 
     </div>
 
@@ -285,7 +283,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/SmileJet/2020/04/19/read-list/" rel="prev" title="论文阅读">
+    <a href="/SmileJet/read-list/" rel="prev" title="论文阅读">
       <i class="fa fa-chevron-left"></i> 论文阅读
     </a></div>
       <div class="post-nav-item"></div>
@@ -353,8 +351,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Smile"
-      src="/SmileJet/images/smile.jpg">
+    <img class="site-author-image" itemprop="image" alt="Smile" src="/SmileJet/images/smile.jpg">
   <p class="site-author-name" itemprop="name">Smile</p>
   <div class="site-description" itemprop="description">菜鸟一枚，欢迎一起交流学习。</div>
 </div>
@@ -381,14 +378,14 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="external nofollow noopener noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
-<div id='vm' style='display:none;'>
+<div id="vm" style="display:none;">
 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=53b08kfq93y&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
 </div>
 
