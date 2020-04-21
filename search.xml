@@ -59,4 +59,30 @@
         <tag>总结</tag>
       </tags>
   </entry>
+  <entry>
+    <title>白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别</title>
+    <url>/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础）</p>
+<a id="more"></a>
+
+<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg" alt="img"></p>
+<h1 id="判定覆盖（分支覆盖）"><a href="#判定覆盖（分支覆盖）" class="headerlink" title="判定覆盖（分支覆盖）"></a>判定覆盖（分支覆盖）</h1><p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
+<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"></p>
+<h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
+<p><strong>另注</strong>：条件覆盖保证判断中的每个条件都被覆盖（来源：软件开发的技术基础）</p>
+<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"></p>
+<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值 </p>
+<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"></p>
+<h1 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h1><p>判定-条件覆盖的加强版 </p>
+<p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"></p>
+<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p><img src="/SmileJet/2020/04/21/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"></p>
+]]></content>
+      <categories>
+        <category>知识点</category>
+      </categories>
+      <tags>
+        <tag>软件测试</tag>
+        <tag>白盒测试</tag>
+      </tags>
+  </entry>
 </search>
