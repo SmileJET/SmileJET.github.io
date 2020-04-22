@@ -1217,7 +1217,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #828859;
+  background: #ff9fd1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2194,6 +2194,90 @@ ul.breadcrumb li + li:last-child {
 }
 .tag-cloud a:hover {
   color: var(--link-hover-color) !important;
+}
+.post-body h1 {
+  counter-increment: counter_h1;
+  counter-reset: counter_h2;
+}
+.post-body h1:before {
+  content: counter(counter_h1) "　";
+}
+.post-body h2 {
+  counter-increment: counter_h2;
+  counter-reset: counter_h3;
+}
+.post-body h2:before {
+  content: counter(counter_h1) "." counter(counter_h2) "　";
+}
+.post-body h3 {
+  counter-increment: counter_h3;
+  counter-reset: counter_h4;
+}
+.post-body h3:before {
+  content: counter(counter_h1) "." counter(counter_h2) "." counter(counter_h3) "　";
+}
+.post-body h4 {
+  counter-increment: counter_h4;
+  counter-reset: counter_h5;
+}
+.post-body h4:before {
+  content: counter(counter_h1) "." counter(counter_h2) "." counter(counter_h3) "." counter(counter_h4) "　";
+}
+.post-body h5 {
+  counter-increment: counter_h5;
+  counter-reset: counter_h6;
+}
+.post-body h5:before {
+  content: counter(counter_h1) "." counter(counter_h2) "." counter(counter_h3) "." counter(counter_h4) "." counter(counter_h5) "　";
+}
+.post-body h6 {
+  counter-increment: counter_h6;
+  counter-reset: counter_h7;
+}
+.post-body h6:before {
+  content: counter(counter_h1) "." counter(counter_h2) "." counter(counter_h3) "." counter(counter_h4) "." counter(counter_h5) "." counter(counter_h6) "　";
+}
+.nav .nav-item.nav-level-1 {
+  counter-increment: counter_h1;
+  counter-reset: counter_h2;
+}
+.nav .nav-item.nav-level-2 {
+  counter-increment: counter_h2;
+  counter-reset: counter_h3;
+}
+.nav .nav-item.nav-level-3 {
+  counter-increment: counter_h3;
+  counter-reset: counter_h4;
+}
+.nav .nav-item.nav-level-4 {
+  counter-increment: counter_h4;
+  counter-reset: counter_h5;
+}
+.nav .nav-item.nav-level-5 {
+  counter-increment: counter_h5;
+  counter-reset: counter_h6;
+}
+.nav .nav-item.nav-level-6 {
+  counter-increment: counter_h6;
+  counter-reset: counter_h7;
+}
+.nav .nav-item.nav-level-1 a span:before {
+  content: counter(counter_h1) '. ';
+}
+.nav .nav-item.nav-level-1 ol .nav-item.nav-level-2 a span:before {
+  content: counter(counter_h1) '.' counter(counter_h2) '. ';
+}
+.nav .nav-item.nav-level-2 ol .nav-item.nav-level-3 a span:before {
+  content: counter(counter_h1) '.' counter(counter_h2) '.' counter(counter_h3) '. ';
+}
+.nav .nav-item.nav-level-3 ol .nav-item.nav-level-4 a span:before {
+  content: counter(counter_h1) '.' counter(counter_h2) '.' counter(counter_h3) '.' counter(counter_h4) '. ';
+}
+.nav .nav-item.nav-level-4 ol .nav-item.nav-level-5 a span:before {
+  content: counter(counter_h1) '.' counter(counter_h2) '.' counter(counter_h3) '.' counter(counter_h4) '.' counter(counter_h5) '. ';
+}
+.nav .nav-item.nav-level-5 ol .nav-item.nav-level-6 a span:before {
+  content: counter(counter_h1) '.' counter(counter_h2) '.' counter(counter_h3) '.' counter(counter_h4) '.' counter(counter_h5) '.' counter(counter_h6) '. ';
 }
 .search-pop-overlay {
   background: rgba(0,0,0,0);
