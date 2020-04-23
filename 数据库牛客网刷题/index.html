@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"smilejet.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录牛客网刷题遇到的知识点">
+  <meta name="description" content="记录牛客网做数据库相关题目遇到的知识点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【牛客网】数据库">
 <meta property="og:url" content="https://smilejet.gitee.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/index.html">
 <meta property="og:site_name" content="Home">
-<meta property="og:description" content="记录牛客网刷题遇到的知识点">
+<meta property="og:description" content="记录牛客网做数据库相关题目遇到的知识点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-22T01:29:10.000Z">
-<meta property="article:modified_time" content="2020-04-22T11:13:23.218Z">
+<meta property="article:modified_time" content="2020-04-23T01:40:18.787Z">
 <meta property="article:author" content="Smile">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="知识点">
@@ -206,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-22 09:29:10 / 修改时间：19:13:23" itemprop="dateCreated datePublished" datetime="2020-04-22T09:29:10+08:00">2020-04-22</time>
+              <time title="创建时间：2020-04-22 09:29:10" itemprop="dateCreated datePublished" datetime="2020-04-22T09:29:10+08:00">2020-04-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-23 09:40:18" itemprop="dateModified" datetime="2020-04-23T09:40:18+08:00">2020-04-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -233,9 +239,9 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>3.9k</span>
             </span>
-            <div class="post-description">记录牛客网刷题遇到的知识点</div>
+            <div class="post-description">记录牛客网做数据库相关题目遇到的知识点。</div>
 
         </div>
       </header>
@@ -315,6 +321,16 @@
 <p>1NF + 消去非主属性对键的部分函数依赖 = 2NF。即2NF中，非主属性完全依赖于主关键字；</p>
 <p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A；</p>
 <p>3NF + 消去主属性对键的传递函数依赖 = BCNF。BCNF是3NF的改进形式，即在3NF的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BCNF。</p>
+<h1 id="存储过程的调用"><a href="#存储过程的调用" class="headerlink" title="存储过程的调用"></a>存储过程的调用</h1><p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
+<p>MySQL的存储过程参数没有默认值，所以在调用MySQL存储过程时，不能省略参数，但是可以用null来代替</p>
+<h1 id="noSQL数据库"><a href="#noSQL数据库" class="headerlink" title="noSQL数据库"></a>noSQL数据库</h1><p>基于K-V：Redis， Voldemort， Oracle BDB</p>
+<p>基于列存储：Cassandra， HBase， Riak</p>
+<p>基于文档型：CouchDB， MongoDB</p>
+<p>图形（Graph）数据库：Neo4J， InfoGrid， Infinite Graph</p>
+<h1 id="数据模型与逻辑模型"><a href="#数据模型与逻辑模型" class="headerlink" title="数据模型与逻辑模型"></a>数据模型与逻辑模型</h1><p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
+<p>常用的逻辑模型：层次模型、网状模型、关系模型</p>
+<h1 id="“查询”设计视图窗口分为上下部分"><a href="#“查询”设计视图窗口分为上下部分" class="headerlink" title="“查询”设计视图窗口分为上下部分"></a>“查询”设计视图窗口分为上下部分</h1><p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
+<p>下部分：“设计网络”，由一些字段列和一些已命名的列组成。</p>
 
     </div>
 
@@ -339,7 +355,10 @@
     <a href="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" rel="prev" title="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别">
       <i class="fa fa-chevron-left"></i> 白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/" rel="next" title="数据结构牛客网刷题">
+      数据结构牛客网刷题 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -398,7 +417,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库管理系统是数据库系统的核心"><span class="nav-text">数据库管理系统是数据库系统的核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。"><span class="nav-text">数据库的外模式&#x2F;模式映像，保证了数据与程序的逻辑独立性。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若事务-T-对数据对象-A-加上-S-锁，则（-）。"><span class="nav-text">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系的5条性质"><span class="nav-text">关系的5条性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"><span class="nav-text">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后援副本的用途是故障后的恢复"><span class="nav-text">后援副本的用途是故障后的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）"><span class="nav-text">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点："><span class="nav-text">索引的优缺点：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外模式-内模式-概念模式的关系"><span class="nav-text">外模式 内模式 概念模式的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务的特性-ACID特性"><span class="nav-text">事务的特性 ACID特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"><span class="nav-text">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析、概念设计、逻辑设计、物理设计"><span class="nav-text">需求分析、概念设计、逻辑设计、物理设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"><span class="nav-text">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9i中的数据保护模式包括有？"><span class="nav-text">9i中的数据保护模式包括有？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大保护-Maximum-protection"><span class="nav-text">最大保护(Maximum protection )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最高可用性-Maximum-availability"><span class="nav-text">最高可用性(Maximum availability)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大性能-Maximum-performance"><span class="nav-text">最大性能(Maximum performance)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库文件、缓冲区、日志文件、后援文件"><span class="nav-text">数据库文件、缓冲区、日志文件、后援文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的存储模式如有改变，概念模式无需改动"><span class="nav-text">数据库系统的存储模式如有改变，概念模式无需改动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图设计的设计次序"><span class="nav-text">视图设计的设计次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范式"><span class="nav-text">范式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库管理系统是数据库系统的核心"><span class="nav-text">数据库管理系统是数据库系统的核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。"><span class="nav-text">数据库的外模式&#x2F;模式映像，保证了数据与程序的逻辑独立性。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若事务-T-对数据对象-A-加上-S-锁，则（-）。"><span class="nav-text">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系的5条性质"><span class="nav-text">关系的5条性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"><span class="nav-text">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后援副本的用途是故障后的恢复"><span class="nav-text">后援副本的用途是故障后的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）"><span class="nav-text">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点："><span class="nav-text">索引的优缺点：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外模式-内模式-概念模式的关系"><span class="nav-text">外模式 内模式 概念模式的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务的特性-ACID特性"><span class="nav-text">事务的特性 ACID特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"><span class="nav-text">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析、概念设计、逻辑设计、物理设计"><span class="nav-text">需求分析、概念设计、逻辑设计、物理设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"><span class="nav-text">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9i中的数据保护模式包括有？"><span class="nav-text">9i中的数据保护模式包括有？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大保护-Maximum-protection"><span class="nav-text">最大保护(Maximum protection )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最高可用性-Maximum-availability"><span class="nav-text">最高可用性(Maximum availability)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大性能-Maximum-performance"><span class="nav-text">最大性能(Maximum performance)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库文件、缓冲区、日志文件、后援文件"><span class="nav-text">数据库文件、缓冲区、日志文件、后援文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的存储模式如有改变，概念模式无需改动"><span class="nav-text">数据库系统的存储模式如有改变，概念模式无需改动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图设计的设计次序"><span class="nav-text">视图设计的设计次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范式"><span class="nav-text">范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程的调用"><span class="nav-text">存储过程的调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#noSQL数据库"><span class="nav-text">noSQL数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据模型与逻辑模型"><span class="nav-text">数据模型与逻辑模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“查询”设计视图窗口分为上下部分"><span class="nav-text">“查询”设计视图窗口分为上下部分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -413,7 +432,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -424,7 +443,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

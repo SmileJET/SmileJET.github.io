@@ -60,6 +60,20 @@
       </tags>
   </entry>
   <entry>
+    <title>数据结构牛客网刷题</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>知识点</category>
+      </categories>
+      <tags>
+        <tag>知识点</tag>
+        <tag>牛客网</tag>
+        <tag>刷题</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【牛客网】数据库</title>
     <url>/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/</url>
     <content><![CDATA[<h1 id="数据库管理系统是数据库系统的核心"><a href="#数据库管理系统是数据库系统的核心" class="headerlink" title="数据库管理系统是数据库系统的核心"></a>数据库管理系统是数据库系统的核心</h1><p>数据库系统由数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台5个部分构成。</p>
@@ -131,6 +145,16 @@
 <p>1NF + 消去非主属性对键的部分函数依赖 = 2NF。即2NF中，非主属性完全依赖于主关键字；</p>
 <p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A；</p>
 <p>3NF + 消去主属性对键的传递函数依赖 = BCNF。BCNF是3NF的改进形式，即在3NF的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BCNF。</p>
+<h1 id="存储过程的调用"><a href="#存储过程的调用" class="headerlink" title="存储过程的调用"></a>存储过程的调用</h1><p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
+<p>MySQL的存储过程参数没有默认值，所以在调用MySQL存储过程时，不能省略参数，但是可以用null来代替</p>
+<h1 id="noSQL数据库"><a href="#noSQL数据库" class="headerlink" title="noSQL数据库"></a>noSQL数据库</h1><p>基于K-V：Redis， Voldemort， Oracle BDB</p>
+<p>基于列存储：Cassandra， HBase， Riak</p>
+<p>基于文档型：CouchDB， MongoDB</p>
+<p>图形（Graph）数据库：Neo4J， InfoGrid， Infinite Graph</p>
+<h1 id="数据模型与逻辑模型"><a href="#数据模型与逻辑模型" class="headerlink" title="数据模型与逻辑模型"></a>数据模型与逻辑模型</h1><p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
+<p>常用的逻辑模型：层次模型、网状模型、关系模型</p>
+<h1 id="“查询”设计视图窗口分为上下部分"><a href="#“查询”设计视图窗口分为上下部分" class="headerlink" title="“查询”设计视图窗口分为上下部分"></a>“查询”设计视图窗口分为上下部分</h1><p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
+<p>下部分：“设计网络”，由一些字段列和一些已命名的列组成。</p>
 ]]></content>
       <categories>
         <category>知识点</category>
