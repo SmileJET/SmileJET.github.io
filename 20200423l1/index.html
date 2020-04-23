@@ -22,28 +22,25 @@
     var CONFIG = {"hostname":"smilejet.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="语句覆盖每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句（来源：软件开发的技术基础）">
+  <meta name="description" content="记录牛客网做数据结构相关题目遇到的知识点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别">
-<meta property="og:url" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="【牛客网】数据结构">
+<meta property="og:url" content="https://smilejet.gitee.io/20200423l1/index.html">
 <meta property="og:site_name" content="Home">
-<meta property="og:description" content="语句覆盖每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句（来源：软件开发的技术基础）">
+<meta property="og:description" content="记录牛客网做数据结构相关题目遇到的知识点。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg">
-<meta property="og:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg">
-<meta property="article:published_time" content="2020-04-21T09:03:40.169Z">
-<meta property="article:modified_time" content="2020-04-23T01:40:18.796Z">
+<meta property="og:image" content="https://smilejet.gitee.io/20200423l1/59_1494922952723_E02F610DE99BF6698EA1582A91C891C3.png">
+<meta property="article:published_time" content="2020-04-23T01:18:44.000Z">
+<meta property="article:modified_time" content="2020-04-23T15:04:37.878Z">
 <meta property="article:author" content="Smile">
-<meta property="article:tag" content="软件测试">
-<meta property="article:tag" content="白盒测试">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="知识点">
+<meta property="article:tag" content="牛客网">
+<meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg">
+<meta name="twitter:image" content="https://smilejet.gitee.io/20200423l1/59_1494922952723_E02F610DE99BF6698EA1582A91C891C3.png">
 
-<link rel="canonical" href="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
+<link rel="canonical" href="https://smilejet.gitee.io/20200423l1/">
 
 
 <script id="page-configurations">
@@ -56,7 +53,7 @@
   };
 </script>
 
-  <title>白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别 | Home</title>
+  <title>【牛客网】数据结构 | Home</title>
   
 
 
@@ -188,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/20200423l1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/smile.jpg">
@@ -201,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别
+          【牛客网】数据结构
         </h1>
 
         <div class="post-meta">
@@ -211,16 +208,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-04-21 17:03:40" itemprop="dateCreated datePublished" datetime="2020-04-21T17:03:40+08:00">2020-04-21</time>
+              <time title="创建时间：2020-04-23 09:18:44 / 修改时间：23:04:37" itemprop="dateCreated datePublished" datetime="2020-04-23T09:18:44+08:00">2020-04-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-23 09:40:18" itemprop="dateModified" datetime="2020-04-23T09:40:18+08:00">2020-04-23</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,7 +223,7 @@
             </span>
 
           
-            <span id="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别" title="阅读次数">
+            <span id="/20200423l1/" class="post-meta-item leancloud_visitors" data-flag-title="【牛客网】数据结构" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -244,8 +235,9 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>228</span>
+              <span>488</span>
             </span>
+            <div class="post-description">记录牛客网做数据结构相关题目遇到的知识点。</div>
 
         </div>
       </header>
@@ -256,20 +248,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础）</p>
-<a id="more"></a>
-
-<p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916.jpg" alt="img"></p>
-<h1 id="判定覆盖（分支覆盖）"><a href="#判定覆盖（分支覆盖）" class="headerlink" title="判定覆盖（分支覆盖）"></a>判定覆盖（分支覆盖）</h1><p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
-<p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"></p>
-<h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
-<p><strong>另注</strong>：条件覆盖保证判断中的每个条件都被覆盖（来源：软件开发的技术基础）</p>
-<p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"></p>
-<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值 </p>
-<p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"></p>
-<h1 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h1><p>判定-条件覆盖的加强版 </p>
-<p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"></p>
-<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p><img src="/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"></p>
+        <h1 id="在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。"><a href="#在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。" class="headerlink" title="在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。"></a>在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。</h1><h1 id="某软件系统结构图如图所示，该结构图的深度为（3）。"><a href="#某软件系统结构图如图所示，该结构图的深度为（3）。" class="headerlink" title="某软件系统结构图如图所示，该结构图的深度为（3）。"></a>某软件系统结构图如图所示，该结构图的深度为（3）。</h1><p>此处D的深度为2。</p>
+<p><img src="/20200423l1/59_1494922952723_E02F610DE99BF6698EA1582A91C891C3.png" alt="img"></p>
+<h1 id="解决hash冲突的方法中拉链法的好处"><a href="#解决hash冲突的方法中拉链法的好处" class="headerlink" title="解决hash冲突的方法中拉链法的好处"></a>解决hash冲突的方法中拉链法的好处</h1><p>与开放定址法相比，拉链法有如下几个优点：<br>(1)拉链法处理冲突简单，且无堆积现象，即非同义词决不会发生冲突，因此平均查找长度较短；<br>(2)由于拉链法中各链表上的结点空间是动态申请的，故它更适合于造表前无法确定表长的情况；<br>(3)开放定址法为减少冲突，要求装填因子α较小，故当结点规模较大时会浪费很多空间。而拉链法中可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计，因此节省空间；<br>(4)在用拉链法构造的散列表中，删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。而对开放地址法构造的散列表，删除结点不能简单地将被删结点的空间置为空，否则将截断在它之后填人散列表的同义词结点的查找路径。这是因为各种开放地址法中，空地址单元(即开放地址)都是查找失败的条件。因此在用开放地址法处理冲突的散列表上执行删除操作，只能在被删结点上做删除标记，而不能真正删除结点。</p>
 
     </div>
 
@@ -279,8 +260,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" rel="tag"># 软件测试</a>
-              <a href="/tags/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" rel="tag"># 白盒测试</a>
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+              <a href="/tags/%E7%89%9B%E5%AE%A2%E7%BD%91/" rel="tag"># 牛客网</a>
+              <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"># 刷题</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         
@@ -289,13 +272,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/read-list/" rel="prev" title="论文阅读">
-      <i class="fa fa-chevron-left"></i> 论文阅读
+    <a href="/20200422l1/" rel="prev" title="【牛客网】数据库">
+      <i class="fa fa-chevron-left"></i> 【牛客网】数据库
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/" rel="next" title="【牛客网】数据库">
-      【牛客网】数据库 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -354,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖（分支覆盖）"><span class="nav-text">判定覆盖（分支覆盖）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定-条件覆盖"><span class="nav-text">判定&#x2F;条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件组合覆盖"><span class="nav-text">条件组合覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径覆盖"><span class="nav-text">路径覆盖</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。"><span class="nav-text">在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#某软件系统结构图如图所示，该结构图的深度为（3）。"><span class="nav-text">某软件系统结构图如图所示，该结构图的深度为（3）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决hash冲突的方法中拉链法的好处"><span class="nav-text">解决hash冲突的方法中拉链法的好处</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -429,7 +409,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">6k</span>
 </div>
 
 
