@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -80,12 +80,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,65 +252,84 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数据库管理系统是数据库系统的核心"><a href="#数据库管理系统是数据库系统的核心" class="headerlink" title="数据库管理系统是数据库系统的核心"></a>数据库管理系统是数据库系统的核心</h1><p>数据库系统由数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台5个部分构成。</p>
+        <h1 id="数据库管理系统是数据库系统的核心">数据库管理系统是数据库系统的核心</h1>
+<p>数据库系统由数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台5个部分构成。</p>
 <p><strong>数据库管理系统</strong>是数据库系统的核心，负责数据库中的数据组织、数据操作、数据维护、控制及保护和数据服务等工作。</p>
-<h1 id="数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。"><a href="#数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。" class="headerlink" title="数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。"></a>数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。</h1><p>外模式/模式映像定义了数据库中不同用户的外模式与数据库逻辑模式之间的对应关系。当数据库模式发生变化时，通过调整外模式/模式映像间的映像关系，使得应用程序不必随之修改，从而保证数据与应用程序间的逻辑独立性，简称数据的逻辑独立性。</p>
+<h1 id="数据库的外模式模式映像保证了数据与程序的逻辑独立性">数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。</h1>
+<p>外模式/模式映像定义了数据库中不同用户的外模式与数据库逻辑模式之间的对应关系。当数据库模式发生变化时，通过调整外模式/模式映像间的映像关系，使得应用程序不必随之修改，从而保证数据与应用程序间的逻辑独立性，简称数据的逻辑独立性。</p>
 <p>模式又称逻辑模式，模式/内模式映像定义了数据库中数据全局逻辑结构与这些数据在系统中的物理存储组织结构之间的对应关系，保证数据库中数据与应用程序间的物理独立性。</p>
-<h1 id="若事务-T-对数据对象-A-加上-S-锁，则（-）。"><a href="#若事务-T-对数据对象-A-加上-S-锁，则（-）。" class="headerlink" title="若事务 T 对数据对象 A 加上 S 锁，则（ ）。"></a>若事务 T 对数据对象 A 加上 S 锁，则（ ）。</h1><p>事务T可以读A但不能修改A，其它事务只能再对A加S锁，而不能加X 锁。</p>
+<h1 id="若事务-t-对数据对象-a-加上-s-锁则">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</h1>
+<p>事务T可以读A但不能修改A，其它事务只能再对A加S锁，而不能加X 锁。</p>
 <p>S锁为共享锁，X锁为排他锁。</p>
 <p>共享锁又称为读锁，若事务T对数据对象A加上S锁，则事务T只能读A；其他事务只能再对A加S锁，而不能加X锁，直到T释放A上的S锁。这就保证了其他事务可以读A，但在T释放A上的S锁之前不能对A做任何修改。</p>
-<h1 id="关系的5条性质"><a href="#关系的5条性质" class="headerlink" title="关系的5条性质"></a>关系的5条性质</h1><ol>
+<h1 id="关系的5条性质">关系的5条性质</h1>
+<ol type="1">
 <li>分量必须取原子值，每个分量必须是不可再分的数据项。</li>
 <li>列是同质的，每列中的分量必须是同一类型的数据，来自同一个域。</li>
 <li>属性不能重名。</li>
 <li>行列的顺序无关。</li>
 <li>任何两个元组不能完全相同，这是由主码约束来保证的。但是有些数据库若用户没有定义完整性约束条件，允许有两行以上的相同的元组。</li>
 </ol>
-<h1 id="在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"><a href="#在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。" class="headerlink" title="在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"></a>在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</h1><h1 id="后援副本的用途是故障后的恢复"><a href="#后援副本的用途是故障后的恢复" class="headerlink" title="后援副本的用途是故障后的恢复"></a>后援副本的用途是故障后的恢复</h1><h1 id="数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）"><a href="#数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）" class="headerlink" title="数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）"></a>数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）</h1><p>日志文件、数据库后备副本</p>
-<p>数据库恢复的实现中可定期对整个数据库进行复制或转储<br>转储是数据库恢复中常用的基本技术，它是指DBA把数据库复制到另一个磁盘上的过程，可分为静态转储和动态转储<br>转储还可以分为海量存储和增量转储。<br>转储的冗余数据包通常包括  日志文件、数据库后备副本  等。</p>
-<h1 id="索引的优缺点："><a href="#索引的优缺点：" class="headerlink" title="索引的优缺点："></a>索引的优缺点：</h1><h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>（1）通过创建索引,可以在查询的过程中,提高系统的性能<br>（2）通过创建唯一性索引,可以保证数据库表中每一行数据的唯一性<br>（3）在使用分组和排序子句进行数据检索时,可以减少查询中分组和排序的时间</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>（1）创建索引和维护索引要耗费时间,而且时间随着数据量的增加而增大<br>（2）索引需要占用物理空间,如果要建立聚簇索引,所需要的空间会更大<br>（3）在对表中的数据进行增加删除和修改时需要耗费较多的时间,因为索引也要动态地维护</p>
-<h1 id="外模式-内模式-概念模式的关系"><a href="#外模式-内模式-概念模式的关系" class="headerlink" title="外模式 内模式 概念模式的关系"></a>外模式 内模式 概念模式的关系</h1><p>三级模式结构：外模式、模式和内模式</p>
-<p> 一、模式（Schema） </p>
+<h1 id="在关系模式-r分解成数据库模式ρ时谈论无损联接的先决条件是存在泛关系">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</h1>
+<h1 id="后援副本的用途是故障后的恢复">后援副本的用途是故障后的恢复</h1>
+<h1 id="数据库恢复的基础是利用转储的冗余数据这些转储的冗余数据是指">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（ ）</h1>
+<p>日志文件、数据库后备副本</p>
+<p>数据库恢复的实现中可定期对整个数据库进行复制或转储 转储是数据库恢复中常用的基本技术，它是指DBA把数据库复制到另一个磁盘上的过程，可分为静态转储和动态转储 转储还可以分为海量存储和增量转储。 转储的冗余数据包通常包括 日志文件、数据库后备副本 等。</p>
+<h1 id="索引的优缺点">索引的优缺点：</h1>
+<h2 id="优点">优点：</h2>
+<p>（1）通过创建索引,可以在查询的过程中,提高系统的性能 （2）通过创建唯一性索引,可以保证数据库表中每一行数据的唯一性 （3）在使用分组和排序子句进行数据检索时,可以减少查询中分组和排序的时间</p>
+<h2 id="缺点">缺点</h2>
+<p>（1）创建索引和维护索引要耗费时间,而且时间随着数据量的增加而增大 （2）索引需要占用物理空间,如果要建立聚簇索引,所需要的空间会更大 （3）在对表中的数据进行增加删除和修改时需要耗费较多的时间,因为索引也要动态地维护</p>
+<h1 id="外模式-内模式-概念模式的关系">外模式 内模式 概念模式的关系</h1>
+<p>三级模式结构：外模式、模式和内模式</p>
+<p>一、模式（Schema）</p>
 <p>定义：也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
-<p> 理解： ① 一个数据库只有一个模式； ② 是数据库数据在逻辑级上的视图； ③ 数据库模式以某一种数据模型为基础； ④ 定义模式时不仅要定义数据的逻辑结构（如数据记录由哪些数据项构成，数据项的名字、类型、取值范围等），而且要定义与数据有关的安全性、完整性要求，定义这些数据之间的联系。</p>
-<p> 二、外模式（External Schema）</p>
-<p> 定义：也称子模式（Subschema）或用户模式，是数据库用户（包括应用程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图，是与某一应用有关的数据的逻辑表示。</p>
-<p> 理解： ① 一个数据库可以有多个外模式； ② 外模式就是用户视图； ③ 外模式是保证数据安全性的一个有力措施。</p>
-<p> 三、内模式（Internal Schema）</p>
-<p> 定义：也称存储模式（Storage Schema），它是数据物理结构和存储方式的描述，是数据在数据库内部的表示方式（例如，记录的存储方式是顺序存储、按照B树结构存储还是按hash方法存储；索引按照什么方式组织；数据是否压缩存储，是否加密；数据的存储记录结构有何规定）。 </p>
+<p>理解： ① 一个数据库只有一个模式； ② 是数据库数据在逻辑级上的视图； ③ 数据库模式以某一种数据模型为基础； ④ 定义模式时不仅要定义数据的逻辑结构（如数据记录由哪些数据项构成，数据项的名字、类型、取值范围等），而且要定义与数据有关的安全性、完整性要求，定义这些数据之间的联系。</p>
+<p>二、外模式（External Schema）</p>
+<p>定义：也称子模式（Subschema）或用户模式，是数据库用户（包括应用程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图，是与某一应用有关的数据的逻辑表示。</p>
+<p>理解： ① 一个数据库可以有多个外模式； ② 外模式就是用户视图； ③ 外模式是保证数据安全性的一个有力措施。</p>
+<p>三、内模式（Internal Schema）</p>
+<p>定义：也称存储模式（Storage Schema），它是数据物理结构和存储方式的描述，是数据在数据库内部的表示方式（例如，记录的存储方式是顺序存储、按照B树结构存储还是按hash方法存储；索引按照什么方式组织；数据是否压缩存储，是否加密；数据的存储记录结构有何规定）。</p>
 <p>理解： ① 一个数据库只有一个内模式； ② 一个表可能由多个文件组成，如：数据文件、索引文件。 它是数据库管理系统(DBMS)对数据库中数据进行有效组织和管理的方法</p>
 <p>其目的有： ① 为了减少数据冗余，实现数据共享； ② 为了提高存取效率，改善性能。</p>
-<h1 id="事务的特性-ACID特性"><a href="#事务的特性-ACID特性" class="headerlink" title="事务的特性 ACID特性"></a>事务的特性 ACID特性</h1><p>A: 原子  C: 一致  I:隔离  D:持久</p>
-<h1 id="复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"><a href="#复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。" class="headerlink" title="复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"></a>复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</h1><h1 id="需求分析、概念设计、逻辑设计、物理设计"><a href="#需求分析、概念设计、逻辑设计、物理设计" class="headerlink" title="需求分析、概念设计、逻辑设计、物理设计"></a>需求分析、概念设计、逻辑设计、物理设计</h1><ul>
+<h1 id="事务的特性-acid特性">事务的特性 ACID特性</h1>
+<p>A: 原子 C: 一致 I:隔离 D:持久</p>
+<h1 id="复合索引可以只使用复合索引中的一部分但必须是由最左部分开始且可以存在常量">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</h1>
+<h1 id="需求分析概念设计逻辑设计物理设计">需求分析、概念设计、逻辑设计、物理设计</h1>
+<ul>
 <li>需求分析：分析用户的需求，包括数据、功能和性能需求，确立系统所需要实现的功能模块</li>
 <li>概念设计：主要采用E-R模型进行设计，包括画E-R图</li>
 <li>逻辑设计：E-R图转换成关系模式，进行关系规范化</li>
 <li>物理设计：为所设计的数据库选择合适的 存储结构 和存取路径</li>
 </ul>
-<h1 id="SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"><a href="#SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）" class="headerlink" title="SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"></a>SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</h1><p>DQL：数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块</p>
+<h1 id="sql语言-四大类dql数据查询语言dml数据操纵语言dcl数据控制语言ddl数据定义语言">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</h1>
+<p>DQL：数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块</p>
 <p>DML：插入、更新、删除</p>
 <p>DCL：数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等</p>
-<p>DDL：数据定义语言DDL用来创建数据库中的各种对象—–表、视图、索引、同义词、聚簇等</p>
-<h1 id="9i中的数据保护模式包括有？"><a href="#9i中的数据保护模式包括有？" class="headerlink" title="9i中的数据保护模式包括有？"></a>9i中的数据保护模式包括有？</h1><p><strong>数据库Oracle 9i</strong> ：</p>
-<h2 id="最大保护-Maximum-protection"><a href="#最大保护-Maximum-protection" class="headerlink" title="最大保护(Maximum protection )"></a>最大保护(Maximum protection )</h2><p>这种模式能够保证在primary Database发生故障保证数据不丢失。在这种模式下，事务提交前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，并确保至少在一个Standby Database中可用。如果Standby Database不可用，Primary Database将会shutdown。</p>
-<h2 id="最高可用性-Maximum-availability"><a href="#最高可用性-Maximum-availability" class="headerlink" title="最高可用性(Maximum availability)"></a>最高可用性(Maximum availability)</h2><p>这种模式在不影响Primary Database可用的前提下，提供最高级别的数据保护策略，这种模式也能够确保数据不丢失。事务提交之前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，确保至少在一个Standby Database中可用。与最大保护模式不同的是，如果Standby Database出现故障导致不可用，Primary Database并不会被shutdown，而是自动转换为最高性能模式，等Standby Database恢复正常后，Primary Database又会自动切换到最高可用性模式。</p>
-<h2 id="最大性能-Maximum-performance"><a href="#最大性能-Maximum-performance" class="headerlink" title="最大性能(Maximum performance)"></a>最大性能(Maximum performance)</h2><p>这是一种默认的保护模式。事务可以随时提交，当前Primary Database的Redo数据至少需要写入一个Standby Database，不过这种方式不会等待Standby Database是否写入的确认因此这种写入属于异步写入。</p>
-<h1 id="数据库文件、缓冲区、日志文件、后援文件"><a href="#数据库文件、缓冲区、日志文件、后援文件" class="headerlink" title="数据库文件、缓冲区、日志文件、后援文件"></a>数据库文件、缓冲区、日志文件、后援文件</h1><p>数据库文件：电脑上储存数据的文件。</p>
+<p>DDL：数据定义语言DDL用来创建数据库中的各种对象-----表、视图、索引、同义词、聚簇等</p>
+<h1 id="i中的数据保护模式包括有">9i中的数据保护模式包括有？</h1>
+<p><strong>数据库Oracle 9i</strong> ：</p>
+<h2 id="最大保护maximum-protection">最大保护(Maximum protection )</h2>
+<p>这种模式能够保证在primary Database发生故障保证数据不丢失。在这种模式下，事务提交前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，并确保至少在一个Standby Database中可用。如果Standby Database不可用，Primary Database将会shutdown。</p>
+<h2 id="最高可用性maximum-availability">最高可用性(Maximum availability)</h2>
+<p>这种模式在不影响Primary Database可用的前提下，提供最高级别的数据保护策略，这种模式也能够确保数据不丢失。事务提交之前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，确保至少在一个Standby Database中可用。与最大保护模式不同的是，如果Standby Database出现故障导致不可用，Primary Database并不会被shutdown，而是自动转换为最高性能模式，等Standby Database恢复正常后，Primary Database又会自动切换到最高可用性模式。</p>
+<h2 id="最大性能maximum-performance">最大性能(Maximum performance)</h2>
+<p>这是一种默认的保护模式。事务可以随时提交，当前Primary Database的Redo数据至少需要写入一个Standby Database，不过这种方式不会等待Standby Database是否写入的确认因此这种写入属于异步写入。</p>
+<h1 id="数据库文件缓冲区日志文件后援文件">数据库文件、缓冲区、日志文件、后援文件</h1>
+<p>数据库文件：电脑上储存数据的文件。</p>
 <p>缓冲区：是用户前端用来存储、操纵数据的对象。</p>
 <p>日志文件：用于记录系统操作事件的记录文件或文件集合，可分为事件日志和消息日志。具有处理历史数据、诊断问题的追踪以及理解系统的活动等重要作用。</p>
 <p>后援副本：数据的转存，这样才能让数据库恢复到最近一次转存时的一致性状态。</p>
-<h1 id="数据库系统的存储模式如有改变，概念模式无需改动"><a href="#数据库系统的存储模式如有改变，概念模式无需改动" class="headerlink" title="数据库系统的存储模式如有改变，概念模式无需改动"></a>数据库系统的存储模式如有改变，概念模式无需改动</h1><h1 id="视图设计的设计次序"><a href="#视图设计的设计次序" class="headerlink" title="视图设计的设计次序"></a>视图设计的设计次序</h1><ol>
-<li><p>自顶向下。先全局框架，然后逐步细化 </p>
-</li>
-<li><p>自底向上。先局部概念结构，再集成为全局结构 </p>
-</li>
-<li><p>由里向外。先核心结构，再向外扩张 </p>
-</li>
-<li><p>混合策略。1与2相结合，先自顶向下设计一个概念结构的框架，再自底向上为框架设计局部概念结构</p>
-</li>
+<h1 id="数据库系统的存储模式如有改变概念模式无需改动">数据库系统的存储模式如有改变，概念模式无需改动</h1>
+<h1 id="视图设计的设计次序">视图设计的设计次序</h1>
+<ol type="1">
+<li>自顶向下。先全局框架，然后逐步细化</li>
+<li><p>自底向上。先局部概念结构，再集成为全局结构</p></li>
+<li><p>由里向外。先核心结构，再向外扩张</p></li>
+<li><p>混合策略。1与2相结合，先自顶向下设计一个概念结构的框架，再自底向上为框架设计局部概念结构</p></li>
 </ol>
-<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><p>1NF</p>
+<h1 id="范式">范式</h1>
+<p>1NF</p>
 <p>每个关系r的属性值为不可分的原子值</p>
 <p>2NF</p>
 <p>满足1NF，非主属性完全函数依赖于候选键(左部不可约)</p>
@@ -319,17 +338,21 @@
 <p>BCNF</p>
 <p>满足3NF，消除每一属性对候选键的传递依赖</p>
 <p>1NF + 消去非主属性对键的部分函数依赖 = 2NF。即2NF中，非主属性完全依赖于主关键字；</p>
-<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A；</p>
+<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在&quot;A → B → C&quot;的决定关系，则C传递函数依赖于A；</p>
 <p>3NF + 消去主属性对键的传递函数依赖 = BCNF。BCNF是3NF的改进形式，即在3NF的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BCNF。</p>
-<h1 id="存储过程的调用"><a href="#存储过程的调用" class="headerlink" title="存储过程的调用"></a>存储过程的调用</h1><p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
+<h1 id="存储过程的调用">存储过程的调用</h1>
+<p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
 <p>MySQL的存储过程参数没有默认值，所以在调用MySQL存储过程时，不能省略参数，但是可以用null来代替</p>
-<h1 id="noSQL数据库"><a href="#noSQL数据库" class="headerlink" title="noSQL数据库"></a>noSQL数据库</h1><p>基于K-V：Redis， Voldemort， Oracle BDB</p>
+<h1 id="nosql数据库">noSQL数据库</h1>
+<p>基于K-V：Redis， Voldemort， Oracle BDB</p>
 <p>基于列存储：Cassandra， HBase， Riak</p>
 <p>基于文档型：CouchDB， MongoDB</p>
 <p>图形（Graph）数据库：Neo4J， InfoGrid， Infinite Graph</p>
-<h1 id="数据模型与逻辑模型"><a href="#数据模型与逻辑模型" class="headerlink" title="数据模型与逻辑模型"></a>数据模型与逻辑模型</h1><p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
+<h1 id="数据模型与逻辑模型">数据模型与逻辑模型</h1>
+<p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
 <p>常用的逻辑模型：层次模型、网状模型、关系模型</p>
-<h1 id="“查询”设计视图窗口分为上下部分"><a href="#“查询”设计视图窗口分为上下部分" class="headerlink" title="“查询”设计视图窗口分为上下部分"></a>“查询”设计视图窗口分为上下部分</h1><p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
+<h1 id="查询设计视图窗口分为上下部分">“查询”设计视图窗口分为上下部分</h1>
+<p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
 <p>下部分：“设计网络”，由一些字段列和一些已命名的列组成。</p>
 
     </div>
@@ -417,7 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库管理系统是数据库系统的核心"><span class="nav-text">数据库管理系统是数据库系统的核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。"><span class="nav-text">数据库的外模式&#x2F;模式映像，保证了数据与程序的逻辑独立性。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若事务-T-对数据对象-A-加上-S-锁，则（-）。"><span class="nav-text">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系的5条性质"><span class="nav-text">关系的5条性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"><span class="nav-text">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后援副本的用途是故障后的恢复"><span class="nav-text">后援副本的用途是故障后的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）"><span class="nav-text">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点："><span class="nav-text">索引的优缺点：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外模式-内模式-概念模式的关系"><span class="nav-text">外模式 内模式 概念模式的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务的特性-ACID特性"><span class="nav-text">事务的特性 ACID特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"><span class="nav-text">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析、概念设计、逻辑设计、物理设计"><span class="nav-text">需求分析、概念设计、逻辑设计、物理设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"><span class="nav-text">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9i中的数据保护模式包括有？"><span class="nav-text">9i中的数据保护模式包括有？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大保护-Maximum-protection"><span class="nav-text">最大保护(Maximum protection )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最高可用性-Maximum-availability"><span class="nav-text">最高可用性(Maximum availability)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大性能-Maximum-performance"><span class="nav-text">最大性能(Maximum performance)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库文件、缓冲区、日志文件、后援文件"><span class="nav-text">数据库文件、缓冲区、日志文件、后援文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的存储模式如有改变，概念模式无需改动"><span class="nav-text">数据库系统的存储模式如有改变，概念模式无需改动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图设计的设计次序"><span class="nav-text">视图设计的设计次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范式"><span class="nav-text">范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程的调用"><span class="nav-text">存储过程的调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#noSQL数据库"><span class="nav-text">noSQL数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据模型与逻辑模型"><span class="nav-text">数据模型与逻辑模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“查询”设计视图窗口分为上下部分"><span class="nav-text">“查询”设计视图窗口分为上下部分</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库管理系统是数据库系统的核心"><span class="nav-text">数据库管理系统是数据库系统的核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的外模式模式映像保证了数据与程序的逻辑独立性"><span class="nav-text">数据库的外模式&#x2F;模式映像，保证了数据与程序的逻辑独立性。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若事务-t-对数据对象-a-加上-s-锁则"><span class="nav-text">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系的5条性质"><span class="nav-text">关系的5条性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在关系模式-r分解成数据库模式ρ时谈论无损联接的先决条件是存在泛关系"><span class="nav-text">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后援副本的用途是故障后的恢复"><span class="nav-text">后援副本的用途是故障后的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库恢复的基础是利用转储的冗余数据这些转储的冗余数据是指"><span class="nav-text">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（ ）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引的优缺点"><span class="nav-text">索引的优缺点：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外模式-内模式-概念模式的关系"><span class="nav-text">外模式 内模式 概念模式的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务的特性-acid特性"><span class="nav-text">事务的特性 ACID特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复合索引可以只使用复合索引中的一部分但必须是由最左部分开始且可以存在常量"><span class="nav-text">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析概念设计逻辑设计物理设计"><span class="nav-text">需求分析、概念设计、逻辑设计、物理设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql语言-四大类dql数据查询语言dml数据操纵语言dcl数据控制语言ddl数据定义语言"><span class="nav-text">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#i中的数据保护模式包括有"><span class="nav-text">9i中的数据保护模式包括有？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大保护maximum-protection"><span class="nav-text">最大保护(Maximum protection )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最高可用性maximum-availability"><span class="nav-text">最高可用性(Maximum availability)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大性能maximum-performance"><span class="nav-text">最大性能(Maximum performance)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库文件缓冲区日志文件后援文件"><span class="nav-text">数据库文件、缓冲区、日志文件、后援文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的存储模式如有改变概念模式无需改动"><span class="nav-text">数据库系统的存储模式如有改变，概念模式无需改动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图设计的设计次序"><span class="nav-text">视图设计的设计次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#范式"><span class="nav-text">范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程的调用"><span class="nav-text">存储过程的调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nosql数据库"><span class="nav-text">noSQL数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据模型与逻辑模型"><span class="nav-text">数据模型与逻辑模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询设计视图窗口分为上下部分"><span class="nav-text">“查询”设计视图窗口分为上下部分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -432,18 +455,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -492,7 +515,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">6k</span>
+    <span title="站点总字数">9k</span>
 </div>
 
 
@@ -644,7 +667,7 @@
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="/js/local-search.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -657,6 +680,8 @@
 
 
 
+
+  
 
   
 

@@ -3,54 +3,99 @@
   <entry>
     <title>论文阅读</title>
     <url>/20200101l1/</url>
-    <content><![CDATA[<h1 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h1><h2 id="【2019-ICCV】【GitHub】FCOS-Fully-Convolutional-One-Stage-Object-Detection"><a href="#【2019-ICCV】【GitHub】FCOS-Fully-Convolutional-One-Stage-Object-Detection" class="headerlink" title="【2019 ICCV】【GitHub】FCOS: Fully Convolutional One-Stage Object Detection"></a>【2019 ICCV】<a href="https://github.com/tianzhi0549/FCOS" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>FCOS: Fully Convolutional One-Stage Object Detection</h2><p>以图像分割的方式解决目标检测问题。<br><img src="/20200101l1/image-20200419231953985.png" alt="image-20200419231953985"></p>
-<p><img src="/20200101l1/image-20200420115251385.png" alt="image-20200420115251385"></p>
-<p><img src="/20200101l1/image-20200420115305609.png" alt="image-20200420115305609"></p>
-<h1 id="图像分割"><a href="#图像分割" class="headerlink" title="图像分割"></a>图像分割</h1><h2 id="【2020-CVPR】【GitHub】-PolarMask-Single-Shot-Instance-Segmentation-with-Polar-Representation"><a href="#【2020-CVPR】【GitHub】-PolarMask-Single-Shot-Instance-Segmentation-with-Polar-Representation" class="headerlink" title="【2020 CVPR】【GitHub】 PolarMask: Single Shot Instance Segmentation with Polar Representation"></a>【2020 CVPR】<a href="https://github.com/xieenze/PolarMask" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> PolarMask: Single Shot Instance Segmentation with Polar Representation</h2><p>基于FCOS实现实例分割，使用极坐标表达实例的轮廓，进一步形成分割结果。</p>
-<p><img src="/20200101l1/image-20200420115345921.png" alt="image-20200420115345921"></p>
-<p><img src="/20200101l1/image-20200420115439081.png" alt="image-20200420115439081"></p>
-<p><img src="/20200101l1/image-20200420115451575.png" alt="image-20200420115451575"></p>
-<h2 id="【2020-CVPR】-CenterMask-single-shot-instance-segmentation-with-point-representation"><a href="#【2020-CVPR】-CenterMask-single-shot-instance-segmentation-with-point-representation" class="headerlink" title="【2020 CVPR】 CenterMask: single shot instance segmentation with point representation"></a>【2020 CVPR】 CenterMask: single shot instance segmentation with point representation</h2><p>引入局部形状预测和全局显著性预测，分别预测每个物体的形状和全局下都有哪些物体，一个负责局部一个负责全局</p>
-<p><img src="/20200101l1/image-20200420115531014.png" alt="image-20200420115531014"></p>
-<p><img src="/20200101l1/image-20200420115548245.png" alt="image-20200420115548245"></p>
-<p><img src="/20200101l1/image-20200420115605745.png" alt="image-20200420115605745"></p>
-<p><img src="/20200101l1/image-20200420115615742.png" alt="image-20200420115615742"></p>
-<h2 id="【2020-CVPR】【GitHub】-Strip-Pooling-Rethinking-Spatial-Pooling-for-Scene-Parsing"><a href="#【2020-CVPR】【GitHub】-Strip-Pooling-Rethinking-Spatial-Pooling-for-Scene-Parsing" class="headerlink" title="【2020 CVPR】【GitHub】 Strip Pooling: Rethinking Spatial Pooling for Scene Parsing"></a>【2020 CVPR】<a href="https://github.com/Andrew-Qibin/SPNet" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing</h2><p>提出条状Pooling，相比于方形卷积，可以较好检测到长条形物体</p>
-<p><img src="/20200101l1/image-20200420115653369.png" alt="image-20200420115653369"></p>
-<p><img src="/20200101l1/image-20200420115704116.png" alt="image-20200420115704116"></p>
-<p><img src="/20200101l1/image-20200420115715342.png" alt="image-20200420115715342"></p>
-<p><img src="/20200101l1/image-20200420115724747.png" alt="image-20200420115724747"></p>
-<p><img src="/20200101l1/image-20200420115733985.png" alt="image-20200420115733985"></p>
-<h2 id="【2020】An-automatic-COVID-19-CT-segmentation-based-on-U-Net-with-attention-mechanism"><a href="#【2020】An-automatic-COVID-19-CT-segmentation-based-on-U-Net-with-attention-mechanism" class="headerlink" title="【2020】An automatic COVID-19 CT segmentation based on U-Net with attention mechanism"></a>【2020】An automatic COVID-19 CT segmentation based on U-Net with attention mechanism</h2><p>新型冠状病毒分割<br>在unet基础上做修改：</p>
+    <content><![CDATA[<h1 id="目标检测">目标检测</h1>
+<h2 id="iccvgithubfcos-fully-convolutional-one-stage-object-detection">【2019 ICCV】<a href="https://github.com/tianzhi0549/FCOS" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>FCOS: Fully Convolutional One-Stage Object Detection</h2>
+<p>以图像分割的方式解决目标检测问题。 <img src="/20200101l1/image-20200419231953985.png" alt="image-20200419231953985"></p>
+<figure>
+<img src="/20200101l1/image-20200420115251385.png" alt="image-20200420115251385"><figcaption>image-20200420115251385</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115305609.png" alt="image-20200420115305609"><figcaption>image-20200420115305609</figcaption>
+</figure>
+<h1 id="图像分割">图像分割</h1>
+<h2 id="cvprgithub-polarmask-single-shot-instance-segmentation-with-polar-representation">【2020 CVPR】<a href="https://github.com/xieenze/PolarMask" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> PolarMask: Single Shot Instance Segmentation with Polar Representation</h2>
+<p>基于FCOS实现实例分割，使用极坐标表达实例的轮廓，进一步形成分割结果。</p>
+<figure>
+<img src="/20200101l1/image-20200420115345921.png" alt="image-20200420115345921"><figcaption>image-20200420115345921</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115439081.png" alt="image-20200420115439081"><figcaption>image-20200420115439081</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115451575.png" alt="image-20200420115451575"><figcaption>image-20200420115451575</figcaption>
+</figure>
+<h2 id="cvpr-centermask-single-shot-instance-segmentation-with-point-representation">【2020 CVPR】 CenterMask: single shot instance segmentation with point representation</h2>
+<p>引入局部形状预测和全局显著性预测，分别预测每个物体的形状和全局下都有哪些物体，一个负责局部一个负责全局</p>
+<figure>
+<img src="/20200101l1/image-20200420115531014.png" alt="image-20200420115531014"><figcaption>image-20200420115531014</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115548245.png" alt="image-20200420115548245"><figcaption>image-20200420115548245</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115605745.png" alt="image-20200420115605745"><figcaption>image-20200420115605745</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115615742.png" alt="image-20200420115615742"><figcaption>image-20200420115615742</figcaption>
+</figure>
+<h2 id="cvprgithub-strip-pooling-rethinking-spatial-pooling-for-scene-parsing">【2020 CVPR】<a href="https://github.com/Andrew-Qibin/SPNet" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing</h2>
+<p>提出条状Pooling，相比于方形卷积，可以较好检测到长条形物体</p>
+<figure>
+<img src="/20200101l1/image-20200420115653369.png" alt="image-20200420115653369"><figcaption>image-20200420115653369</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115704116.png" alt="image-20200420115704116"><figcaption>image-20200420115704116</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115715342.png" alt="image-20200420115715342"><figcaption>image-20200420115715342</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115724747.png" alt="image-20200420115724747"><figcaption>image-20200420115724747</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115733985.png" alt="image-20200420115733985"><figcaption>image-20200420115733985</figcaption>
+</figure>
+<h2 id="an-automatic-covid-19-ct-segmentation-based-on-u-net-with-attention-mechanism">【2020】An automatic COVID-19 CT segmentation based on U-Net with attention mechanism</h2>
+<p>新型冠状病毒分割 在unet基础上做修改： - 加入注意力机制（通道+空间）</p>
 <ul>
-<li><p>加入注意力机制（通道+空间）</p>
-</li>
-<li><p>focal tversky loss（检测小区域的病灶位置）<br><img src="/20200101l1/image-20200420115811144.png" alt="image-20200420115811144"></p>
-</li>
+<li>focal tversky loss（检测小区域的病灶位置） <img src="/20200101l1/image-20200420115811144.png" alt="image-20200420115811144"></li>
 </ul>
 <p>Res_dil block（提高感受野）：</p>
-<p><img src="/20200101l1/image-20200420115853141.png" alt="image-20200420115853141"></p>
+<figure>
+<img src="/20200101l1/image-20200420115853141.png" alt="image-20200420115853141"><figcaption>image-20200420115853141</figcaption>
+</figure>
 <p>注意力机制：</p>
-<p><img src="/20200101l1/image-20200420115917105.png" alt="image-20200420115917105"></p>
-<p><img src="/20200101l1/image-20200420115931445.png" alt="image-20200420115931445"></p>
-<p><img src="/20200101l1/image-20200420115946281.png" alt="image-20200420115946281"></p>
-<h2 id="【2019-CVPR】【GitHub】-Dual-Attention-Network-for-Scene-Segmentation"><a href="#【2019-CVPR】【GitHub】-Dual-Attention-Network-for-Scene-Segmentation" class="headerlink" title="【2019 CVPR】【GitHub】 Dual Attention Network for Scene Segmentation"></a>【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2><p>加入注意力机制，同时对空间和通道进行。</p>
-<p><img src="/20200101l1/image-20200420120019703.png" alt="image-20200420120019703"></p>
-<p><img src="/20200101l1/image-20200420120052772.png" alt="image-20200420120052772"></p>
-<p><img src="/20200101l1/image-20200420120101963.png" alt="image-20200420120101963"></p>
-<h1 id="图像翻译"><a href="#图像翻译" class="headerlink" title="图像翻译"></a>图像翻译</h1><h2 id="【2020-ICLR】【GitHub】U-GAT-IT-Unsupervised-Generative-Attentional-Networks-with-Adaptive-Layer-Instance-Normalization-for-Image-to-Image-Translation"><a href="#【2020-ICLR】【GitHub】U-GAT-IT-Unsupervised-Generative-Attentional-Networks-with-Adaptive-Layer-Instance-Normalization-for-Image-to-Image-Translation" class="headerlink" title="【2020 ICLR】【GitHub】U-GAT-IT: Unsupervised Generative Attentional Networks with Adaptive Layer-Instance Normalization for Image-to-Image Translation"></a>【2020 ICLR】<a href="https://github.com/znxlwm/UGATIT-pytorch" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>U-GAT-IT: Unsupervised Generative Attentional Networks with Adaptive Layer-Instance Normalization for Image-to-Image Translation</h2><p><a href="http://www.twistedwg.com/2019/08/07/UGATIT.html" target="_blank" rel="external nofollow noopener noreferrer">UGATIT-自适应图层实例归一化下图像到图像转换</a><br><a href="http://39.108.217.36/index.php/archives/392/" target="_blank" rel="external nofollow noopener noreferrer">论文笔记</a></p>
-<p>引入<code>注意力机制</code>，这里采用全局和平均池化的类激活图（Class Activation Map-CAM）来实现的，通过CNN确定分类依据的位置。<br>加入<code>自适应图层实例归一化</code>（AdaLIN），帮助注意力引导模型灵活控制形状和纹理变化量。</p>
-<p>CAM 的意义就是以热力图的形式告诉我们，模型通过哪些像素点得知图片属于某个类别。<br>特征图经过 GAP 处理后每一个特征图包含了不同类别的信息，权重 w 对应分类时的权重。绘制热力图时，提取出所有的权重，往回找到对应的特征图，然后进行加权求和即可。<br><img src="/20200101l1/image-20200420120144704.png" alt="image-20200420120144704"></p>
-<p>网络结构由一个生成器和两个判别器组成。<br>判别器的设计采用一个全局判别器(Global Discriminator)以及一个局部判别器(Local Discriminator)结合实现，所谓的全局判别器和局部判别器的区别就在于全局判别器对输入的图像进行了更深层次的特征压缩，最后输出的前一层。<br><img src="/20200101l1/image-20200420120158234.png" alt="image-20200420120158234"><br><img src="/20200101l1/image-20200420120213245.png" alt="image-20200420120213245"></p>
+<figure>
+<img src="/20200101l1/image-20200420115917105.png" alt="image-20200420115917105"><figcaption>image-20200420115917105</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115931445.png" alt="image-20200420115931445"><figcaption>image-20200420115931445</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420115946281.png" alt="image-20200420115946281"><figcaption>image-20200420115946281</figcaption>
+</figure>
+<h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
+<p>加入注意力机制，同时对空间和通道进行。</p>
+<figure>
+<img src="/20200101l1/image-20200420120019703.png" alt="image-20200420120019703"><figcaption>image-20200420120019703</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420120052772.png" alt="image-20200420120052772"><figcaption>image-20200420120052772</figcaption>
+</figure>
+<figure>
+<img src="/20200101l1/image-20200420120101963.png" alt="image-20200420120101963"><figcaption>image-20200420120101963</figcaption>
+</figure>
+<h1 id="图像翻译">图像翻译</h1>
+<h2 id="iclrgithubu-gat-it-unsupervised-generative-attentional-networks-with-adaptive-layer-instance-normalization-for-image-to-image-translation">【2020 ICLR】<a href="https://github.com/znxlwm/UGATIT-pytorch" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>U-GAT-IT: Unsupervised Generative Attentional Networks with Adaptive Layer-Instance Normalization for Image-to-Image Translation</h2>
+<p><a href="http://www.twistedwg.com/2019/08/07/UGATIT.html" target="_blank" rel="external nofollow noopener noreferrer">UGATIT-自适应图层实例归一化下图像到图像转换</a> <a href="http://39.108.217.36/index.php/archives/392/" target="_blank" rel="external nofollow noopener noreferrer">论文笔记</a></p>
+<p>引入<code>注意力机制</code>，这里采用全局和平均池化的类激活图（Class Activation Map-CAM）来实现的，通过CNN确定分类依据的位置。 加入<code>自适应图层实例归一化</code>（AdaLIN），帮助注意力引导模型灵活控制形状和纹理变化量。</p>
+<p>CAM 的意义就是以热力图的形式告诉我们，模型通过哪些像素点得知图片属于某个类别。 特征图经过 GAP 处理后每一个特征图包含了不同类别的信息，权重 w 对应分类时的权重。绘制热力图时，提取出所有的权重，往回找到对应的特征图，然后进行加权求和即可。 <img src="/20200101l1/image-20200420120144704.png" alt="image-20200420120144704"></p>
+<p>网络结构由一个生成器和两个判别器组成。 判别器的设计采用一个全局判别器(Global Discriminator)以及一个局部判别器(Local Discriminator)结合实现，所谓的全局判别器和局部判别器的区别就在于全局判别器对输入的图像进行了更深层次的特征压缩，最后输出的前一层。 <img src="/20200101l1/image-20200420120158234.png" alt="image-20200420120158234"> <img src="/20200101l1/image-20200420120213245.png" alt="image-20200420120213245"></p>
 <p>此处要提一下，在判别器中也加入了CAM模块，虽然在判别器下CAM并没有做域的分类，但是加入注意力模块对于判别图像真伪是有益的，文中给出的解释是注意力图通过关注目标域中的真实图像和伪图像之间的差异来帮助进行微调。</p>
-<p>损失函数：</p>
-<ul>
-<li>GAN的对抗损失</li>
-<li>循环一致性损失</li>
-<li>身份损失（相同域之间不希望进行转换）</li>
-<li>CAM损失（生成器中对图像域进行分类，希望源域和目标域尽可能分开）</li>
-</ul>
-<p><img src="/20200101l1/image-20200420120247952.png" alt="image-20200420120247952"></p>
+<p>损失函数： - GAN的对抗损失 - 循环一致性损失 - 身份损失（相同域之间不希望进行转换） - CAM损失（生成器中对图像域进行分类，希望源域和目标域尽可能分开）</p>
+<figure>
+<img src="/20200101l1/image-20200420120247952.png" alt="image-20200420120247952"><figcaption>image-20200420120247952</figcaption>
+</figure>
 ]]></content>
       <categories>
         <category>论文笔记</category>
@@ -60,11 +105,125 @@
       </tags>
   </entry>
   <entry>
+    <title>ResNeSt: Split-Attention Networks</title>
+    <url>/20200424l1/</url>
+    <content><![CDATA[<h1 id="引言">引言</h1>
+<h2 id="概述">概述</h2>
+<p>本文主要介绍ResNet的变体：ResNeSt。</p>
+<p>目前代码已经提供PyTorch和MXNet两个版本。</p>
+<p>【GitHub】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer" class="uri">https://github.com/zhanghang1989/ResNeSt</a></p>
+<p>性能显著提升，参数量并没有显著增加。</p>
+<p>借鉴了：Multi-path 和 Feature-map Attention思想。</p>
+<p>其中：</p>
+<ul>
+<li>GoogleNet 采用了Multi-path机制，其中每个网络块均由不同的卷积kernels组成。</li>
+<li>ResNeXt在ResNet bottle模块中采用组卷积，将multi-path结构转换为统一操作。</li>
+<li>SE-Net 通过自适应地重新校准通道特征响应来引入通道注意力（channel-attention）机制。</li>
+<li>SK-Net 通过两个网络分支引入特征图注意力（feature-map attention）。</li>
+</ul>
+<h2 id="主要贡献">主要贡献</h2>
+<ul>
+<li>在ResNet的基础上进行了修改，结合了feature-map split attention机制。</li>
+<li>在图像分类和迁移学习上都有很大提升，可以作为这些领域的benchmark。</li>
+</ul>
+<h1 id="方法">方法</h1>
+<h2 id="概述-1">概述</h2>
+<p>ResNeSt主要引入了Split-Attention block，由feature-map group和split attention operation组成。</p>
+<p>SE-Net、SK-Net、ResNeSt的结构图如下：</p>
+<p><img src="/20200424l1/image-20200424121613880.png"></p>
+<p>其中Split Attention的结构如下：</p>
+<p><img src="/20200424l1/image-20200424121729777.png"></p>
+<p>从图1和图2可知，都有split的影子。比如图1中的 <span class="math inline">\(K(k)\)</span> 和图2中的 <span class="math inline">\(R(r)\)</span> 都是超参数，也就是共计 <span class="math inline">\(G = K*R\)</span> 组。</p>
+<h2 id="feature-map-group">Feature-map Group</h2>
+<p>如图 2，仿照ResNeXt block，将特征分为多个组，特征组的数量由超参数K控制。</p>
+<p>每一个组由分成多个cardinal组，数量由R控制。</p>
+<p>因此所有组的数量为<span class="math inline">\(G=K\times R\)</span>。</p>
+<p>每个小组应用一系列变化<span class="math inline">\(\{F_1, F2, ..., F_G\}\)</span>，每个组的中间表示使用<span class="math inline">\(U_i=F_i(X)\)</span>，其中<span class="math inline">\(i \in \{1,2,...,G\}\)</span>。</p>
+<h2 id="split-attention-in-cardinal-groups">Split Attention in Cardinal Groups</h2>
+<p>受SENet和SKNet启发，每一个cardinal组的表达通过像素级相加的方式融合起来，公式表示为<span class="math inline">\(\hat{U}^k=\sum_{j=R(k-1)+1}^{Rk}{U_j}\)</span>，其中<span class="math inline">\(\hat{U}^k \in R^{H \times H \times C/K}, k \in 1,2,...,K\)</span>。</p>
+<p>通过空间维度的全局平均池化实现聚合通道维度的全局上下文信息，第c个组件具体公式如下： <span class="math display">\[
+s_c^k=\frac{1}{H \times W}\sum_{i-1}^{H}\sum_{j=1}^{W}{\hat{U}_c^k(i,j)}
+\]</span> cardinal组表示的加权融合使用通道维度soft注意力实现，其中每个channel的特征图使用加权组合产生。 <span class="math display">\[
+V_{c}^{k}=\sum_{i=1}^{R} a_{i}^{k}(c) U_{R(k-1)+i}
+\]</span></p>
+<p><span class="math display">\[
+a_{i}^{k}(c)=\left\{\begin{array}{ll}
+\frac{\exp \left(\mathcal{G}_{i}^{c}\left(s^{k}\right)\right)}{\sum_{j=0}^{R} \exp \left(\mathcal{G}_{j}^{c}\left(s^{k}\right)\right)} &amp; \text { if } R&gt;1 \\
+\frac{1}{1+\exp \left(-\mathcal{G}_{i}^{c}\left(s^{k}\right)\right)} &amp; \text { if } R=1
+\end{array}\right.
+\]</span></p>
+<h2 id="resnest-block">ResNeSt Block</h2>
+<p>最终结果通过short cut连接：<span class="math inline">\(Y = V+X\)</span></p>
+<p>当特征图大小不匹配时加入相应的变换：<span class="math inline">\(Y=V+T(X)\)</span>，<span class="math inline">\(T\)</span>可以使用strided convolution或combined convolution-with-pooling。</p>
+<h2 id="network-tweaks">Network Tweaks</h2>
+<h3 id="average-downsampling">Average Downsampling</h3>
+<p>对于某些要求空间信息的拓展任务来说保存空间信息使必要的。在此之前，ResNet通过带有stride的<span class="math inline">\(3 \times 3\)</span>来实现降采样，但是这样对于边界的处理需要采用padding操作。而在本文中直接使用<span class="math inline">\(3 \times 3\)</span>平均池化操作。</p>
+<h3 id="tweaks-from-resnet-d">Tweaks from ResNet-D</h3>
+<ol type="1">
+<li>将原始的<span class="math inline">\(7 \times 7\)</span>卷积操作替换成3个<span class="math inline">\(3 \times 3\)</span>的卷积操作，他们具有相同的感受野，计算量也较为相似。</li>
+<li>在shortcut中<span class="math inline">\(1 \times 1\)</span>卷积层前加入<span class="math inline">\(2 \times 2\)</span>平均池化。</li>
+</ol>
+<h2 id="训练策略">训练策略</h2>
+<p>这个对大家目前的工作应该具有很大的参考价值（涨点tricks）。</p>
+<ul>
+<li>Large Mini-batch Distributed Training</li>
+<li>Label Smoothing</li>
+<li>Auto Augmentation</li>
+<li>Mixup Training</li>
+<li>Large Crop Size</li>
+<li>Regularization</li>
+</ul>
+<h1 id="实验结果">实验结果</h1>
+<h2 id="图像分类">图像分类</h2>
+<p><img src="/20200424l1/image-20200424141553855.png"></p>
+<p><img src="/20200424l1/image-20200424141606687.png"></p>
+<h2 id="目标检测">目标检测</h2>
+<p><img src="/20200424l1/image-20200424141715775.png"></p>
+<h2 id="实例分割">实例分割</h2>
+<p><img src="/20200424l1/image-20200424141737925.png"></p>
+<h2 id="语义分割">语义分割</h2>
+<p><img src="/20200424l1/image-20200424141754790.png"></p>
+<h1 id="作者的次要结论">作者的次要结论</h1>
+<ul>
+<li>depth-wise convolution is not optimal for training and inference efficiency on GPU,</li>
+<li>model accuracy get saturated on ImageNet with a fixed input image size,</li>
+<li>increasing input image size can get better accuracy and FLOPS trade-off.</li>
+<li>bicubic upsampling strategy is needed for large crop-size (≥ 320).</li>
+</ul>
+<h1 id="作者解答">作者解答</h1>
+<h2 id="这里的attention和sknet挺像">这里的attention和sknet挺像</h2>
+<p>问题来自<a href="https://www.zhihu.com/question/388637660" target="_blank" rel="external nofollow noopener noreferrer">知乎</a></p>
+<blockquote>
+<p>1). 我们相当于把 SKNet 的思想做到 ResNeXt 的 group 里更有效，而且相对于多分支的 SKNet 更模块化，易于优化。</p>
+<p>2). 这篇 paper 其实并不是一个什么开创性的工作，感觉大家有点过高期待了，只是几个小伙伴在繁忙工作中抽出3个多星期的时间一起赶出来的，为了全面提高 gluoncv 项目里的所有模型的性能，最简单的方法就是提高 backbone。仅此而已。</p>
+</blockquote>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li><a href="https://zhuanlan.zhihu.com/p/132655457" target="_blank" rel="external nofollow noopener noreferrer">ResNet最强改进版来了！ResNeSt：Split-Attention Networks</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/133496926" target="_blank" rel="external nofollow noopener noreferrer">ResNeSt: Split-Attention Networks阅读笔记</a></li>
+<li><a href="https://www.zhihu.com/question/388637660" target="_blank" rel="external nofollow noopener noreferrer">如何评价ResNeSt：Split-Attention Networks？</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>github</tag>
+        <tag>阅读笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【牛客网】数据结构</title>
     <url>/20200423l1/</url>
-    <content><![CDATA[<h1 id="在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。"><a href="#在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。" class="headerlink" title="在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。"></a>在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。</h1><h1 id="某软件系统结构图如图所示，该结构图的深度为（3）。"><a href="#某软件系统结构图如图所示，该结构图的深度为（3）。" class="headerlink" title="某软件系统结构图如图所示，该结构图的深度为（3）。"></a>某软件系统结构图如图所示，该结构图的深度为（3）。</h1><p>此处D的深度为2。</p>
-<p><img src="/20200423l1/59_1494922952723_E02F610DE99BF6698EA1582A91C891C3.png" alt="img"></p>
-<h1 id="解决hash冲突的方法中拉链法的好处"><a href="#解决hash冲突的方法中拉链法的好处" class="headerlink" title="解决hash冲突的方法中拉链法的好处"></a>解决hash冲突的方法中拉链法的好处</h1><p>与开放定址法相比，拉链法有如下几个优点：<br>(1)拉链法处理冲突简单，且无堆积现象，即非同义词决不会发生冲突，因此平均查找长度较短；<br>(2)由于拉链法中各链表上的结点空间是动态申请的，故它更适合于造表前无法确定表长的情况；<br>(3)开放定址法为减少冲突，要求装填因子α较小，故当结点规模较大时会浪费很多空间。而拉链法中可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计，因此节省空间；<br>(4)在用拉链法构造的散列表中，删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。而对开放地址法构造的散列表，删除结点不能简单地将被删结点的空间置为空，否则将截断在它之后填人散列表的同义词结点的查找路径。这是因为各种开放地址法中，空地址单元(即开放地址)都是查找失败的条件。因此在用开放地址法处理冲突的散列表上执行删除操作，只能在被删结点上做删除标记，而不能真正删除结点。</p>
+    <content><![CDATA[<h1 id="在aoe网中从源点到汇点的所有路径中具有最大路径长度的路径称为关键路径并把关键路径上的活动称为关键活动">在AOE网中，从源点到汇点的所有路径中，具有最大路径长度的路径称为关键路径。并把关键路径上的活动称为关键活动。</h1>
+<h1 id="某软件系统结构图如图所示该结构图的深度为3">某软件系统结构图如图所示，该结构图的深度为（3）。</h1>
+<p>此处D的深度为2。</p>
+<figure>
+<img src="/20200423l1/59_1494922952723_E02F610DE99BF6698EA1582A91C891C3.png" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="解决hash冲突的方法中拉链法的好处">解决hash冲突的方法中拉链法的好处</h1>
+<p>与开放定址法相比，拉链法有如下几个优点： (1)拉链法处理冲突简单，且无堆积现象，即非同义词决不会发生冲突，因此平均查找长度较短； (2)由于拉链法中各链表上的结点空间是动态申请的，故它更适合于造表前无法确定表长的情况； (3)开放定址法为减少冲突，要求装填因子α较小，故当结点规模较大时会浪费很多空间。而拉链法中可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计，因此节省空间； (4)在用拉链法构造的散列表中，删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。而对开放地址法构造的散列表，删除结点不能简单地将被删结点的空间置为空，否则将截断在它之后填人散列表的同义词结点的查找路径。这是因为各种开放地址法中，空地址单元(即开放地址)都是查找失败的条件。因此在用开放地址法处理冲突的散列表上执行删除操作，只能在被删结点上做删除标记，而不能真正删除结点。</p>
 ]]></content>
       <categories>
         <category>知识点</category>
@@ -79,65 +238,84 @@
   <entry>
     <title>【牛客网】数据库</title>
     <url>/20200422l1/</url>
-    <content><![CDATA[<h1 id="数据库管理系统是数据库系统的核心"><a href="#数据库管理系统是数据库系统的核心" class="headerlink" title="数据库管理系统是数据库系统的核心"></a>数据库管理系统是数据库系统的核心</h1><p>数据库系统由数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台5个部分构成。</p>
+    <content><![CDATA[<h1 id="数据库管理系统是数据库系统的核心">数据库管理系统是数据库系统的核心</h1>
+<p>数据库系统由数据库（数据）、数据库管理系统（软件）、数据库管理员（人员）、硬件平台（硬件）、软件平台5个部分构成。</p>
 <p><strong>数据库管理系统</strong>是数据库系统的核心，负责数据库中的数据组织、数据操作、数据维护、控制及保护和数据服务等工作。</p>
-<h1 id="数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。"><a href="#数据库的外模式-模式映像，保证了数据与程序的逻辑独立性。" class="headerlink" title="数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。"></a>数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。</h1><p>外模式/模式映像定义了数据库中不同用户的外模式与数据库逻辑模式之间的对应关系。当数据库模式发生变化时，通过调整外模式/模式映像间的映像关系，使得应用程序不必随之修改，从而保证数据与应用程序间的逻辑独立性，简称数据的逻辑独立性。</p>
+<h1 id="数据库的外模式模式映像保证了数据与程序的逻辑独立性">数据库的外模式/模式映像，保证了数据与程序的逻辑独立性。</h1>
+<p>外模式/模式映像定义了数据库中不同用户的外模式与数据库逻辑模式之间的对应关系。当数据库模式发生变化时，通过调整外模式/模式映像间的映像关系，使得应用程序不必随之修改，从而保证数据与应用程序间的逻辑独立性，简称数据的逻辑独立性。</p>
 <p>模式又称逻辑模式，模式/内模式映像定义了数据库中数据全局逻辑结构与这些数据在系统中的物理存储组织结构之间的对应关系，保证数据库中数据与应用程序间的物理独立性。</p>
-<h1 id="若事务-T-对数据对象-A-加上-S-锁，则（-）。"><a href="#若事务-T-对数据对象-A-加上-S-锁，则（-）。" class="headerlink" title="若事务 T 对数据对象 A 加上 S 锁，则（ ）。"></a>若事务 T 对数据对象 A 加上 S 锁，则（ ）。</h1><p>事务T可以读A但不能修改A，其它事务只能再对A加S锁，而不能加X 锁。</p>
+<h1 id="若事务-t-对数据对象-a-加上-s-锁则">若事务 T 对数据对象 A 加上 S 锁，则（ ）。</h1>
+<p>事务T可以读A但不能修改A，其它事务只能再对A加S锁，而不能加X 锁。</p>
 <p>S锁为共享锁，X锁为排他锁。</p>
 <p>共享锁又称为读锁，若事务T对数据对象A加上S锁，则事务T只能读A；其他事务只能再对A加S锁，而不能加X锁，直到T释放A上的S锁。这就保证了其他事务可以读A，但在T释放A上的S锁之前不能对A做任何修改。</p>
-<h1 id="关系的5条性质"><a href="#关系的5条性质" class="headerlink" title="关系的5条性质"></a>关系的5条性质</h1><ol>
+<h1 id="关系的5条性质">关系的5条性质</h1>
+<ol type="1">
 <li>分量必须取原子值，每个分量必须是不可再分的数据项。</li>
 <li>列是同质的，每列中的分量必须是同一类型的数据，来自同一个域。</li>
 <li>属性不能重名。</li>
 <li>行列的顺序无关。</li>
 <li>任何两个元组不能完全相同，这是由主码约束来保证的。但是有些数据库若用户没有定义完整性约束条件，允许有两行以上的相同的元组。</li>
 </ol>
-<h1 id="在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"><a href="#在关系模式-R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。" class="headerlink" title="在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。"></a>在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</h1><h1 id="后援副本的用途是故障后的恢复"><a href="#后援副本的用途是故障后的恢复" class="headerlink" title="后援副本的用途是故障后的恢复"></a>后援副本的用途是故障后的恢复</h1><h1 id="数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）"><a href="#数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（-）" class="headerlink" title="数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）"></a>数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（   ）</h1><p>日志文件、数据库后备副本</p>
-<p>数据库恢复的实现中可定期对整个数据库进行复制或转储<br>转储是数据库恢复中常用的基本技术，它是指DBA把数据库复制到另一个磁盘上的过程，可分为静态转储和动态转储<br>转储还可以分为海量存储和增量转储。<br>转储的冗余数据包通常包括  日志文件、数据库后备副本  等。</p>
-<h1 id="索引的优缺点："><a href="#索引的优缺点：" class="headerlink" title="索引的优缺点："></a>索引的优缺点：</h1><h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>（1）通过创建索引,可以在查询的过程中,提高系统的性能<br>（2）通过创建唯一性索引,可以保证数据库表中每一行数据的唯一性<br>（3）在使用分组和排序子句进行数据检索时,可以减少查询中分组和排序的时间</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>（1）创建索引和维护索引要耗费时间,而且时间随着数据量的增加而增大<br>（2）索引需要占用物理空间,如果要建立聚簇索引,所需要的空间会更大<br>（3）在对表中的数据进行增加删除和修改时需要耗费较多的时间,因为索引也要动态地维护</p>
-<h1 id="外模式-内模式-概念模式的关系"><a href="#外模式-内模式-概念模式的关系" class="headerlink" title="外模式 内模式 概念模式的关系"></a>外模式 内模式 概念模式的关系</h1><p>三级模式结构：外模式、模式和内模式</p>
-<p> 一、模式（Schema） </p>
+<h1 id="在关系模式-r分解成数据库模式ρ时谈论无损联接的先决条件是存在泛关系">在关系模式 R分解成数据库模式ρ时，谈论无损联接的先决条件是存在（泛关系）。</h1>
+<h1 id="后援副本的用途是故障后的恢复">后援副本的用途是故障后的恢复</h1>
+<h1 id="数据库恢复的基础是利用转储的冗余数据这些转储的冗余数据是指">数据库恢复的基础是利用转储的冗余数据。这些转储的冗余数据是指（ ）</h1>
+<p>日志文件、数据库后备副本</p>
+<p>数据库恢复的实现中可定期对整个数据库进行复制或转储 转储是数据库恢复中常用的基本技术，它是指DBA把数据库复制到另一个磁盘上的过程，可分为静态转储和动态转储 转储还可以分为海量存储和增量转储。 转储的冗余数据包通常包括 日志文件、数据库后备副本 等。</p>
+<h1 id="索引的优缺点">索引的优缺点：</h1>
+<h2 id="优点">优点：</h2>
+<p>（1）通过创建索引,可以在查询的过程中,提高系统的性能 （2）通过创建唯一性索引,可以保证数据库表中每一行数据的唯一性 （3）在使用分组和排序子句进行数据检索时,可以减少查询中分组和排序的时间</p>
+<h2 id="缺点">缺点</h2>
+<p>（1）创建索引和维护索引要耗费时间,而且时间随着数据量的增加而增大 （2）索引需要占用物理空间,如果要建立聚簇索引,所需要的空间会更大 （3）在对表中的数据进行增加删除和修改时需要耗费较多的时间,因为索引也要动态地维护</p>
+<h1 id="外模式-内模式-概念模式的关系">外模式 内模式 概念模式的关系</h1>
+<p>三级模式结构：外模式、模式和内模式</p>
+<p>一、模式（Schema）</p>
 <p>定义：也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
-<p> 理解： ① 一个数据库只有一个模式； ② 是数据库数据在逻辑级上的视图； ③ 数据库模式以某一种数据模型为基础； ④ 定义模式时不仅要定义数据的逻辑结构（如数据记录由哪些数据项构成，数据项的名字、类型、取值范围等），而且要定义与数据有关的安全性、完整性要求，定义这些数据之间的联系。</p>
-<p> 二、外模式（External Schema）</p>
-<p> 定义：也称子模式（Subschema）或用户模式，是数据库用户（包括应用程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图，是与某一应用有关的数据的逻辑表示。</p>
-<p> 理解： ① 一个数据库可以有多个外模式； ② 外模式就是用户视图； ③ 外模式是保证数据安全性的一个有力措施。</p>
-<p> 三、内模式（Internal Schema）</p>
-<p> 定义：也称存储模式（Storage Schema），它是数据物理结构和存储方式的描述，是数据在数据库内部的表示方式（例如，记录的存储方式是顺序存储、按照B树结构存储还是按hash方法存储；索引按照什么方式组织；数据是否压缩存储，是否加密；数据的存储记录结构有何规定）。 </p>
+<p>理解： ① 一个数据库只有一个模式； ② 是数据库数据在逻辑级上的视图； ③ 数据库模式以某一种数据模型为基础； ④ 定义模式时不仅要定义数据的逻辑结构（如数据记录由哪些数据项构成，数据项的名字、类型、取值范围等），而且要定义与数据有关的安全性、完整性要求，定义这些数据之间的联系。</p>
+<p>二、外模式（External Schema）</p>
+<p>定义：也称子模式（Subschema）或用户模式，是数据库用户（包括应用程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图，是与某一应用有关的数据的逻辑表示。</p>
+<p>理解： ① 一个数据库可以有多个外模式； ② 外模式就是用户视图； ③ 外模式是保证数据安全性的一个有力措施。</p>
+<p>三、内模式（Internal Schema）</p>
+<p>定义：也称存储模式（Storage Schema），它是数据物理结构和存储方式的描述，是数据在数据库内部的表示方式（例如，记录的存储方式是顺序存储、按照B树结构存储还是按hash方法存储；索引按照什么方式组织；数据是否压缩存储，是否加密；数据的存储记录结构有何规定）。</p>
 <p>理解： ① 一个数据库只有一个内模式； ② 一个表可能由多个文件组成，如：数据文件、索引文件。 它是数据库管理系统(DBMS)对数据库中数据进行有效组织和管理的方法</p>
 <p>其目的有： ① 为了减少数据冗余，实现数据共享； ② 为了提高存取效率，改善性能。</p>
-<h1 id="事务的特性-ACID特性"><a href="#事务的特性-ACID特性" class="headerlink" title="事务的特性 ACID特性"></a>事务的特性 ACID特性</h1><p>A: 原子  C: 一致  I:隔离  D:持久</p>
-<h1 id="复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"><a href="#复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。" class="headerlink" title="复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。"></a>复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</h1><h1 id="需求分析、概念设计、逻辑设计、物理设计"><a href="#需求分析、概念设计、逻辑设计、物理设计" class="headerlink" title="需求分析、概念设计、逻辑设计、物理设计"></a>需求分析、概念设计、逻辑设计、物理设计</h1><ul>
+<h1 id="事务的特性-acid特性">事务的特性 ACID特性</h1>
+<p>A: 原子 C: 一致 I:隔离 D:持久</p>
+<h1 id="复合索引可以只使用复合索引中的一部分但必须是由最左部分开始且可以存在常量">复合索引可以只使用复合索引中的一部分，但必须是由最左部分开始，且可以存在常量。</h1>
+<h1 id="需求分析概念设计逻辑设计物理设计">需求分析、概念设计、逻辑设计、物理设计</h1>
+<ul>
 <li>需求分析：分析用户的需求，包括数据、功能和性能需求，确立系统所需要实现的功能模块</li>
 <li>概念设计：主要采用E-R模型进行设计，包括画E-R图</li>
 <li>逻辑设计：E-R图转换成关系模式，进行关系规范化</li>
 <li>物理设计：为所设计的数据库选择合适的 存储结构 和存取路径</li>
 </ul>
-<h1 id="SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"><a href="#SQL语言-四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）" class="headerlink" title="SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）"></a>SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</h1><p>DQL：数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块</p>
+<h1 id="sql语言-四大类dql数据查询语言dml数据操纵语言dcl数据控制语言ddl数据定义语言">SQL语言 四大类：DQL（数据查询语言）、DML（数据操纵语言）、DCL（数据控制语言）、DDL（数据定义语言）</h1>
+<p>DQL：数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块</p>
 <p>DML：插入、更新、删除</p>
 <p>DCL：数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等</p>
-<p>DDL：数据定义语言DDL用来创建数据库中的各种对象—–表、视图、索引、同义词、聚簇等</p>
-<h1 id="9i中的数据保护模式包括有？"><a href="#9i中的数据保护模式包括有？" class="headerlink" title="9i中的数据保护模式包括有？"></a>9i中的数据保护模式包括有？</h1><p><strong>数据库Oracle 9i</strong> ：</p>
-<h2 id="最大保护-Maximum-protection"><a href="#最大保护-Maximum-protection" class="headerlink" title="最大保护(Maximum protection )"></a>最大保护(Maximum protection )</h2><p>这种模式能够保证在primary Database发生故障保证数据不丢失。在这种模式下，事务提交前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，并确保至少在一个Standby Database中可用。如果Standby Database不可用，Primary Database将会shutdown。</p>
-<h2 id="最高可用性-Maximum-availability"><a href="#最高可用性-Maximum-availability" class="headerlink" title="最高可用性(Maximum availability)"></a>最高可用性(Maximum availability)</h2><p>这种模式在不影响Primary Database可用的前提下，提供最高级别的数据保护策略，这种模式也能够确保数据不丢失。事务提交之前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，确保至少在一个Standby Database中可用。与最大保护模式不同的是，如果Standby Database出现故障导致不可用，Primary Database并不会被shutdown，而是自动转换为最高性能模式，等Standby Database恢复正常后，Primary Database又会自动切换到最高可用性模式。</p>
-<h2 id="最大性能-Maximum-performance"><a href="#最大性能-Maximum-performance" class="headerlink" title="最大性能(Maximum performance)"></a>最大性能(Maximum performance)</h2><p>这是一种默认的保护模式。事务可以随时提交，当前Primary Database的Redo数据至少需要写入一个Standby Database，不过这种方式不会等待Standby Database是否写入的确认因此这种写入属于异步写入。</p>
-<h1 id="数据库文件、缓冲区、日志文件、后援文件"><a href="#数据库文件、缓冲区、日志文件、后援文件" class="headerlink" title="数据库文件、缓冲区、日志文件、后援文件"></a>数据库文件、缓冲区、日志文件、后援文件</h1><p>数据库文件：电脑上储存数据的文件。</p>
+<p>DDL：数据定义语言DDL用来创建数据库中的各种对象-----表、视图、索引、同义词、聚簇等</p>
+<h1 id="i中的数据保护模式包括有">9i中的数据保护模式包括有？</h1>
+<p><strong>数据库Oracle 9i</strong> ：</p>
+<h2 id="最大保护maximum-protection">最大保护(Maximum protection )</h2>
+<p>这种模式能够保证在primary Database发生故障保证数据不丢失。在这种模式下，事务提交前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，并确保至少在一个Standby Database中可用。如果Standby Database不可用，Primary Database将会shutdown。</p>
+<h2 id="最高可用性maximum-availability">最高可用性(Maximum availability)</h2>
+<p>这种模式在不影响Primary Database可用的前提下，提供最高级别的数据保护策略，这种模式也能够确保数据不丢失。事务提交之前，要保证Redo数据已经写入到Primary Database的Online Redologs，同时写入Standby Database的Standby Redologs，确保至少在一个Standby Database中可用。与最大保护模式不同的是，如果Standby Database出现故障导致不可用，Primary Database并不会被shutdown，而是自动转换为最高性能模式，等Standby Database恢复正常后，Primary Database又会自动切换到最高可用性模式。</p>
+<h2 id="最大性能maximum-performance">最大性能(Maximum performance)</h2>
+<p>这是一种默认的保护模式。事务可以随时提交，当前Primary Database的Redo数据至少需要写入一个Standby Database，不过这种方式不会等待Standby Database是否写入的确认因此这种写入属于异步写入。</p>
+<h1 id="数据库文件缓冲区日志文件后援文件">数据库文件、缓冲区、日志文件、后援文件</h1>
+<p>数据库文件：电脑上储存数据的文件。</p>
 <p>缓冲区：是用户前端用来存储、操纵数据的对象。</p>
 <p>日志文件：用于记录系统操作事件的记录文件或文件集合，可分为事件日志和消息日志。具有处理历史数据、诊断问题的追踪以及理解系统的活动等重要作用。</p>
 <p>后援副本：数据的转存，这样才能让数据库恢复到最近一次转存时的一致性状态。</p>
-<h1 id="数据库系统的存储模式如有改变，概念模式无需改动"><a href="#数据库系统的存储模式如有改变，概念模式无需改动" class="headerlink" title="数据库系统的存储模式如有改变，概念模式无需改动"></a>数据库系统的存储模式如有改变，概念模式无需改动</h1><h1 id="视图设计的设计次序"><a href="#视图设计的设计次序" class="headerlink" title="视图设计的设计次序"></a>视图设计的设计次序</h1><ol>
-<li><p>自顶向下。先全局框架，然后逐步细化 </p>
-</li>
-<li><p>自底向上。先局部概念结构，再集成为全局结构 </p>
-</li>
-<li><p>由里向外。先核心结构，再向外扩张 </p>
-</li>
-<li><p>混合策略。1与2相结合，先自顶向下设计一个概念结构的框架，再自底向上为框架设计局部概念结构</p>
-</li>
+<h1 id="数据库系统的存储模式如有改变概念模式无需改动">数据库系统的存储模式如有改变，概念模式无需改动</h1>
+<h1 id="视图设计的设计次序">视图设计的设计次序</h1>
+<ol type="1">
+<li>自顶向下。先全局框架，然后逐步细化</li>
+<li><p>自底向上。先局部概念结构，再集成为全局结构</p></li>
+<li><p>由里向外。先核心结构，再向外扩张</p></li>
+<li><p>混合策略。1与2相结合，先自顶向下设计一个概念结构的框架，再自底向上为框架设计局部概念结构</p></li>
 </ol>
-<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><p>1NF</p>
+<h1 id="范式">范式</h1>
+<p>1NF</p>
 <p>每个关系r的属性值为不可分的原子值</p>
 <p>2NF</p>
 <p>满足1NF，非主属性完全函数依赖于候选键(左部不可约)</p>
@@ -146,17 +324,21 @@
 <p>BCNF</p>
 <p>满足3NF，消除每一属性对候选键的传递依赖</p>
 <p>1NF + 消去非主属性对键的部分函数依赖 = 2NF。即2NF中，非主属性完全依赖于主关键字；</p>
-<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A；</p>
+<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在&quot;A → B → C&quot;的决定关系，则C传递函数依赖于A；</p>
 <p>3NF + 消去主属性对键的传递函数依赖 = BCNF。BCNF是3NF的改进形式，即在3NF的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BCNF。</p>
-<h1 id="存储过程的调用"><a href="#存储过程的调用" class="headerlink" title="存储过程的调用"></a>存储过程的调用</h1><p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
+<h1 id="存储过程的调用">存储过程的调用</h1>
+<p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
 <p>MySQL的存储过程参数没有默认值，所以在调用MySQL存储过程时，不能省略参数，但是可以用null来代替</p>
-<h1 id="noSQL数据库"><a href="#noSQL数据库" class="headerlink" title="noSQL数据库"></a>noSQL数据库</h1><p>基于K-V：Redis， Voldemort， Oracle BDB</p>
+<h1 id="nosql数据库">noSQL数据库</h1>
+<p>基于K-V：Redis， Voldemort， Oracle BDB</p>
 <p>基于列存储：Cassandra， HBase， Riak</p>
 <p>基于文档型：CouchDB， MongoDB</p>
 <p>图形（Graph）数据库：Neo4J， InfoGrid， Infinite Graph</p>
-<h1 id="数据模型与逻辑模型"><a href="#数据模型与逻辑模型" class="headerlink" title="数据模型与逻辑模型"></a>数据模型与逻辑模型</h1><p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
+<h1 id="数据模型与逻辑模型">数据模型与逻辑模型</h1>
+<p>常用的数据模型：概念模型、逻辑模型、物理模型</p>
 <p>常用的逻辑模型：层次模型、网状模型、关系模型</p>
-<h1 id="“查询”设计视图窗口分为上下部分"><a href="#“查询”设计视图窗口分为上下部分" class="headerlink" title="“查询”设计视图窗口分为上下部分"></a>“查询”设计视图窗口分为上下部分</h1><p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
+<h1 id="查询设计视图窗口分为上下部分">“查询”设计视图窗口分为上下部分</h1>
+<p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
 <p>下部分：“设计网络”，由一些字段列和一些已命名的列组成。</p>
 ]]></content>
       <categories>
@@ -172,20 +354,36 @@
   <entry>
     <title>白盒测试：语句覆盖、条件覆盖（分支覆盖）、判定覆盖、条件-判定覆盖、组合覆盖、路径覆盖的区别</title>
     <url>/20200421l1/</url>
-    <content><![CDATA[<h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础）</p>
-<a id="more"></a>
-
-<p><img src="/20200421l1/5de1f30e76c66137ee061916.jpg" alt="img"></p>
-<h1 id="判定覆盖（分支覆盖）"><a href="#判定覆盖（分支覆盖）" class="headerlink" title="判定覆盖（分支覆盖）"></a>判定覆盖（分支覆盖）</h1><p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
-<p><img src="/20200421l1/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"></p>
-<h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
+    <content><![CDATA[<h1 id="语句覆盖">语句覆盖</h1>
+<p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础） <a id="more"></a></p>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="判定覆盖分支覆盖">判定覆盖（分支覆盖）</h1>
+<p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="条件覆盖">条件覆盖</h1>
+<p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
 <p><strong>另注</strong>：条件覆盖保证判断中的每个条件都被覆盖（来源：软件开发的技术基础）</p>
-<p><img src="/20200421l1/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"></p>
-<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值 </p>
-<p><img src="/20200421l1/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"></p>
-<h1 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h1><p>判定-条件覆盖的加强版 </p>
-<p><img src="/20200421l1/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"></p>
-<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p><img src="/20200421l1/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"></p>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="判定条件覆盖">判定/条件覆盖</h1>
+<p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值</p>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="条件组合覆盖">条件组合覆盖</h1>
+<p>判定-条件覆盖的加强版</p>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
+<h1 id="路径覆盖">路径覆盖</h1>
+<figure>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"><figcaption>img</figcaption>
+</figure>
 ]]></content>
       <categories>
         <category>知识点</category>
