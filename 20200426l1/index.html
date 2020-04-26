@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+<meta name="google-site-verification" content="Af8SVngb0DDTakbpwV3mTIv5viM_03tYvp-BYrFfvfk">
+<meta name="baidu-site-verification" content="ItTV0HCVfQ">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"smilejet.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记录牛客网做软件工程相关题目遇到的知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【牛客网】软件工程">
+<meta property="og:url" content="https://smilejet.gitee.io/20200426l1/index.html">
+<meta property="og:site_name" content="Home">
+<meta property="og:description" content="记录牛客网做软件工程相关题目遇到的知识点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://smilejet.gitee.io/20200426l1/facade_pattern_uml_diagram.jpg">
+<meta property="article:published_time" content="2020-04-26T01:52:51.000Z">
+<meta property="article:modified_time" content="2020-04-26T10:49:31.478Z">
+<meta property="article:author" content="Smile">
+<meta property="article:tag" content="软件工程">
+<meta property="article:tag" content="知识点">
+<meta property="article:tag" content="牛客网">
+<meta property="article:tag" content="刷题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://smilejet.gitee.io/20200426l1/facade_pattern_uml_diagram.jpg">
+
+<link rel="canonical" href="https://smilejet.gitee.io/20200426l1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【牛客网】软件工程 | Home</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Home</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/20200426l1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/smile.jpg">
+      <meta itemprop="name" content="Smile">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【牛客网】软件工程
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-26 09:52:51 / 修改时间：18:49:31" itemprop="dateCreated datePublished" datetime="2020-04-26T09:52:51+08:00">2020-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">知识点</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/20200426l1/" class="post-meta-item leancloud_visitors" data-flag-title="【牛客网】软件工程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <div class="post-description">记录牛客网做软件工程相关题目遇到的知识点。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="范围说明书是项目队伍与项目客户之间通过确定项目目标及主要的项目可交付成果而达成协议的基础">范围说明书是项目队伍与项目客户之间通过确定项目目标及主要的项目可交付成果而达成协议的基础</h1>
+<p>在进行范围确定前，一定要有范围说明书，因为范围说明书详细说明了为什么要进行这个项目，明确了项目的目标和主要的可交付成果，是项目班子和任务委托者之间签订协议的基础，也是未来项目实施的基础，并且随着项目的不断实施进展，需要对范围说明进行修改和细化，以反映项目本身和外部环境的变化。在实际的项目实施中，不管是对于项目还是子项目，项目管理人员都要编写其各自的项目范围说明书。</p>
+<h1 id="原型的作用">原型的作用</h1>
+<p>用以给客户和分析员共同研究，澄清需求。而不是单方向的让分析员去搞懂用户的需求，因为一般采用原型，都是因为客户自己都搞不清楚自己的需求。所以原型的作用应该是让双方都搞懂需求。</p>
+<h1 id="面向对象的分析方法主要是建立三类模型">面向对象的分析方法主要是建立三类模型</h1>
+<p>对象模型、动态模型、功能模型</p>
+<p>面向对象分析主要由对象模型、动态模型、功能模型组成，其中对象模型是最基本、最重要、最核心的；</p>
+<p>面向对象建模得到的模型包含系统的三个要素：静态结构（对象模型）、交互模型（动态模型）、数据变换（功能模型）；</p>
+<p>对象模型的五个层次：主题层、类与对象层、结构层、属性层、服务层。</p>
+<h1 id="通常情况下软件运行剖面难以直接获得在工程上按照">通常情况下，软件运行剖面难以直接获得，在工程上按照</h1>
+<ol type="1">
+<li>确定客户剖面</li>
+<li>建立用户剖面</li>
+<li>定义系统剖面</li>
+<li>确定功能剖面</li>
+<li>确定运行剖面</li>
+</ol>
+<h1 id="pad图也称问题分析图其特点是">PAD图也称问题分析图，其特点是</h1>
+<ol type="1">
+<li>主要用于描述软件详细设计的图形表示工具</li>
+<li>在PAD图中智能描述结构化程序允许使用的几种基本结构</li>
+<li>PAD中只有方框，没有菱形和箭头表示</li>
+<li>最左端的纵线是程序的主干线，对应程序的第一层结构；每增加一层PAD图向右扩展一条纵线，程序的纵线数等于程序层次数</li>
+</ol>
+<h1 id="用户界面设计的原则">用户界面设计的原则</h1>
+<p>主要有三大原则：</p>
+<ul>
+<li>置界面于用户的控制之下</li>
+<li>减少用户的记忆负担</li>
+<li>保持界面的一致性</li>
+</ul>
+<p>详细说来有以下几点：</p>
+<ol type="1">
+<li><p>简易性</p>
+<p>界面的简洁是要让用户便于使用、便于了解、并能减少用户发生错误选择的可能性。</p></li>
+<li><p>用户语言</p>
+<p>界面中要使用能反应用户本身的语言，而不是游戏设计者的语言。</p></li>
+<li><p>记忆负担最小化</p>
+<p>人脑不是电脑，在设计界面时必须要考虑人类大脑处理信息的限度。人类的短期记忆不稳定、有限，24小时内存在25%的遗忘率。所以对用户来说，浏览信息要比记忆更容易。</p></li>
+<li><p>一致性</p>
+<p>是每一个优秀界面都具备的特点。界面的结构必须清晰且一致，风格必须与游戏内容相一致。</p></li>
+<li><p>清楚</p>
+<p>在视觉效果上便于理解和使用。</p></li>
+<li><p>用户的熟悉程度</p>
+<p>用户可通过已掌握的知识来使用界面，但不应超出一般常识。</p></li>
+<li><p>从用户的观点考虑</p>
+<p>想用户所想，做用户所做。用户总是按照他们的方法理解和使用。</p>
+<p>通过比较两个不同世界（真实与虚拟）的事物，完成更好的设计。如：书籍对比竹简。</p></li>
+<li><p>排列</p>
+<p>一个有序的界面能让用户轻松的使用。</p></li>
+<li><p>安全性</p>
+<p>用户能自由的作出选择，且所有选择都是可逆的。在用户作出危险的选择时有信息介入系统的提示。</p></li>
+<li><p>灵活性</p>
+<p>简单来说就是要让用户方便的使用，但不同于上述。即互动重用性，不局限于单一的工具（包括鼠标、键盘或手柄）。</p></li>
+<li><p>人性化</p>
+<p>高效率和用户满意度是人性化的体现。应具备专家级和初级玩家系统，即用户可依据自己的习惯定制界面，并能保存设置。</p></li>
+</ol>
+<h1 id="如何定义数据">如何定义数据</h1>
+<h2 id="概念">概念</h2>
+<p>因为在一个系统当中，数据通常都是复合的——由很多简单的数据元素组成。那我们如何使用简单的元素去描述这些复杂的数据呢？数据定义做的就是这个工作</p>
+<p>定义数据采用的原则：自顶向下分解。 数据元素组成数据的方式：</p>
+<ol type="1">
+<li>顺序：（复合数据）以确定的次序连接两个或多个数据元素。</li>
+<li>选择：（复合数据）从两个或多个数据元素中选一个。</li>
+<li>重复：（复合数据）是 把指定的数据元素重复两次或多次 而组成的。</li>
+<li>可选：（在复合数据中）此数据元素是可有可无的。</li>
+</ol>
+<h2 id="如何定义">如何定义</h2>
+<p>由于文字会具有歧义，所以数据字典中同样采用符号的形式来定义这四类元素。有消除歧义、方便理解、清晰简洁等功效。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">符号</th>
+<th style="text-align: center;">含义</th>
+<th style="text-align: center;">举例</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">=</td>
+<td style="text-align: center;">等价于/定义为</td>
+<td style="text-align: center;">x=a</td>
+<td style="text-align: center;">数据x是由数据a组成的。通常我们把被定义的数据放在等号左边，把定义的数据放在等号右边</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">与/连接</td>
+<td style="text-align: center;">x=a+b</td>
+<td style="text-align: center;">数据x是由a，b两个元素按顺序组成的</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">[]</td>
+<td style="text-align: center;">或/选择</td>
+<td style="text-align: center;">x=[a|b]</td>
+<td style="text-align: center;">数据x是由a数据元素或b数据元素组成的</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">m{}n</td>
+<td style="text-align: center;">重复m...n次</td>
+<td style="text-align: center;">x=1{a}5</td>
+<td style="text-align: center;">数据x是由a数据元素最少重复1次，最多重复5次组成的</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">()</td>
+<td style="text-align: center;">可选</td>
+<td style="text-align: center;">x=a+(b)</td>
+<td style="text-align: center;">数据x是由a，b两个元素按顺序组成的，但b数据元素可有可无</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&quot;&quot;</td>
+<td style="text-align: center;">基本数据元素</td>
+<td style="text-align: center;">x=&quot;0&quot;</td>
+<td style="text-align: center;">数据x就是由&quot;0&quot;这个基本数据元素组成</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">...</td>
+<td style="text-align: center;">范围</td>
+<td style="text-align: center;">x=&quot;1&quot;...&quot;9&quot;</td>
+<td style="text-align: center;">数据x只能等于1~9之间的某个元素</td>
+</tr>
+</tbody>
+</table>
+<h1 id="结构化程序设计原则">结构化程序设计原则</h1>
+<ul>
+<li>自顶向下</li>
+<li>逐步求精</li>
+<li>模块化</li>
+<li>限制使用goto语句</li>
+</ul>
+<h1 id="外观模式">外观模式</h1>
+<p>参考地址：<a href="https://www.runoob.com/design-pattern/facade-pattern.html" target="_blank" rel="external nofollow noopener noreferrer">菜鸟教程</a></p>
+<p>外观模式（Facade Pattern）隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。</p>
+<p>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
+<p><strong>意图：</strong>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<p><strong>主要解决：</strong>降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。</p>
+<p><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个&quot;接待员&quot;即可。 2、定义系统的入口。</p>
+<p><strong>如何解决：</strong>客户端不与系统耦合，外观类与系统耦合。</p>
+<p><strong>关键代码：</strong>在客户端和复杂系统之间再加一层，这一层将调用顺序、依赖关系等处理好。</p>
+<p><strong>应用实例：</strong> 1、去医院看病，可能要去挂号、门诊、划价、取药，让患者或患者家属觉得很复杂，如果有提供接待人员，只让接待人员来处理，就很方便。 2、JAVA 的三层开发模式。</p>
+<p><strong>优点：</strong> 1、减少系统相互依赖。 2、提高灵活性。 3、提高了安全性。</p>
+<p><strong>缺点：</strong>不符合开闭原则，如果要改东西很麻烦，继承重写都不合适。</p>
+<p><strong>使用场景：</strong> 1、为复杂的模块或子系统提供外界访问的模块。 2、子系统相对独立。 3、预防低水平人员带来的风险。</p>
+<p><strong>注意事项：</strong>在层次化结构中，可以使用外观模式定义系统中每一层的入口。</p>
+<p><img src="/20200426l1/facade_pattern_uml_diagram.jpg"></p>
+<h1 id="cmmi等级划分">CMMI等级划分</h1>
+<p>参考地址：<a href="https://blog.csdn.net/daijin888888/article/details/55004209" target="_blank" rel="external nofollow noopener noreferrer">CMMI（软件能力成熟度集成模型）</a></p>
+<p>CMMI全称是Capability Maturity Model Integration，即能力成熟度模型集成（也有称为：软件能力成熟度集成模型），本质是软件管理工程的一个部分。CMMI认证的目的是帮助软件企业对软件工程过程进行管理和改进，增强开发与改进能力，从而能按时地、不超预算地开发出高质量的软件。CMMI主要关注点就是成本效益、明确重点、过程集中和灵活性四个方面。</p>
+<p>CMMI认证分为5个等级:</p>
+<p>1． 初始级</p>
+<p>软件过程是无序的，有时甚至是混乱的，对过程几乎没有定义，成功取决于个人努力。管理是反应式的。</p>
+<p>2．可管理级</p>
+<p>建立了基本的项目管理过程来跟踪费用、进度和功能特性。制定了必要的过程纪律，能重复早先类似应用项目取得的成功经验。</p>
+<p>3． 已定义级</p>
+<p>已将软件管理和工程两方面的过程文档化、标准化，并综合成该组织的标准软件过程。所有项目均使用经批准、剪裁的标准软件过程来开发和维护软件，软件产品的生产在整个软件过程是可见的。</p>
+<p>4． 量化管理级</p>
+<p>分析对软件过程和产品质量的详细度量数据，对软件过程和产品都有定量的理解与控制。管理有一个作出结论的客观依据，管理能够在定量的范围内预测性能。</p>
+<p>5． 优化管理级</p>
+<p>过程的量化反馈和先进的新思想、新技术促使过程持续不断改进。</p>
+<h1 id="软件实施活动的进入准则">软件实施活动的进入准则</h1>
+<ul>
+<li>需求工件已经被基线化</li>
+<li>详细设计工件已经被基线化</li>
+<li>构架工件已经被基线化</li>
+</ul>
+<h1 id="软件可维护性的特性中相互矛盾的是">软件可维护性的特性中相互矛盾的是</h1>
+<p>效率和可修改性</p>
+<h1 id="软件调试技术">软件调试技术</h1>
+<ul>
+<li>试探法（强行排错法）</li>
+<li>回溯法：人工沿着程序的控制流程跟踪代码，直到找出错误根源为止</li>
+<li>对分查找法：缩小错误范围</li>
+<li>归纳演绎</li>
+<li>原因排除法</li>
+</ul>
+<h1 id="时间片调度属于_多线程分别绑定cpu属于_">时间片调度属于_<strong><em>，多线程分别绑定CPU属于</em></strong>_。</h1>
+<p>并发，并行</p>
+<ul>
+<li>并发是同时处理很多事情，</li>
+<li>并行是同时执行很多事情；</li>
+</ul>
+<p>并发的关键是你有处理多个任务的能力，不一定要同时。 并行的关键是你有同时处理多个任务的能力。</p>
+<p>比如说吃饭的时候来电话了，吃饭和打电话是两件事。</p>
+<p>串行：必须吃完饭，才去接电话；</p>
+<p>并行：一边吃饭，一边打电话；</p>
+<p>并发：先吃饭，电话来了接电话(不一定吃完饭)，电话结束再去吃饭。</p>
+<h1 id="软件测试的三个阶段">软件测试的三个阶段</h1>
+<p>α、β、λ常用来表示软件测试过程中的三个阶段，α是第一阶段，一般只供内部测试使用；β是第二个阶段，已经消除了软件中大部分的不完善之处，但仍有可能还存在缺陷和漏洞，一般只提供给特定的用户群来测试使用；λ是第三个阶段，此时产品已经相当成熟，只需在个别地方再做进一步的优化处理即可上市发行。 Beta测试是一种验收测试。所谓验收测试是软件产品完成了功能测试和系统测试之后，在产品发布之前所进行的软件测试活动，它是技术测试的最后一个阶段，通过了验收测试，产品就会进入发布阶段。验收测试一般根据产品规格说明书严格检查产品，逐行逐字地对照说明书上对软件产品所做出的各方面要求， 确保所开发的软件产品符合用户的各项要求。 通过综合测试之后，软件已完全组装起来，接口方面的错误也已排除，软件测试的最后一步——验收测试即可开始。验收测试应检查软件能否按合同要求进行工作，即是否满足软件需求说明书中的确认标准。 Beta测试由软件的最终用户们在一个或多个客房场所进行。与Alpha测试不同，开发者通常不在Beta测试的现场，因Beta测试是软件在开发者不能控制的环境中的“真实”应用。用户Beta测试过程中遇到的一切问题（真实在或想像的），并且定期把这些问题报告给开发者。接收到在Beta测试期间报告的问题之后，开发者对软件产品进行必要的修改，并准备向全体客户发布最终的软件产品。</p>
+<h1 id="软件测试的过程分为单元测试集成测试确认测试和系统测试几个步骤">软件测试的过程分为（单元测试）、集成测试、确认测试和系统测试几个步骤。</h1>
+<p>（1）单元测试（也称模块测试）：针对软件设计的基本单元——程序模块，进行正确性检验的测试工作。目的在于发现各个模块内部可能存在的各种差错。单元测试需要从程序内部结构出发设计测试用例，多个模块可以平行、独立地进行测试；</p>
+<p>（2）集成测试（也称组装测试，联合测试）：在单元测试的基础上，将所有模块按设计要求集成在一起进行测试，以检验总体设计中各模块间的接口设计问题、模块之间的相互影响、上层模块存在的各种差错及全局数据结构对系统的影响等方面。</p>
+<p>（3）确认测试（也称验收测试，有效性测试）：主要检验软件的功能和性能是否与需求说明书中的规定一致。</p>
+<p>（4）系统测试：将软件系统作为一个元素，放入整个实际的计算机系统中，与计算机硬件、其他软件、使用人员等系统元素结合在一起，在实际使用环境下进行综合全面的测试。</p>
+<h1 id="瀑布模型增量模型原型模型迭代模型">瀑布模型、增量模型、原型模型、迭代模型</h1>
+<ul>
+<li>瀑布模型：已使用一种线性开发模型，具有不可回溯性</li>
+<li>增量模型：把待开发的软件系统模块化，将每个模块作为一个增量组件，从而分批次地分析、设计、编码和测试这些增量组件</li>
+<li>原型模型：适用于已有产品或产品原型（样品），只需客户化的工程项目</li>
+<li>迭代模型：软件开发过程每迭代一次，软件开发又前进一个层次</li>
+</ul>
+<h1 id="单元测试的策略逻辑覆盖循环覆盖同行评审桌前检查代码走查代码评审静态数据流分析">单元测试的策略：逻辑覆盖、循环覆盖、同行评审、桌前检查、代码走查、代码评审、静态数据流分析。</h1>
+<h1 id="按照规范的设计方法一个完整的数据库设计一般分为以下六个阶段">按照规范的设计方法，一个完整的数据库设计一般分为以下六个阶段</h1>
+<p>⑴需求分析：分析用户的需求，包括数据、功能和性能需求；</p>
+<p>⑵概念结构设计：主要采用E-R模型进行设计，包括画E-R图；</p>
+<p>⑶逻辑结构设计：通过将E-R图转换成表，实现从E-R模型到关系模型的转换；</p>
+<p>⑷数据库物理设计：主要是为所设计的数据库选择合适的存储结构和存取路径；</p>
+<p>⑸数据库的实施：包括编程、测试和试运行；</p>
+<p>⑹数据库运行与维护：系统的运行与数据库的日常维护。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+              <a href="/tags/%E7%89%9B%E5%AE%A2%E7%BD%91/" rel="tag"># 牛客网</a>
+              <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"># 刷题</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag"># 软件工程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20200424l1/" rel="prev" title="ResNeSt: Split-Attention Networks">
+      <i class="fa fa-chevron-left"></i> ResNeSt: Split-Attention Networks
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/20200426l2/" rel="next" title="设计模式">
+      设计模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#范围说明书是项目队伍与项目客户之间通过确定项目目标及主要的项目可交付成果而达成协议的基础"><span class="nav-text">范围说明书是项目队伍与项目客户之间通过确定项目目标及主要的项目可交付成果而达成协议的基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型的作用"><span class="nav-text">原型的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的分析方法主要是建立三类模型"><span class="nav-text">面向对象的分析方法主要是建立三类模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通常情况下软件运行剖面难以直接获得在工程上按照"><span class="nav-text">通常情况下，软件运行剖面难以直接获得，在工程上按照</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pad图也称问题分析图其特点是"><span class="nav-text">PAD图也称问题分析图，其特点是</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户界面设计的原则"><span class="nav-text">用户界面设计的原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何定义数据"><span class="nav-text">如何定义数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何定义"><span class="nav-text">如何定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构化程序设计原则"><span class="nav-text">结构化程序设计原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外观模式"><span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmmi等级划分"><span class="nav-text">CMMI等级划分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件实施活动的进入准则"><span class="nav-text">软件实施活动的进入准则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件可维护性的特性中相互矛盾的是"><span class="nav-text">软件可维护性的特性中相互矛盾的是</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件调试技术"><span class="nav-text">软件调试技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间片调度属于_多线程分别绑定cpu属于_"><span class="nav-text">时间片调度属于_，多线程分别绑定CPU属于_。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件测试的三个阶段"><span class="nav-text">软件测试的三个阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软件测试的过程分为单元测试集成测试确认测试和系统测试几个步骤"><span class="nav-text">软件测试的过程分为（单元测试）、集成测试、确认测试和系统测试几个步骤。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#瀑布模型增量模型原型模型迭代模型"><span class="nav-text">瀑布模型、增量模型、原型模型、迭代模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单元测试的策略逻辑覆盖循环覆盖同行评审桌前检查代码走查代码评审静态数据流分析"><span class="nav-text">单元测试的策略：逻辑覆盖、循环覆盖、同行评审、桌前检查、代码走查、代码评审、静态数据流分析。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按照规范的设计方法一个完整的数据库设计一般分为以下六个阶段"><span class="nav-text">按照规范的设计方法，一个完整的数据库设计一般分为以下六个阶段</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Smile" src="/images/smile.jpg">
+  <p class="site-author-name" itemprop="name">Smile</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="external nofollow noopener noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+<div id="vm" style="display:none;">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=53b08kfq93y&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Smile</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">38k</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"rDokR66hff6J3tNbdsnySiku-MdYXbMMI","app_key":"QGPP90EywVtzrkwx2sR9agV4","server_url":null,"security":false,"betterPerformance":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
