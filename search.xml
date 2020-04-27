@@ -74,6 +74,19 @@
 <figure>
 <img src="/20200101l1/image-20200420115946281.png" alt="image-20200420115946281"><figcaption>image-20200420115946281</figcaption>
 </figure>
+<h1 id="ijcaigithubrectifying-pseudo-label-learning-via-uncertainty-estimation-for-domain-adaptive-semantic-segmentation">【2020 IJCAI】<a href="https://github.com/layumi/Seg-Uncertainty" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>Rectifying Pseudo Label Learning via Uncertainty Estimation for Domain Adaptive Semantic Segmentation</h1>
+<p>【详细讲解参考】<a href="https://zhuanlan.zhihu.com/p/130220572" target="_blank" rel="external nofollow noopener noreferrer">利用Uncertainty修正Domain Adaptation中的伪标签</a></p>
+<p>在分割模型中加入了辅助分类器（本来只是用来防止梯度消失的），结构如下图：有一个主分类器接在res5c后面，一个辅助分类器接在res4b22</p>
+<p><img src="/20200101l1/image-20200427180645555.png"></p>
+<p>观察到，伪标签错误的地方，往往是两个分类器预测不同结果的地方（Prediction Variance）</p>
+<p><img src="/20200101l1/image-20200427180807836.png"></p>
+<p>所以很自然的我们对于cross-entropy loss做了一个修正：其中D<em>{kl} 就是主分类器和辅助分类器预测结果的KL距离(也可以叫作Prediction Variance)，如果差异大，则这个距离也就大，那么L</em>rect 对于这种不确定的样本，就不惩罚（因为pseudo label很可能是错的）。如果没有后面+D_{kl} 这一项，模型很懒，会趋向把所有pseudo label都说成是不确定的，那么Lrect就等于0了。为了避免这种情况，所以我们加了一个+D_{kl} 。</p>
+<p><img src="/20200101l1/image-20200427180917233.png"></p>
+<p><img src="/20200101l1/image-20200427180952248.png"></p>
+<p>对于一些segmentation里面占得面积小的类别有奇效。因为传统方法按照confidence一刀切。往往数量小的类别（自行车Bike和骑行人Rider）这种类别吃亏，因为confidence score往往只有0.7，0.8，会被0.9的硬阈值卡掉。</p>
+<p><img src="/20200101l1/image-20200427181130077.png"></p>
+<p><img src="/20200101l1/image-20200427181145729.png"></p>
+<p><img src="/20200101l1/image-20200427181214625.png"></p>
 <h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
 <p>加入注意力机制，同时对空间和通道进行。</p>
 <figure>
@@ -971,10 +984,10 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
         <category>知识点</category>
       </categories>
       <tags>
+        <tag>数据结构</tag>
         <tag>知识点</tag>
         <tag>牛客网</tag>
         <tag>刷题</tag>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1087,10 +1100,10 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
         <category>知识点</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>知识点</tag>
         <tag>牛客网</tag>
         <tag>刷题</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
