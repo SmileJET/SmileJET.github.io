@@ -5,76 +5,40 @@
     <url>/20200101l1/</url>
     <content><![CDATA[<h1 id="目标检测">目标检测</h1>
 <h2 id="iccvgithubfcos-fully-convolutional-one-stage-object-detection">【2019 ICCV】<a href="https://github.com/tianzhi0549/FCOS" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>FCOS: Fully Convolutional One-Stage Object Detection</h2>
-<p>以图像分割的方式解决目标检测问题。 <img src="/20200101l1/image-20200419231953985.png" alt="image-20200419231953985"></p>
-<figure>
-<img src="/20200101l1/image-20200420115251385.png" alt="image-20200420115251385"><figcaption>image-20200420115251385</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115305609.png" alt="image-20200420115305609"><figcaption>image-20200420115305609</figcaption>
-</figure>
+<p>以图像分割的方式解决目标检测问题。 <img src="/20200101l1/image-20200419231953985.png"></p>
+<p><img src="/20200101l1/image-20200420115251385.png"></p>
+<p><img src="/20200101l1/image-20200420115305609.png"></p>
 <h1 id="图像分割">图像分割</h1>
 <h2 id="cvprgithub-polarmask-single-shot-instance-segmentation-with-polar-representation">【2020 CVPR】<a href="https://github.com/xieenze/PolarMask" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> PolarMask: Single Shot Instance Segmentation with Polar Representation</h2>
 <p>基于FCOS实现实例分割，使用极坐标表达实例的轮廓，进一步形成分割结果。</p>
-<figure>
-<img src="/20200101l1/image-20200420115345921.png" alt="image-20200420115345921"><figcaption>image-20200420115345921</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115439081.png" alt="image-20200420115439081"><figcaption>image-20200420115439081</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115451575.png" alt="image-20200420115451575"><figcaption>image-20200420115451575</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420115345921.png"></p>
+<p><img src="/20200101l1/image-20200420115439081.png"></p>
+<p><img src="/20200101l1/image-20200420115451575.png"></p>
 <h2 id="cvpr-centermask-single-shot-instance-segmentation-with-point-representation">【2020 CVPR】 CenterMask: single shot instance segmentation with point representation</h2>
 <p>引入局部形状预测和全局显著性预测，分别预测每个物体的形状和全局下都有哪些物体，一个负责局部一个负责全局</p>
-<figure>
-<img src="/20200101l1/image-20200420115531014.png" alt="image-20200420115531014"><figcaption>image-20200420115531014</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115548245.png" alt="image-20200420115548245"><figcaption>image-20200420115548245</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115605745.png" alt="image-20200420115605745"><figcaption>image-20200420115605745</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115615742.png" alt="image-20200420115615742"><figcaption>image-20200420115615742</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420115531014.png"></p>
+<p><img src="/20200101l1/image-20200420115548245.png"></p>
+<p><img src="/20200101l1/image-20200420115605745.png"></p>
+<p><img src="/20200101l1/image-20200420115615742.png"></p>
 <h2 id="cvprgithub-strip-pooling-rethinking-spatial-pooling-for-scene-parsing">【2020 CVPR】<a href="https://github.com/Andrew-Qibin/SPNet" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing</h2>
 <p>提出条状Pooling，相比于方形卷积，可以较好检测到长条形物体</p>
-<figure>
-<img src="/20200101l1/image-20200420115653369.png" alt="image-20200420115653369"><figcaption>image-20200420115653369</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115704116.png" alt="image-20200420115704116"><figcaption>image-20200420115704116</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115715342.png" alt="image-20200420115715342"><figcaption>image-20200420115715342</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115724747.png" alt="image-20200420115724747"><figcaption>image-20200420115724747</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115733985.png" alt="image-20200420115733985"><figcaption>image-20200420115733985</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420115653369.png"></p>
+<p><img src="/20200101l1/image-20200420115704116.png"></p>
+<p><img src="/20200101l1/image-20200420115715342.png"></p>
+<p><img src="/20200101l1/image-20200420115724747.png"></p>
+<p><img src="/20200101l1/image-20200420115733985.png"></p>
 <h2 id="an-automatic-covid-19-ct-segmentation-based-on-u-net-with-attention-mechanism">【2020】An automatic COVID-19 CT segmentation based on U-Net with attention mechanism</h2>
 <p>新型冠状病毒分割 在unet基础上做修改： - 加入注意力机制（通道+空间）</p>
 <ul>
-<li>focal tversky loss（检测小区域的病灶位置） <img src="/20200101l1/image-20200420115811144.png" alt="image-20200420115811144"></li>
+<li>focal tversky loss（检测小区域的病灶位置） <img src="/20200101l1/image-20200420115811144.png"></li>
 </ul>
 <p>Res_dil block（提高感受野）：</p>
-<figure>
-<img src="/20200101l1/image-20200420115853141.png" alt="image-20200420115853141"><figcaption>image-20200420115853141</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420115853141.png"></p>
 <p>注意力机制：</p>
-<figure>
-<img src="/20200101l1/image-20200420115917105.png" alt="image-20200420115917105"><figcaption>image-20200420115917105</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115931445.png" alt="image-20200420115931445"><figcaption>image-20200420115931445</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420115946281.png" alt="image-20200420115946281"><figcaption>image-20200420115946281</figcaption>
-</figure>
-<h1 id="ijcaigithubrectifying-pseudo-label-learning-via-uncertainty-estimation-for-domain-adaptive-semantic-segmentation">【2020 IJCAI】<a href="https://github.com/layumi/Seg-Uncertainty" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>Rectifying Pseudo Label Learning via Uncertainty Estimation for Domain Adaptive Semantic Segmentation</h1>
+<p><img src="/20200101l1/image-20200420115917105.png"></p>
+<p><img src="/20200101l1/image-20200420115931445.png"></p>
+<p><img src="/20200101l1/image-20200420115946281.png"></p>
+<h2 id="ijcaigithubrectifying-pseudo-label-learning-via-uncertainty-estimation-for-domain-adaptive-semantic-segmentation">【2020 IJCAI】<a href="https://github.com/layumi/Seg-Uncertainty" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>Rectifying Pseudo Label Learning via Uncertainty Estimation for Domain Adaptive Semantic Segmentation</h2>
 <p>【详细讲解参考】<a href="https://zhuanlan.zhihu.com/p/130220572" target="_blank" rel="external nofollow noopener noreferrer">利用Uncertainty修正Domain Adaptation中的伪标签</a></p>
 <p>在分割模型中加入了辅助分类器（本来只是用来防止梯度消失的），结构如下图：有一个主分类器接在res5c后面，一个辅助分类器接在res4b22</p>
 <p><img src="/20200101l1/image-20200427180645555.png"></p>
@@ -87,28 +51,25 @@
 <p><img src="/20200101l1/image-20200427181130077.png"></p>
 <p><img src="/20200101l1/image-20200427181145729.png"></p>
 <p><img src="/20200101l1/image-20200427181214625.png"></p>
+<h2 id="cvprwhat-can-be-transferred-unsupervised-domain-adaptation-for-endoscopic-lesions-segmentation">【2020 CVPR】What Can Be Transferred: Unsupervised Domain Adaptation for Endoscopic Lesions Segmentation</h2>
+<p>可以转移的内容：用于内窥镜病变分割的无监督域自适应</p>
+<p>CycleGAN作为Baseline Network</p>
+<p><img src="/20200101l1/image-20200429150212008.png"></p>
+<p><img src="/20200101l1/image-20200429150308372.png"></p>
 <h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
 <p>加入注意力机制，同时对空间和通道进行。</p>
-<figure>
-<img src="/20200101l1/image-20200420120019703.png" alt="image-20200420120019703"><figcaption>image-20200420120019703</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420120052772.png" alt="image-20200420120052772"><figcaption>image-20200420120052772</figcaption>
-</figure>
-<figure>
-<img src="/20200101l1/image-20200420120101963.png" alt="image-20200420120101963"><figcaption>image-20200420120101963</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420120019703.png"></p>
+<p><img src="/20200101l1/image-20200420120052772.png"></p>
+<p><img src="/20200101l1/image-20200420120101963.png"></p>
 <h1 id="图像翻译">图像翻译</h1>
 <h2 id="iclrgithubu-gat-it-unsupervised-generative-attentional-networks-with-adaptive-layer-instance-normalization-for-image-to-image-translation">【2020 ICLR】<a href="https://github.com/znxlwm/UGATIT-pytorch" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>U-GAT-IT: Unsupervised Generative Attentional Networks with Adaptive Layer-Instance Normalization for Image-to-Image Translation</h2>
 <p><a href="http://www.twistedwg.com/2019/08/07/UGATIT.html" target="_blank" rel="external nofollow noopener noreferrer">UGATIT-自适应图层实例归一化下图像到图像转换</a> <a href="http://39.108.217.36/index.php/archives/392/" target="_blank" rel="external nofollow noopener noreferrer">论文笔记</a></p>
 <p>引入<code>注意力机制</code>，这里采用全局和平均池化的类激活图（Class Activation Map-CAM）来实现的，通过CNN确定分类依据的位置。 加入<code>自适应图层实例归一化</code>（AdaLIN），帮助注意力引导模型灵活控制形状和纹理变化量。</p>
-<p>CAM 的意义就是以热力图的形式告诉我们，模型通过哪些像素点得知图片属于某个类别。 特征图经过 GAP 处理后每一个特征图包含了不同类别的信息，权重 w 对应分类时的权重。绘制热力图时，提取出所有的权重，往回找到对应的特征图，然后进行加权求和即可。 <img src="/20200101l1/image-20200420120144704.png" alt="image-20200420120144704"></p>
-<p>网络结构由一个生成器和两个判别器组成。 判别器的设计采用一个全局判别器(Global Discriminator)以及一个局部判别器(Local Discriminator)结合实现，所谓的全局判别器和局部判别器的区别就在于全局判别器对输入的图像进行了更深层次的特征压缩，最后输出的前一层。 <img src="/20200101l1/image-20200420120158234.png" alt="image-20200420120158234"> <img src="/20200101l1/image-20200420120213245.png" alt="image-20200420120213245"></p>
+<p>CAM 的意义就是以热力图的形式告诉我们，模型通过哪些像素点得知图片属于某个类别。 特征图经过 GAP 处理后每一个特征图包含了不同类别的信息，权重 w 对应分类时的权重。绘制热力图时，提取出所有的权重，往回找到对应的特征图，然后进行加权求和即可。 <img src="/20200101l1/image-20200420120144704.png"></p>
+<p>网络结构由一个生成器和两个判别器组成。 判别器的设计采用一个全局判别器(Global Discriminator)以及一个局部判别器(Local Discriminator)结合实现，所谓的全局判别器和局部判别器的区别就在于全局判别器对输入的图像进行了更深层次的特征压缩，最后输出的前一层。 <img src="/20200101l1/image-20200420120158234.png"> <img src="/20200101l1/image-20200420120213245.png"></p>
 <p>此处要提一下，在判别器中也加入了CAM模块，虽然在判别器下CAM并没有做域的分类，但是加入注意力模块对于判别图像真伪是有益的，文中给出的解释是注意力图通过关注目标域中的真实图像和伪图像之间的差异来帮助进行微调。</p>
 <p>损失函数： - GAN的对抗损失 - 循环一致性损失 - 身份损失（相同域之间不希望进行转换） - CAM损失（生成器中对图像域进行分类，希望源域和目标域尽可能分开）</p>
-<figure>
-<img src="/20200101l1/image-20200420120247952.png" alt="image-20200420120247952"><figcaption>image-20200420120247952</figcaption>
-</figure>
+<p><img src="/20200101l1/image-20200420120247952.png"></p>
 <h1 id="backbone">Backbone</h1>
 <h2 id="githubresnest-split-attention-networks">【2020】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>ResNeSt: Split-Attention Networks</h2>
 <p><img src="/20200101l1/image-20200424121613880-1587775087732.png"></p>
@@ -849,6 +810,11 @@
 <p>⑷数据库物理设计：主要是为所设计的数据库选择合适的存储结构和存取路径；</p>
 <p>⑸数据库的实施：包括编程、测试和试运行；</p>
 <p>⑹数据库运行与维护：系统的运行与数据库的日常维护。</p>
+<h1 id="软件的四种维护">软件的四种维护</h1>
+<p>（1）更正性维护。由于系统测试不可能揭露系统存在的所有错误，因此在系统投入运行后频繁的实际应用过程中，就有可能暴露出系统内隐藏的错误。诊断和修正系统中遗留的错误，就是纠错性维护。纠错性维护时在系统运行中发生异常或故障时进行的，这种错误往往是遇到了从未用过的输入数据组合或是在与其他部分接口处产生的，因此只是在某些特定的情况下发生。有些系统运行多年以后才暴露出在系统开发中遗留的问题，这是不足为奇的。</p>
+<p>（2）适应性维护。适应性维护时为了使系统适应环境的变化而进行的维护工作。一方面计算机科学技术迅速发展，硬件的更新周期越来越短，新的操作系统和原来操作系统的新版本不断推出，外部设备和其他系统部件经常有所增加和修改，这就是必然要求信息系统能够适应新的软硬件环境，以提高系统的性能和运行效率；另一方面，信息系统的使用寿命在延长，超过了最初开发这个系统时应用环境的寿命，即应用对象也在不断发生变化，机构的调整，管理体制的改变、数据与信息需求的变更等都将导致系统不能适应新的应用环境。如代码改变、数据结构变化、数据格式以及输入/ 输出方式的变化、数据存储介质的变化等，都将直接影响系统的正常工作。因此有必要对系统进行调整，使之适应应用对象的变化，满足用户的需求。</p>
+<p>（3）完善性维护。在系统的使用过程中，用户往往要求扩充原有系统的功能，增加一些在软件需求规范书中没有规定的功能与性能特征，以及对处理效率和编写程序的改进。例如，有时可将几个小程序合并成一个单一的运行良好的程序，从而提高处理效率；增加数据输出的图形方式；增加联机在线帮助功能；调整用户界面等。尽管这些要求在原来系统开发的需求规格说明书中并没有，但用户要求在原有系统基础上进一步改善和提高；并且随着用户对系统的使用和熟悉，这种要求可能不断提出。为了满足这些要求而进行的系统维护工作就是完善性维护。</p>
+<p>（4）预防性维护。系统维护工作不应总是被动地等待用户提出要求后才进行，应进行主动的预防性维护，即选择那些还有较长使用寿命，目前尚能正常运行，但可能将要发生变化或调整的系统进行维护，目的是通过预防性维护为未来的修改与调整奠定更好的基础。例如，将目前能应用的报表功能改成通用报表生成功能，以应付今后报表内容和格式可能的变化，根据对各种维护工作分布情况的统计结果，一般纠错性维护占21%，适应性维护工作占25%，完善性维护达到50%，而预防性维护以及其他类型的维护仅占4%，可见系统维护工作中，一半以上的工作室完善性维护。</p>
 ]]></content>
       <categories>
         <category>知识点</category>
