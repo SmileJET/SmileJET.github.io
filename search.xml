@@ -56,6 +56,16 @@
 <p>CycleGAN作为Baseline Network</p>
 <p><img src="/20200101l1/image-20200429150212008.png"></p>
 <p><img src="/20200101l1/image-20200429150308372.png"></p>
+<h2 id="githuba-novel-region-of-interest-extraction-layer-for-instance-segmentation">【2020】<a href="https://github.com/IMPLabUniPr/mmdetection-groie" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>A novel Region of Interest Extraction Layer for Instance Segmentation</h2>
+<p>帮助融合FPN的结果，分为四个阶段：</p>
+<ul>
+<li>RoI Align将特征图对齐</li>
+<li>RoI的结果可能会有些问题，使用一个5X5的卷积作为预处理</li>
+<li>通过加和操作融合不同层的结果</li>
+<li>起到一个Attention的作用，融合全局结果，消除无用信息</li>
+</ul>
+<p><img src="/20200101l1/image-20200508205331216.png"></p>
+<p><img src="/20200101l1/image-20200508205358554.png"></p>
 <h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
 <p>加入注意力机制，同时对空间和通道进行。</p>
 <p><img src="/20200101l1/image-20200420120019703.png"></p>
@@ -950,10 +960,10 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
         <category>知识点</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>知识点</tag>
         <tag>牛客网</tag>
         <tag>刷题</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1066,10 +1076,10 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
         <category>知识点</category>
       </categories>
       <tags>
+        <tag>数据库</tag>
         <tag>知识点</tag>
         <tag>牛客网</tag>
         <tag>刷题</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
