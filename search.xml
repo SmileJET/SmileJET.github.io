@@ -66,6 +66,18 @@
 </ul>
 <p><img src="/20200101l1/image-20200508205331216.png"></p>
 <p><img src="/20200101l1/image-20200508205358554.png"></p>
+<h2 id="isbigithubdru-net-an-efficient-deep-convolutional-neural-network-for-medical-image-segmentation">【2020 ISBI】<a href="https://github.com/MinaJf/DRU-net" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>DRU-net: An Efficient Deep Convolutional Neural Network for Medical Image Segmentation</h2>
+<p>融合了ResNet和DenseNet的思想，一个效率高，一个准确性高。</p>
+<p><img src="/20200101l1/image-20200510105217058.png"></p>
+<p><img src="/20200101l1/image-20200510105245070.png"></p>
+<p><img src="/20200101l1/image-20200510105324524.png"></p>
+<h2 id="cmpbhybrid-attention-for-automatic-segmentation-of-whole-fetal-head-in-prenatal-ultrasound-volumes">【2020 CMPB】Hybrid Attention for Automatic Segmentation of Whole Fetal Head in Prenatal Ultrasound Volumes</h2>
+<p>Accepted by Computer Methods and Programs in Biomedicine</p>
+<p>将整个数据以0.4进行降采样，再作为输入。</p>
+<p>加入深度监督和注意力模块。</p>
+<p><img src="/20200101l1/image-20200510124533489.png"></p>
+<p><img src="/20200101l1/image-20200510124602869.png"></p>
+<p><img src="/20200101l1/image-20200510124632480.png"></p>
 <h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
 <p>加入注意力机制，同时对空间和通道进行。</p>
 <p><img src="/20200101l1/image-20200420120019703.png"></p>
