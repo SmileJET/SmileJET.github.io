@@ -5,9 +5,13 @@
     <url>/20200101l1/</url>
     <content><![CDATA[<h1 id="目标检测">目标检测</h1>
 <h2 id="iccvgithubfcos-fully-convolutional-one-stage-object-detection">【2019 ICCV】<a href="https://github.com/tianzhi0549/FCOS" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a>FCOS: Fully Convolutional One-Stage Object Detection</h2>
-<p>以图像分割的方式解决目标检测问题。 <img src="/20200101l1/image-20200419231953985.png"></p>
+<p>以图像分割的方式解决目标检测问题。</p>
+<p><img src="/20200101l1/image-20200419231953985.png"></p>
 <p><img src="/20200101l1/image-20200420115251385.png"></p>
 <p><img src="/20200101l1/image-20200420115305609.png"></p>
+<h2 id="miccaiimproving-retinanet-for-ct-lesion-detection-with-dense-masks-from-weak-recist-labels">【2019 MICCAI】Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels</h2>
+<p>结合RECIST生成的MASK辅助实现CT病灶检测</p>
+<p><img src="/20200101l1/image-20200619105641065.png"></p>
 <h1 id="图像分割">图像分割</h1>
 <h2 id="cvprgithub-polarmask-single-shot-instance-segmentation-with-polar-representation">【2020 CVPR】<a href="https://github.com/xieenze/PolarMask" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> PolarMask: Single Shot Instance Segmentation with Polar Representation</h2>
 <p>基于FCOS实现实例分割，使用极坐标表达实例的轮廓，进一步形成分割结果。</p>
@@ -78,6 +82,30 @@
 <p><img src="/20200101l1/image-20200510124533489.png"></p>
 <p><img src="/20200101l1/image-20200510124602869.png"></p>
 <p><img src="/20200101l1/image-20200510124632480.png"></p>
+<h2 id="medical-image-segmentation-using-a-u-net-type-of-architecture">【2020】Medical Image Segmentation Using a U-Net type of Architecture</h2>
+<p>在Encoder与Decoder之间加入监督信息，应用于CT和MRI。</p>
+<p>降低输入图像尺寸，增大channel，想要获得更多信息。</p>
+<p>​ <img src="/20200101l1/image-20200516170336554.png" alt="image-20200516170336554"></p>
+<h2 id="progressive-adversarial-semantic-segmentation">【2020】Progressive Adversarial Semantic Segmentation</h2>
+<p>针对域内和跨域的医学图像分割。</p>
+<p>G加工输入数据；D为判别器，针对无监督数据；E生成latent representation</p>
+<p><img src="/20200101l1/image-20200517102005015.png"></p>
+<p><img src="/20200101l1/image-20200517102030801.png"></p>
+<h2 id="tipcoarse-to-fine-semantic-segmentation-from-image-level-labels">【2020 TIP】Coarse-to-Fine Semantic Segmentation From Image-Level Labels</h2>
+<p>IEEE TRANSACTIONS ON IMAGE PROCESSING, VOL. 29, 2020</p>
+<p>训练时只使用具有单类别的数据</p>
+<p>分为三步：</p>
+<ol type="1">
+<li>使用Student net生成初始mask</li>
+<li>采用Grab cut优化结果，将单个的类别信息赋值给mask</li>
+<li>将第二步的mask作为label训练分割模型，返回第二步继续优化</li>
+</ol>
+<p><img src="/20200101l1/image-20200519162736176.png"></p>
+<p>​ <img src="/20200101l1/image-20200519162759548.png"></p>
+<p><img src="/20200101l1/image-20200519163006064.png"></p>
+<p><img src="/20200101l1/image-20200519164119515.png"></p>
+<p><img src="/20200101l1/image-20200519164143978.png"></p>
+<p><img src="/20200101l1/image-20200519164102851.png"></p>
 <h2 id="cvprgithub-dual-attention-network-for-scene-segmentation">【2019 CVPR】<a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">【GitHub】</a> Dual Attention Network for Scene Segmentation</h2>
 <p>加入注意力机制，同时对空间和通道进行。</p>
 <p><img src="/20200101l1/image-20200420120019703.png"></p>
@@ -98,10 +126,1921 @@
 <p><img src="/20200101l1/image-20200424121729777.png"></p>
 ]]></content>
       <categories>
-        <category>论文笔记</category>
+        <category>阅读笔记</category>
       </categories>
       <tags>
         <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCAI】Self-Loop Uncertainty: A Novel Pseudo-Label for Semi-Supervised Medical Image Segmentation</title>
+    <url>/20200731l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<ul>
+<li>注释医学图像需要有经验的医生花费数小时或数天进行研究，不仅费力而且十分昂贵</li>
+<li>使用未标记数据的伪标签（通过不确定性估计由分割算法自动生成）是潜在的解决方案之一，其中最受欢迎的方法是：
+<ul>
+<li>softmax概率图</li>
+<li>蒙特卡洛drop</li>
+<li>网络结构中的不确定性估计</li>
+</ul></li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>提出的自环不确定性是通过对具有自监督子任务（例如拼图）的完全卷积网络（FCN）的编码器进行循环优化而生成的。</p>
+<p>训练集包含标注数据<span class="math inline">\(D_L\)</span>和无标注数据<span class="math inline">\(D_U\)</span>，提出的方法包含三个loss（<span class="math inline">\(L_{SEG}, L_{UG}, L_{SS}\)</span>），<span class="math inline">\(L_{SEG}\)</span>用户有标注数据的分割训练，<span class="math inline">\(L_{SS}\)</span>用户学习两个数据源的数据信息并生成自循环不确定性图，<span class="math inline">\(L_{UG}\)</span>用于增强无标注数据的分割性能。</p>
+<p><img src="/20200731l1/image-20200731095630976.png"></p>
+<p><img src="/20200731l1/image-20200731095742223.png"></p>
+<h2 id="self-supervised-sub-task">Self-supervised Sub-task</h2>
+<p>自监督损失<span class="math inline">\(L_{SS}\)</span>旨在利用原始数据中包含的丰富信息并产生自环不确定性。</p>
+<p>本文使用由平移和旋转变换组成的拼图作为自我监督的子任务来反复优化FCN的编码器并产生自环不确定性。例如将图像切分为<span class="math inline">\(3 \times 3\)</span>的拼图，然后进行排序。进行K次排序组合，选择最大汉明距离图像放入排序池中<span class="math inline">\(P=(P_1, P_2, ..., P_{9!})\)</span>。</p>
+<p>每次迭代训练选取从<span class="math inline">\(K=100\)</span>中选取<span class="math inline">\(Q \ll K, Q=10\)</span>次，从中选取一个作为替代。同时，使用过K组图像对FCN的编码器进行更新，可以看做K个类别的分类任务。</p>
+<h2 id="uncertainty-guided-loss">Uncertainty-guided Loss</h2>
+<p>本文采用均方误差损失作为不确定性指导，<span class="math inline">\(y_{sl}\)</span>为伪标签 <span class="math display">\[
+\mathcal{L}_{U G}\left(S_{x}, y_{s l}\right)=\frac{\sum_{H \times W} \mathbb{I}\left(y_{s l}&gt;t h\right)\left\|S_{x}-y_{s l}\right\|^{2}}{\sum_{H \times W} \mathbb{I}\left(y_{s l}&gt;t h\right)}
+\]</span></p>
+<h2 id="目标函数">目标函数</h2>
+<p><span class="math display">\[
+\mathcal{L}=\sum_{j=1}^{N} \mathcal{L}_{S E G}\left(x_{j}, y_{j}\right)+\sum_{j=N+1}^{N+M} \mathcal{L}_{U G}\left(x_{j}, y_{s l}\right)+\sum_{j=1}^{N+M} \sum_{i=1}^{Q} \mathcal{L}_{S S}\left(T_{P_{i}^{\prime}}\left(x_{j}\right), g_{i}\right)
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200731l1/image-20200731111559107.png"></p>
+<p><img src="/20200731l1/image-20200731111621604.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>腾讯</tag>
+        <tag>图像分割</tag>
+        <tag>自监督学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCAI】A Macro-Micro Weakly-supervised Framework for AS-OCT Tissue Segmentation</title>
+    <url>/20200729l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<ul>
+<li>提出一种新颖的弱监督方法，用于图像中角膜和虹膜的分割</li>
+<li>从弱标签样本中提取信息外，添加微观模型用于指导宏观模型</li>
+<li>除了从完全注释图像中学习逐像素注释信息外，宏观微观流还旨在为训练模型提供更多高级语义信息</li>
+<li>引入不确定性策略，以获得更准确和更稳定的指导</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>该框架由宏观模型和微观模型两部分组成。完全标注数据为每一个像素点的人工标签，弱标签数据为通过圆圈、点、涂鸦等标注出感兴趣的区域。</p>
+<p>分为两个阶段进行优化：</p>
+<ul>
+<li>使用完全标注的数据和弱标签数据分别训练微观模型和宏观模型</li>
+<li>将两个模型联合训练，这个阶段只使用弱标签数据，两个模型相互提供指导，以实现更好的分割效果</li>
+</ul>
+<p><img src="/20200729l1/image-20200729162055083.png"></p>
+<h2 id="loss-functions-for-the-macro-and-micro-model">Loss Functions for the Macro and Micro Model</h2>
+<p>第一阶段，使用弱标签数据训练宏观模型，使用完全标注数据训练微观模型。</p>
+<p>训练损失分别为： <span class="math display">\[
+\mathcal{L}_{\text {micro}}\left(x_{i}\right)=-\frac{1}{K \times C} \sum_{k=1}^{K} \sum_{c=1}^{C} y_{i}^{s}(k, c) \log m_{i}^{s}(k, c)
+\]</span></p>
+<p><span class="math display">\[
+\mathcal{L}_{\text {macro}}\left(x_{j}\right)=-\frac{1}{\sum_{k=1}^{K} s_{j}(k) \times C} \sum_{k=1}^{K} \sum_{c=1}^{C} s_{j}(k) \cdot y_{j}^{w}(k, c) \log m_{j}^{w}(k, c)
+\]</span></p>
+<h2 id="uncertainty-aware-kl-loss-for-the-macroscopic-flow">Uncertainty-aware KL Loss for the Macroscopic Flow</h2>
+<p>两个模型的输出之间采用KL散度损失来微调宏观模型，并引入不确定性图来选取可靠的像素点用于指导。因为可以将蒙特卡洛样本的方差视为不确定性的近似值，所以可以将微观模型的不确定性图<span class="math inline">\(U\)</span>表示为： <span class="math display">\[
+\mu_c = \frac{1}{T}\sum_{t=1}^{T}{p_t^c} \quad and \quad U=\frac{1}{T \times C}\sum_{t=1}^{T}\sum_{c=1}^{C}(p_t^c-\mu_c)^2
+\]</span> 因此可以得到不确定性图指导的KL损失： <span class="math display">\[
+\begin{aligned}
+\mathcal{L}_{U K L} &amp;=\frac{\mathbb{I}(U&lt;\tau) \cdot \mathcal{L}_{K L}\left(m_{j}^{w} \| m_{i}^{s}\right)}{\sum \mathbb{I}(U&lt;\tau)} \\
+&amp;=\frac{1}{\sum_{k=1}^{K} \mathbb{I}(U(k)&lt;\tau) \times C} \sum_{k=1}^{K} \sum_{c=1}^{C} \mathbb{I}(U(k)&lt;\tau) \cdot m_{j}^{w}(k, c) \log \left(\frac{m_{j}^{w}(k, c)}{m_{i}^{s}(k, c)}\right)
+\end{aligned}
+\]</span></p>
+<h2 id="uncertainty-aware-ema-as-the-microscopic-flow">Uncertainty-aware EMA as the Microscopic Flow</h2>
+<p>本文使用宏观模型学习得到的分割结果为微观模型提供线索，提出一个不确定性指数移动平均机制（uncertainty-aware exponential moving average, UEMS）用于联合训练 <span class="math display">\[
+\theta^{s}=\alpha \theta^{s}+(1-\alpha) \theta^{w} \quad \text { and } \quad \alpha=\frac{\sum_{k=1}^{K} \mathbb{I}(U(k)&lt;\tau)}{\sum_{k=1}^{K} \mathbb{1}}
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200729l1/image-20200729164304826.png"></p>
+<p><img src="/20200729l1/image-20200729164324167.png"></p>
+<p><img src="/20200729l1/image-20200729164339936.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>腾讯</tag>
+        <tag>弱监督学习</tag>
+        <tag>图像分割</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCAI】Instance-aware Self-supervised Learning for Nuclei Segmentation</title>
+    <url>/20200728l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<ul>
+<li>病理图像中细胞核分布广泛，形态上存在巨大差异</li>
+<li>标注工作量大</li>
+<li>自监督学习可以缓解数据量不足的问题，分为两个阶段
+<ul>
+<li>在大型无标注数据集上预训练网络模型</li>
+<li>在特定小型有标注数据集上微调预训练模型</li>
+</ul></li>
+</ul>
+<h1 id="methods">Methods</h1>
+<h2 id="image-manipulation">Image Manipulation</h2>
+<p>先通过锚点生成一个patch，再随机裁剪一个同样大小的patch，且核数量相近的作为正样本，再从正样本中裁剪出一小块作为负样本。</p>
+<p>锚点，正样本和负样本构成标准的三元组数据，该数据用于自我监督学习中的代理任务。</p>
+<p><img src="/20200728l1/image-20200728091137247.png"></p>
+<h2 id="self-supervised-approach-with-triplet-learning-and-ranking">Self-supervised Approach with Triplet Learning and Ranking</h2>
+<p>分为两部分：Triplet Learning和Ranking</p>
+<p>下图中三个Encoder共享权重，得到的三个特征向量均为128-d</p>
+<p><img src="/20200728l1/image-20200728091215708.png"></p>
+<h3 id="scale-wise-triplet-learning">Scale-wise Triplet Learning</h3>
+<p>Anchor、正样本、负样本三者之间存在的scale和核数量不同，通过triplet learning学习三者之间的关系。 <span class="math display">\[
+\mathcal{L}_{S T}\left(z_{a}, z_{p}, z_{n}\right)=\sum \max \left(0, d\left(z_{a}, z_{p}\right)-d\left(z_{a}, z_{n}\right)+m_{1}\right)
+\]</span></p>
+<h3 id="count-ranking">Count Ranking</h3>
+<p>正样本比负样本存在更多的核数量，通过pair-wise count ranking loss强制网络识别包含更大核数量的样例。 <span class="math display">\[
+\mathcal{L}_{CR} = \sum{max(0, f(z_n)-f(z_p)+m_2)}
+\]</span></p>
+<h3 id="目标函数">目标函数</h3>
+<p><span class="math display">\[
+\mathcal{L} = \mathcal{L}_{ST} + \mathcal{L}_{CR}
+\]</span></p>
+<h2 id="fine-tuning-on-target-task">Fine-tuning on Target Task</h2>
+<p>采用现有的单阶段核实例分割框架用于实例分割，主干网络采用ResNet-101，最终框架可以称为ResUNet-101。</p>
+<p>将模型的Encoder通过上文提及的自监督方法进行预训练，然后加入随机初始化的Decoder，在目标任务上进行微调预训练模型。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200728l1/image-20200728092745547.png"></p>
+<p><img src="/20200728l1/image-20200728092759626.png"></p>
+<p><img src="/20200728l1/image-20200728092809137.png"></p>
+<p><img src="/20200728l1/image-20200728092827794.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>腾讯</tag>
+        <tag>图像分割</tag>
+        <tag>自监督学习</tag>
+        <tag>深圳大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCAI】Learning Directional Feature Maps for Cardiac MRI Segmentation</title>
+    <url>/20200727l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/c-feng/DirectionalFeature" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/c-feng/DirectionalFeature</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>心脏MRI边界不清晰，强度分布不均匀，类间模糊，类内不一致。</p>
+<p>nnUNet虽然有State-of-the-art性能，但需要消耗大量内存和计算量。</p>
+<p>本文提出在方向信息指导下对原始分割特征进行改进，以更好实现对心脏MRI的分割。</p>
+<p><img src="/20200727l1/image-20200727150257605.png"></p>
+<h1 id="methods">Methods</h1>
+<p>提出了一种简单而有效的方法来利用像素之间的方向关系，它可以同时增强类之间的差异和类内的相似性。</p>
+<p><img src="/20200727l1/image-20200727150542488.png"></p>
+<h2 id="df-module-to-learn-a-direction-field">DF Module to Learn a Direction Field</h2>
+<p>前景元素计算像素点到边界点的单位向量，背景设定为0。 <span class="math display">\[
+D F(p)=\left\{\begin{array}{ll}
+\frac{\overrightarrow{b p}}{|\overrightarrow{b p}|} &amp; p \in \text { foreground } \\
+(0,0) &amp; \text { otherwise. }
+\end{array}\right.
+\]</span></p>
+<h2 id="frf-module-for-feature-rectifification-and-fusion">FRF Module for Feature Rectifification and Fusion</h2>
+<p>在方向向量的指导下，提出了一个特征校正与融合（FRF）模块，利用中心区域的特性，逐步校正初始分割特征图中的错误。 <span class="math display">\[
+\forall p \in \Omega, F^{k}(p)=F^{(k-1)}\left(p_{x}+D F(p)_{x}, p_{y}+D F(p)_{y}\right)
+\]</span> <img src="/20200727l1/image-20200727150935272.png"></p>
+<h2 id="training-objective">Training Objective</h2>
+<p><span class="math display">\[
+L_{D F}=\sum_{p \in \Omega} w(p)\left(\|D F(p)-\hat{D} F(p)\|_{2}+\alpha \times\left\|\cos ^{-1}\langle D F(p), \hat{D} F(p)\rangle\right\|^{2}\right)
+\]</span></p>
+<p><span class="math display">\[
+L=L_{CE}^i+L_{CE}^{f}+\lambda L_{DF}
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200727l1/image-20200727151413179.png"></p>
+<p><img src="/20200727l1/image-20200727151449233.png"></p>
+<p><img src="/20200727l1/image-20200727151505605.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>图像分割</tag>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】Self-Supervised Nuclei Segmentation in Histopathological Images Using Attention</title>
+    <url>/20200724l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/msahasrabudhe/miccai2020_self_sup_nuclei_seg" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/msahasrabudhe/miccai2020_self_sup_nuclei_seg</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>针对医疗图像标注困难，提出了一种基于自监督的组织病理学图像细胞核分割方法。</p>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>基于核是该任务的判别特征的前提下，使用尺度分类作为自监督信号。</li>
+<li>采用基于Dilated的全卷积网络生成分割图作为注意力Map</li>
+<li>引入正则化约束以生成语义上有意义的分割结果</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>主要思想是，给定一张WSI贴片，以一定放大倍数观察，可以通过观察贴片中核的大小和纹理确定放大水平。基于此，假设原子核足以确定放大倍数，并且其他图像不是必需的。</p>
+<p><img src="/20200724l1/image-20200724111338865.png"></p>
+<p>假设学习了一个对scale敏感的网络，专门用于区分特征的正确比例。给定一组WSIs，以固定的放大倍数<span class="math inline">\(C\)</span>提取所有组织patches。首先，通过Attention network学习一个二分类的分割图<span class="math inline">\(A \in [0, 1]^{1\times H \times W}\)</span>。输入图像与注意力图相乘可以确定放大比例<span class="math inline">\(A \odot I\)</span>。</p>
+<p>confidence map表示为<span class="math inline">\(A=\sigma(a)\)</span>，<span class="math inline">\(a=F(I) \in \mathbb{R}^{1\times H \times W}\)</span>，<span class="math inline">\(\sigma(\cdot)\)</span>为sigmoid函数。通过应用<code>稀疏性正则化</code>，迫使注意力图只关注input patch的局部。 <span class="math display">\[
+\tau=\frac{1}{B} \sum_{b=1}^{B} \mathbf{a}_{b}^{(\eta)}
+\]</span> <span class="math inline">\(J=A \odot I\)</span>表示缩放比例，通过负对数似然法来训练分类网络G，然后训练注意力网络<span class="math inline">\(F\)</span> <span class="math display">\[
+\mathcal{L}_{\text {scale }}(\hat{\mathbf{p}}, l)=-\log \hat{p}_{l} ; \hat{p}_{i}=[\operatorname{softmax}(\hat{\mathbf{s}})]_{i} ; \hat{\mathbf{s}}=\mathcal{G}(J) ; 1 \leq i \leq N_{\mathcal{C}}
+\]</span></p>
+<h2 id="smoothness-regularization">Smoothness Regularization</h2>
+<p>希望<span class="math inline">\(A\)</span>在语义上有意义且平滑，要关注核而不是高频区域，在注意力图上加入了平滑度正则化。 <span class="math display">\[
+\mathcal{L}_{\mathrm{smooth}}=\frac{1}{(H-1)(W-1)} \sum_{i, j}\left\|A_{i+1, j}-A_{i, j}\right\|_{1}+\left\|A_{i, j+1}-A_{i, j}\right\|_{1}
+\]</span></p>
+<h2 id="transformation-equivariance">Transformation Equivariance</h2>
+<p>加入语义一致性的常用约束 <span class="math display">\[
+\mathcal{L}_{\mathrm{equiv}}=\frac{1}{H W}\|\sigma(t(\mathcal{F}(I)))-\sigma(\mathcal{F}(t(I)))\|_{2}^{2}
+\]</span> 总的损失为三者相加，其中<span class="math inline">\(\mathcal{L}_{scale}\)</span>为自监督loss <span class="math display">\[
+\mathcal{L}_{total} = \mathcal{L}_{scale}+\mathcal{L}_{smooth}+\mathcal{L}_{equiv}
+\]</span></p>
+<h2 id="post-processing-validation-and-model-selection">Post Processing, Validation, and Model Selection</h2>
+<p>通过三步后处理得到最终结果：</p>
+<ol type="1">
+<li>使用开和闭的形态学操作</li>
+<li>应用高斯模糊</li>
+<li>使用分水岭算法得到最终结果</li>
+</ol>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200724l1/image-20200724135044368.png"></p>
+<p><img src="/20200724l1/image-20200724135108880.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>code</tag>
+        <tag>自监督</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019 ICCV】Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization</title>
+    <url>/20200723l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>细粒度任务中的对象通常共享较小的类间方差和较大的类内方差，以及多个对象范围和复杂的背景，从而导致更复杂的问题空间。</p>
+<p>如果将此类数据进一步划分为子集进行训练，则由于可获得的数据量较少，每个生成的专家模型都更容易过度拟合。</p>
+<p><img src="/20200723l1/image-20200727151845765.png"></p>
+<h1 id="methods">Methods</h1>
+<p>方法由多名专家和一个门控网络组成。</p>
+<p><img src="/20200723l1/image-20200727151930340.png"></p>
+<h2 id="experts-for-fine-grained-recognition">Experts for Fine-Grained Recognition</h2>
+<p>每一个专家生成基于CAM的Attention Map，找出更细致的关注点，裁剪图像作为输入送给下一个专家模型。</p>
+<p><img src="/20200723l1/image-20200727152036884.png"></p>
+<h2 id="kl-divergence-based-penalizing-term">KL-Divergence based Penalizing Term</h2>
+<p>基于KL散度的惩罚项，鼓励不同专家关注不同的点，产生不同的结果。 <span class="math display">\[
+\begin{array}{c}
+D_{K L}\left(P^{t} \| P^{t+1}\right)=\sum_{x \in X^{t}} P^{t}(x) \log \left(\frac{P^{t}(x)}{P^{t+1}(x)}\right) \\
+=\sum_{x \in X^{t}}\left(P^{t}(x) \log \left(P^{t}(x)\right)-P^{t}(x) \log \left(P^{t+1}(x)\right)\right)
+\end{array}
+\]</span></p>
+<h2 id="mixture-of-experts">Mixture of Experts</h2>
+<p><span class="math display">\[
+L=\sum_{t=1}^{T} L_{c l s}^{t}+\sum_{t=2}^{T} L_{K L}^{t}+L_{g a t e}
+\]</span></p>
+<p>将不同专家结果通过Gate网络的输出权重融合，生成最终结果。 <span class="math display">\[
+\hat{y}_{i}=\sum_{t=1}^{T} g_{t} * \hat{y}_{i}^{t}
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200723l1/image-20200727152922353.png"></p>
+<p><img src="/20200723l1/image-20200727152951699.png"></p>
+<p><img src="/20200723l1/image-20200727153008944.png"></p>
+<p><img src="/20200723l1/image-20200727153021753.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>ICCV</tag>
+        <tag>2019</tag>
+        <tag>细粒度分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCCAI】Universal Loss Reweighting to Balance Lesion Size Inequality in 3D Medical Image Segmentation</title>
+    <url>/20200722l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/neuro-ml/inverse_weighting" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/neuro-ml/inverse_weighting</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>医学图像分割任务中，目标不平衡问题非常常见，主要分为两类：</p>
+<ul>
+<li>类别不平衡：正样本（lesion）与负样本（no-lesion）的pixel数量存在极大不平衡</li>
+<li>病灶大小不平衡：一个图像中有多个病灶时，大的病灶会遮盖住小的病灶</li>
+</ul>
+<p>本文针对第二点进行改进。</p>
+<p>已有主要思想是为损失函数增加权重以平等地代表每个类别，这种方法主要关注病变类型，而不关注病变的大小。</p>
+<p><img src="/20200722l1/image-20200722110155722.png"></p>
+<h1 id="methods">Methods</h1>
+<p>提出一种称为反向加权inverse weighting (iw)的方法。 <span class="math display">\[
+w_{j}=\frac{\sum_{k=0}^{K}\left|L_{k}\right|}{(K+1) \cdot\left|L_{j}\right|}
+\]</span> 为每一个incoming patch生成一个向量权重，将相应的ground-truth patch分出K+1个连接块，<span class="math inline">\(L_0, ..., L_K\)</span>，其中<span class="math inline">\(L_0\)</span>为无病变区域（背景），K为当前病灶的数量。<span class="math inline">\(w_j\)</span>为权重，分配给相应分量<span class="math inline">\(L_j\)</span>内每个voxel。分母中的常量确保权重之和等于相同大小的单位张量的总和。</p>
+<p><img src="/20200722l1/image-20200722111301929.png"></p>
+<p><img src="/20200722l1/image-20200722111320372.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200722l1/image-20200722111342820.png"></p>
+<p><img src="/20200722l1/image-20200722111356764.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>code</tag>
+        <tag>损失函数</tag>
+        <tag>目标不平衡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2018】Bag of Tricks for Image Classification with Convolutional Neural Networks</title>
+    <url>/20200721l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>我们都知道trick在CNNs中的重要性，但是很少有文章详细讲解他们使用的trick，更少有文章对比各个trick对最后效果影响，这篇文章把CNNs里几种重要的trick做了详细对比，可以认为是一篇在CNNs中使用trick的cookbook。</p>
+<p>这篇文章的trick有五个方面：model architecture, data augmentation, loss function, learning rate schedule，optimization。总结一句话就是，网络input stem和downsample模块、mixup、label smoothing、cosine learning rate decay、lr warmup、zero γ对网络影响都不小。</p>
+<p><img src="/20200721l1/image-20200721105523992.png"></p>
+<h1 id="methods">Methods</h1>
+<p>训练网络的Backbone:</p>
+<p><img src="/20200721l1/image-20200721105548168.png"></p>
+<h2 id="训练速度">训练速度</h2>
+<p>在训练模型时，共识是batchsize尽可能大一些，有以下优缺点：</p>
+<ul>
+<li>优点：模型收敛后的精度相对更高</li>
+<li>缺点：（1）模型收敛速度慢（2）占用更多机器显存</li>
+</ul>
+<h3 id="large-batch-training">Large-batch training</h3>
+<h4 id="linear-scaling-learning-rate">Linear scaling learning rate</h4>
+<p>增大batch size，单个batch数据中噪声的影响会更小，可以使用大的学习率步长。</p>
+<h4 id="learning-rate-warmup">Learning rate warmup</h4>
+<p>训练开始阶段使用较小学习率，训练稳定时换回初始学习率</p>
+<h4 id="zero-gamma">Zero <span class="math inline">\(\gamma\)</span></h4>
+<p>Resnet网络结构中采用多个残差块结构，其结果为<span class="math inline">\(x+block(x)\)</span>，最后一层通常为batch Norm层，输出为<span class="math inline">\(\gamma\hat{x}+\beta\)</span>，这里将<span class="math inline">\(\gamma\)</span>和<span class="math inline">\(\beta\)</span>均置为0，可以使模型在初始阶段更容易训练。</p>
+<h4 id="no-bias-decay">No bias decay</h4>
+<p>只对卷积层和全连接层中的weight参数做正则化，不对bias参数做正则化，防止过拟合。</p>
+<h3 id="low-precision-training">Low-precision training</h3>
+<p>采用FP16进行训练，加快训练速度。</p>
+<h1 id="experiments">Experiments</h1>
+<p>此外还可以尝试修改ResNet的结构、学习率衰减策略、标签平滑、知识蒸馏、Mixup</p>
+<p><img src="/20200721l1/image-20200721194527204.png"></p>
+<p><img src="/20200721l1/image-20200721194541505.png"></p>
+<p><img src="/20200721l1/image-20200721194805812.png"></p>
+<p><img src="/20200721l1/image-20200721194817285.png"></p>
+<p><img src="/20200721l1/image-20200721194828049.png"></p>
+<p><img src="/20200721l1/image-20200721194848341.png"></p>
+<p><img src="/20200721l1/image-20200721194907989.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2018</tag>
+        <tag>trick</tag>
+        <tag>亚马逊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】ClassMix: Segmentation-Based Data Augmentation for Semi-Supervised Learning</title>
+    <url>/20200720l2/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/WilhelmT/ClassMix" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/WilhelmT/ClassMix</a></p>
+<h1 id="motivation">Motivation</h1>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>引入了一种新的语义分割增强策略，ClassMix</li>
+<li>利用一致性正则化和伪标签进行语义分割</li>
+<li>在Cityscapes数据集和Pascal VOC数据集的半监督学习中都具有一定的有效性。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>在无标注数据中采样两张图像A和B，使用分割模型分别进行预测，在A的预测结果中通过argmax生成预测结果，随机选取一半预测标签作为mask，将A图中mask区域合并到B图中。</p>
+<p>Loss部分，有标注部分使用真实标签，无标注部分使用生成的伪标签。</p>
+<p><img src="/20200720l2/image-20200720170305343.png"></p>
+<p><img src="/20200720l2/image-20200720170207551.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200720l2/image-20200720170636800.png"></p>
+<p><img src="/20200720l2/image-20200720170650354.png"></p>
+<p><img src="/20200720l2/image-20200720170711910.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>半监督学习</tag>
+        <tag>数据增强</tag>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019 ICCV】CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features</title>
+    <url>/20200720l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/clovaai/CutMix-PyTorch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/clovaai/CutMix-PyTorch</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>Regional Dropout可以提高分类任务准确性，引导模型关注较弱判别性的区域，使得模型具有更好的泛化能力。</p>
+<p>这些方法通过覆盖黑色像素或者加入随机噪声补丁来取出训练数据上的信息，这样导致部分信息丢失，而且训练效率较低。</p>
+<p><img src="/20200720l1/image-20200720154731427.png"></p>
+<h1 id="methods">Methods</h1>
+<p>本文将Mixup与Cutout相结合，在其中一张图像中裁剪一块覆盖在另一张图像相同位置上，对应的label按照patch大小进行等比例混合。 <span class="math display">\[
+\tilde{x}=\mathbf{M} \odot x_{A}+(\mathbf{1}-\mathbf{M}) \odot x_{B}
+\]</span></p>
+<p><span class="math display">\[
+\tilde{y} =\lambda y_A + (1-\lambda)y_B
+\]</span></p>
+<p>边界框的坐标采样自均匀分布 <span class="math display">\[
+\begin{array}{l}
+r_{x} \sim \text { Unif }(0, W), \quad r_{w}=W \sqrt{1-\lambda} \\
+r_{y} \sim \text { Unif }(0, H), \quad r_{h}=H \sqrt{1-\lambda}
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+\frac{r_wr_h}{WH}=1-\lambda
+\]</span></p>
+<p>Motivation shared by Cutout,确保两个武器能够从一张图像中识别出两个目标的部分视角，从而提高训练效率。Cutout能够使模型关注目标的less discriminative部分，部分像素未使用，导致训练效率较低。Mixup引入了伪影使得图像不自然。CutMix能够精确定位两个目标，有效改进了Cutout。</p>
+<p><img src="/20200720l1/image-20200720160323387.png"></p>
+<p><img src="/20200720l1/image-20200720160133187.png"></p>
+<p><img src="/20200720l1/image-20200720160151306.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200720l1/image-20200720160233357.png"></p>
+<p><img src="/20200720l1/image-20200720160249837.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>ICCV</tag>
+        <tag>2019</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019 NeurIPS】MixMatch: A Holistic Approach to Semi-Supervised Learning</title>
+    <url>/20200715l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/google-research/mixmatch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/google-research/mixmatch</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>深度学习的成功多半取决于大量的数据。</p>
+<p>例如医疗数据中，很多数据是用非常昂贵的设备采集的，需要通过多名专家共同标注，非常耗时，而且存在隐私问题。</p>
+<p>半监督学习（SSL）试图利用无标注的数据来减轻对有标数据的需求。很多SSL方法针对无标注数据增加损失项来使得模型很好的泛化到未见数据上。损失项可分为三类：熵最小化，一致性正则化和一般正则化。</p>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>实验证明MixMatch取得了state-of-the-art成果</li>
+<li>消融实验证明MixMatch将每个模块加和效果最好</li>
+<li>MixMatch对于隐私学习很有效</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200715l1/image-20200715210313015.png"></p>
+<p><img src="/20200715l1/image-20200715210333773.png"></p>
+<p>MixMatch的损失定义如下： <span class="math display">\[
+X^{&#39;},U^{&#39;}=MixMatch(X,U,T,K,\alpha)
+\]</span></p>
+<p><span class="math display">\[
+L_X=\frac{1}{X^{&#39;}}\sum_{x,p\in X^{&#39;}}{H(p,p_{model}(y|x;\theta))}
+\]</span></p>
+<p><span class="math display">\[
+L_{U}=\frac{1}{L|U&#39;|}\sum_{u,q\in U&#39;}{||q-p_{model}(y|u;\theta)||_2^2}
+\]</span></p>
+<p><span class="math display">\[
+L=L_{X}+\lambda_U L_U
+\]</span></p>
+<p>其中，<span class="math inline">\(H(p, q)\)</span>表示分布p和q之间的交叉熵，<span class="math inline">\(T,K,\alpha,\lambda_U\)</span>为超参数。</p>
+<h2 id="数据增强">数据增强</h2>
+<p>数据增强是减轻缺少有标数据影响的一种方法。类似于大部分半监督学习方法，我们同时对有标和无标数据进行数据增强。对有标数据进行一次数据增强，无标数据进行K次数据增强。这些无标数据增强后得到的结果进行“laebl guessing”获得<span class="math inline">\(q_b\)</span>。</p>
+<h2 id="label-guessing">Label Guessing</h2>
+<p>对于单个无标样例，计算K次增强后类别预测分布的均值，这个得到的标签带入后续的无监督损失项中。 <span class="math display">\[
+\bar{q}_{b}=\frac{1}{K} \sum_{k=1}^{K} \operatorname{pmodel}\left(y \mid \hat{u}_{b, k} ; \theta\right)
+\]</span></p>
+<h2 id="sharpening">Sharpening</h2>
+<p>通过sharpening方法进行熵最小化处理 <span class="math display">\[
+Sharpen(p, T):=\frac{P_i^{\frac{1}{T}}}{\sum_{j=1}^{L}{p_j^{\frac{1}{T}}}}
+\]</span> 后续需要使用sharpen的输出作为模型预测的目标值，所以选择较低的T保证了模型可以产生低熵的预测。</p>
+<h2 id="mixup">MixUp</h2>
+<p>同时对有标数据和label guessing结果的无标数据进行MixUp。 <span class="math display">\[
+\lambda \sim Beta(\alpha, \alpha)
+\]</span></p>
+<p><span class="math display">\[
+\lambda&#39;=max(\lambda, 1-\lambda)
+\]</span></p>
+<p><span class="math display">\[
+x&#39;=\lambda&#39;x_1+(1-\lambda&#39;)x_2
+\]</span></p>
+<p><span class="math display">\[
+p&#39;=\lambda&#39; p_1 + (1-\lambda&#39;)p_2
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200715l1/image-20200716082254512.png"></p>
+<p><img src="/20200715l1/image-20200716082312332.png"></p>
+<p><img src="/20200715l1/image-20200716082341001.png"></p>
+<p>消融实验，感觉主要起作用的还是MixUp。</p>
+<p><img src="/20200715l1/image-20200716082359993.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>半监督学习</tag>
+        <tag>code</tag>
+        <tag>2019</tag>
+        <tag>谷歌</tag>
+        <tag>NeurIPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2018 ICLR】mixup: Beyond Empirical Risk Minimization</title>
+    <url>/20200714l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/facebookresearch/mixup-cifar10" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/facebookresearch/mixup-cifar10</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>在大多数成功的案例中，网络模型有两处共同点：</p>
+<ul>
+<li>训练神经网络主要依靠经验风险最小化（ERM）</li>
+<li>网络的规模和数据集规模成正比</li>
+</ul>
+<p>ERM收敛的重要保证是模型规模不随数据集规模增加而增加。然而目前的模型大多随着数据集规模发生变化，网络只是单纯“记住了”这些数据。</p>
+<h1 id="methods">Methods</h1>
+<p>机器学习的目标是为了期望风险最小化：</p>
+<p><span class="math display">\[
+R(f)=\int \ell(f(x), y) \mathrm{d} P(x, y)
+\]</span></p>
+<p>其中<span class="math inline">\(\ell\)</span>表示损失函数。实际问题中，<span class="math inline">\(P\)</span>的分布是未知的，通常使用经验分布来近似表示： <span class="math display">\[
+P_{\delta}(x, y)=\frac{1}{n} \sum_{i=1}^{n} \delta\left(x=x_{i}, y=y_{i}\right)
+\]</span> 由此得到： <span class="math display">\[
+R_{\delta}(f)=\int \ell(f(x), y) \mathrm{d} P_{\delta}(x, y)=\frac{1}{n} \sum_{i=1}^{n} \ell\left(f\left(x_{i}\right), y_{i}\right)
+\]</span> 经验风险最小化虽然可以计算效率很高，但经验风险只关注有限的n个样例。当数据超出训练样例范围时，可能会出现一些不可知的错误。</p>
+<p>本文提出一种通用的邻域分布，称为mixup： <span class="math display">\[
+\mu\left(\tilde{x}, \tilde{y} \mid x_{i}, y_{i}\right)=\frac{1}{n} \sum_{j}^{n} \underset{\lambda}{\mathbb{E}}\left[\delta\left(\tilde{x}=\lambda \cdot x_{i}+(1-\lambda) \cdot x_{j}, \tilde{y}=\lambda \cdot y_{i}+(1-\lambda) \cdot y_{j}\right)\right]
+\]</span> 其数据为直接将x和y进行混合： <span class="math display">\[
+\tilde{x}=\lambda x_i+(1-\lambda)x_j
+\]</span></p>
+<p><span class="math display">\[
+\tilde{y} = \lambda y_i + (1-\lambda) y_i
+\]</span></p>
+<p><img src="/20200714l1/image-20200714171323416.png"></p>
+<p>mixup实现方式非常直观，实现过程中有考虑以下几点：</p>
+<ul>
+<li>将三个或三个以上融合，效果几乎和两个一样，而且增加了mixup的时间</li>
+<li>将mixup应用于单个loader，对同一个minibatch中的数据进行混合，这样的策略和整个数据集随机打乱的效果是一样的，还能减少IO的开销</li>
+<li>相同标签的数据进行mixup作用不大</li>
+</ul>
+<p>mixup的作用：</p>
+<p>mixup可以理解为一种数据增强形式，告诉训练器尽可能训练出线性的边界。这样能减少过拟合，而且线性模型最简单，符合奥卡姆剃刀。</p>
+<p><img src="/20200714l1/image-20200714171930590.png"></p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="imagenet-分类">ImageNet 分类</h2>
+<p><img src="/20200714l1/image-20200714171952853.png"></p>
+<h2 id="cifar-10-与-cifar-100">CIFAR-10 与 CIFAR-100</h2>
+<p><img src="/20200714l1/image-20200714172207692.png"></p>
+<h2 id="语音数据">语音数据</h2>
+<p><img src="/20200714l1/image-20200714172230878.png"></p>
+<h2 id="memorization-of-corrupted-labels">Memorization of corrupted labels</h2>
+<p><img src="/20200714l1/image-20200714172337180.png"></p>
+<h2 id="robustness-to-adversarial-expamples">Robustness to Adversarial Expamples</h2>
+<p><img src="/20200714l1/image-20200714172426333.png"></p>
+<h2 id="tabular-data">Tabular Data</h2>
+<p><img src="/20200714l1/image-20200714195427460.png"></p>
+<h2 id="stabilization-of-generative-adversarial-networks">Stabilization of Generative Adversarial Networks</h2>
+<p><img src="/20200714l1/image-20200714195502996.png"></p>
+<h2 id="ablation-studies">Ablation Studies</h2>
+<p><img src="/20200714l1/image-20200714195541847.png"></p>
+<h1 id="discussion">Discussion</h1>
+<ul>
+<li>还没有一个很好的理论来理解这种偏差-方差折中的“最佳点”</li>
+<li>作者通过实验推测，增加模型容量将使训练误差对大的<span class="math inline">\(\alpha\)</span>的敏感度降低，因此mixup的优势将更加明显</li>
+<li>是否有可能使类似的想法适用于其他类型的监督学习问题，例如回归和结构化预测？尽管讲mixup泛化到回归问题很简单，但应用于结构化预测问题（如图像分割）的问题还不是很明显</li>
+<li>类似的方法在监督学习之外可以用吗？插值原理是合理的归纳偏差，也可能有助于无监督、半监督和强化学习。</li>
+<li>是否能够将mixup拓展到特征-标签之外来保证远离训练数据时模型的健壮性？</li>
+</ul>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2018</tag>
+        <tag>数据增强</tag>
+        <tag>code</tag>
+        <tag>ICLR</tag>
+        <tag>MIT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】Uncertainty-based graph convolutional networks for organ segmentation refinement</title>
+    <url>/20200713l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<h2 id="存在问题">存在问题</h2>
+<ul>
+<li>器官的形状与背景相似性较高，为器官的分割带来了挑战，存在很多False Negative和False Positive区域，可以考虑通过模型的不确定性分析找出潜在错误分类元素的有用信息</li>
+<li>不确定性已被证明是半监督学习中的一种有用的注意力机制，计算机视觉的最新工作已经开始探索不确定性的能力，以寻找潜在的错误分类区域用于精细化分割结果</li>
+</ul>
+<h2 id="本文贡献">本文贡献</h2>
+<p>本文是在医学图像单器官分割任务中第一个提出半监督GCN学习的方法</p>
+<h1 id="methods">Methods</h1>
+<p>本文提出的方法主要用于分割结果的后处理，并且假设无法获取到真实的分割结果。</p>
+<ul>
+<li>首先，选汇总一个二进制的volume <span class="math inline">\(U_b\)</span>，用于突出显示潜在的false positives和false negatives <span class="math inline">\(Y\)</span>。</li>
+<li>其次，使用<span class="math inline">\(U_b\)</span>和<span class="math inline">\(Y，g， V\)</span>，进一步精细分割结果<span class="math inline">\(Y\)</span>。</li>
+</ul>
+<p><img src="/20200713l1/image-20200713134429510.png"></p>
+<h2 id="uncertainty-analysis-finding-incorrect-elements">Uncertainty Analysis: Finding Incorrect Elements</h2>
+<p>使用MCDO来评估CNN模型的不确定性。该策略需要应用于带有dropout层的卷积网络中。</p>
+<p>首先，获得模型的期望：</p>
+<p><span class="math display">\[
+\mathbb{E} \approx \frac{1}{T}\sum_{t=1}^{T}{g(V(x), \theta_t)}
+\]</span></p>
+<p>然后，使用熵来表示模型不确定性<span class="math inline">\(\mathbb{U}\)</span>，使用<span class="math inline">\(\mathbb{E}\)</span>作为P的概率值来计算熵： <span class="math display">\[
+\mathbb{U}(x)=H(x) = - \sum_{c=1}^{M}{P(x)^clogP(x)^2}
+\]</span> 最终，定义潜在不确定性元素为<span class="math inline">\(U_b\)</span>： <span class="math display">\[
+U_b(x)=\mathbb{1}[\mathbb{U}(x) &gt; \tau]
+\]</span></p>
+<h2 id="graph-learning-for-segmentation-refinement">Graph Learning for Segmentation Refinement</h2>
+<p>使用来自不确定性分析的信息，可以定义一个部分标记的图，其中将体素映射到节点，并将邻域关系映射到边。这样refinement问题化为一个半监督图学习问题。</p>
+<h3 id="partially-labeled-nodes">Partially-Labeled Nodes</h3>
+<p>volume中大多数voxel与refinement问题无关，且图像不限于矩形结构表示，因此定义一个ROI表示目标结果。<span class="math inline">\(ROI(x)=dilation(U_b(x))\bigcup \mathbb{E}_b(x)\)</span></p>
+<p>此ROI减少了图的节点数，从而减少了内存需求。最后使用下一条规则根据不确定性在图中标记每一个节点： <span class="math display">\[
+l(x)=\left\{\begin{array}{ll}
+Y(x) &amp; \text { if } U_{b}(x)=0 \\
+\text { unlabeled } &amp; \text { if } U_{b}(x)=1
+\end{array}\right.
+\]</span></p>
+<h3 id="edges-and-weighting">Edges and Weighting</h3>
+<p>标记元素和未标记元素的联系通常发生在不确定区域的边界部分。对于选取的一个点，将其坐标系相邻的六个点进行连接，另外再随机选取图中16个节点进行连接。</p>
+<p>权重选择使用高斯核进行定义： <span class="math display">\[
+w(x_i, x_j)=\lambda div(x_i,x_j)+exp(-\frac{||V(x)-V(x_j)||^2}{2\sigma_1})+exp(-\frac{||V(x_i)-V(x_j)||^2}{2\sigma_2})
+\]</span></p>
+<p><span class="math display">\[
+div(x_i, x_j)=\sum_{c=1}^{M}(P^c(x_i)-P^c(x_j))log\frac{P^c(x_i)}{P^c(x_j)}, M=2
+\]</span></p>
+<p><span class="math display">\[
+P^1(x_i)=\mathbb{E}(x_i), P^2(x_i) = 1-P^1(x_i)
+\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200713l1/image-20200713135643651.png"></p>
+<p><img src="/20200713l1/image-20200713135658898.png"></p>
+<p><img src="/20200713l1/image-20200713135721506.png"></p>
+<p><img src="/20200713l1/image-20200713135737475.png"></p>
+<p><img src="/20200713l1/image-20200713135749729.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>图卷积</tag>
+        <tag>半监督学习</tag>
+        <tag>德国慕尼黑工业大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2017】Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network</title>
+    <url>/20200712l2/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>现有研究大多堆叠小型filters，因为在相同计算复杂度下，堆叠式小型filters比大的内核更有效。</p>
+<p>但在语义分割领域中，需要对每个像素进行预测，必须同时考虑分类和定位任务，大内核的作用更大些。</p>
+<h2 id="语义分割存在的两个挑战">语义分割存在的两个挑战</h2>
+<ul>
+<li>分类：与特定语义相关的对象必须正确标记</li>
+<li>定位：为每一个像素进行分类需要与输出的score map坐标相对应</li>
+</ul>
+<p><img src="/20200712l2/image-20200712202943356.png"></p>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>为语义分割提出一种全局卷积网络，同时解决分类和定位问题</li>
+<li>提出一种边界精细模块，可以进一步提高物体边界附近的定位能力</li>
+<li>在PASCAL VOC 2012和Cityscapes上取得state-of-art结果</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200712l2/image-20200712203241664.png"></p>
+<p>目前语义分割模型主要考虑定位问题，对于分类而言可能不是最优的。</p>
+<ul>
+<li>有效接受域（valid receptive filed, VRF）足以容纳整个对象</li>
+<li>从分类角度看，分类模型的密集连接结构的推动下，卷积结构的内核大小应尽可能大</li>
+<li>本文GCN模块没有使用较大的内核或全局卷积，二十采用<span class="math inline">\(1 \times k + k \times 1\)</span>和<span class="math inline">\(k \times 1 + 1 \times k\)</span>卷积的组合，能够在特征图的<span class="math inline">\(k \times k\)</span>区域进行密集连接</li>
+</ul>
+<p><img src="/20200712l2/image-20200712203905916.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p>消融实验（Ablation Experiments）对比了卷积核size对实验效果的影响，同时也比较了四种实现<span class="math inline">\(k \times k\)</span>卷积核的结构：</p>
+<p><img src="/20200712l2/image-20200712204047061.png"></p>
+<p><img src="/20200712l2/image-20200712204112435.png"></p>
+<p><img src="/20200712l2/image-20200712204246039.png"></p>
+<p><img src="/20200712l2/image-20200712204303540.png"></p>
+<p><img src="/20200712l2/image-20200712204317269.png"></p>
+<p>提出了ResNet-GCN结构</p>
+<p><img src="/20200712l2/image-20200712204355893.png"></p>
+<p><img src="/20200712l2/image-20200712204431381.png"></p>
+<p><img src="/20200712l2/image-20200712204450893.png"></p>
+<p><img src="/20200712l2/image-20200712204505044.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>图像分割</tag>
+        <tag>2017</tag>
+        <tag>清华大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】C2FNAS: Coarse-to-Fine Neural Architecture Search for 3D Medical Image Segmentation</title>
+    <url>/20200712l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>3D卷积神经网络在医疗影像中很成功，但是选择或设计一个合理的网络结构是非常耗时的。</p>
+<p>由于内存限制和较大的搜索空间，NAS算法经常存在搜索阶段和部署阶段之间不一致，3D医学图像中更加消耗内存和时间，这种情况更加严重。</p>
+<p>Neural Architecture Search（NAS）提出以来，通常是在较浅的网络中进行搜索，同时在更深层次进行部署。</p>
+<p><img src="/20200712l1/image-20200712090439271.png"></p>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>本文从头开始搜索3D分割网络，不牺牲网络大小或输入大小</li>
+<li>基于医学图像分割先验，为每个阶段设计了特定的搜索空间和搜索方法</li>
+<li>本文模型在MSD挑战的10个数据集上达到了state-of-the-art性能，以及强大的鲁棒性和迁移能力</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<h2 id="coarse-to-fine-neural-architecture-search">Coarse-to-fine Neural Architecture Search</h2>
+<p>为了避免搜索阶段和部署阶段之间网络大小和输入大小的不一致，本文提出了用于3D医学图像分割的从粗到精的神经体系结构搜索方案。</p>
+<p>为了减少搜索空间，采用了两种先验：</p>
+<ul>
+<li>U形的Encoder-Decoder结构</li>
+<li>降采样和升采样之间使用skip-connections</li>
+</ul>
+<p><img src="/20200712l1/image-20200712091058072.png"></p>
+<p>搜索空间<span class="math inline">\(A\)</span>分为两部分：较小的拓扑结构搜索空间<span class="math inline">\(S\)</span>和巨大的操作搜索空间<span class="math inline">\(C\)</span>： <span class="math display">\[
+A=S \times C
+\]</span></p>
+<p>本文方法看作构建一个彩色的有向无环图(DAG)的过程，整个过程分为两个阶段：</p>
+<ul>
+<li>Coarse stage: 搜索宏观的网络结构</li>
+<li>Fine stage: 为每个节点搜索最好的操作</li>
+</ul>
+<h2 id="coarse-stage-macro-level-search">Coarse Stage: Macro-level Search</h2>
+<p>该阶段主要集中于搜索网络的拓扑结构。</p>
+<p><img src="/20200712l1/image-20200712093605764.png"></p>
+<p><img src="/20200712l1/image-20200712093654402.png"></p>
+<h2 id="fine-stage-micro-level-search">Fine Stage: Micro-level Search</h2>
+<p>卷积操作的搜索空间主要有三种：</p>
+<ul>
+<li><span class="math inline">\(3 \times 3 \times 3\)</span> 3D 卷积操作</li>
+<li><span class="math inline">\(3 \times 3 \times 1\)</span>后紧接<span class="math inline">\(1 \times 1 \times 3\)</span> P3D卷积</li>
+<li><span class="math inline">\(3 \times 3 \times 1\)</span> 2D 卷积操作</li>
+</ul>
+<p>为了在提高搜索效率的同时解决内存限制的问题，我们采用具有统一采样[10]的单路径单发NAS作为我们的搜索方法。</p>
+<h1 id="experiments">Experiments</h1>
+<p>最终的网络结构如图所示，每一个卷积操作前加一个<span class="math inline">\(1 \times 1 \times 1\)</span>卷积操作进行图像预处理。</p>
+<p><img src="/20200712l1/image-20200712093925650.png"></p>
+<p><img src="/20200712l1/image-20200712094018389.png"></p>
+<p><img src="/20200712l1/image-20200712094030293.png"></p>
+<p><img src="/20200712l1/image-20200712094042405.png"></p>
+<p><img src="/20200712l1/image-20200712094058260.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>CVPR</tag>
+        <tag>NAS</tag>
+        <tag>约翰霍普金斯大学</tag>
+        <tag>NVIDIA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 ECCV】Mining Cross-Image Semantics for Weakly Supervised Semantic Segmentation</title>
+    <url>/20200711l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/GuoleiSun/MCIS_wsss" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/GuoleiSun/MCIS_wsss</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>本文研究仅从图像级标注的监督信息学习语义分割的问题。</p>
+<p>弱监督语义分割，即只给定图像级分类标注的语义分割。当前流行的方法是利用分类器的目标定位图（object localization maps）作为监督信号。</p>
+<p>这类方法很难使得定位图（ localization maps）捕获到更加完全的目标内容。</p>
+<h2 id="本文贡献">本文贡献</h2>
+<ul>
+<li>讨论了跨图像语义相关性对于完整对象模式学习以及对象位置推断的价值，通过在配对训练样本上共同注意力分类器的工作实现的。</li>
+<li>本文的共同注意力分类器以更全面的方式挖掘语义线索。还通过共同注意力和对比注意力机制从跨图像间挖掘相似性和差异性进行互补监督。</li>
+<li>本文方法在弱监督语义分割上泛化性很好，可以应用于Web上爬虫得到的图像数据。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>不同于之前的方法，只关注单张图像的信息，本文提出的方法挖掘不同图像之间的信息。</p>
+<p>将注意力机制分为两种，co-attention和contrastive co-attention，前者从共同对象区域中学习相同的语义信息，后者注意在其他对象上，实现非共享的语义分类。</p>
+<p><img src="/20200711l1/image-20200711192732553.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p>本文方法在CVPR2020 LID workshop获得最佳论文，并在LID语义分割挑战赛道第一名。</p>
+<p><img src="/20200711l1/image-20200711194040487.png"></p>
+<p><img src="/20200711l1/image-20200711194104353.png"></p>
+<p><img src="/20200711l1/image-20200711194117483.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>弱监督学习</tag>
+        <tag>code</tag>
+        <tag>ECCV</tag>
+        <tag>语义分割</tag>
+        <tag>苏黎世联邦理工学院</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2018】Self-Attention Generative Adversarial Networks</title>
+    <url>/20200710l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/brain-research/self-attention-gan" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/brain-research/self-attention-gan</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>使用小的卷积核很难发现图像中的依赖关系</li>
+<li>使用大的卷积核就丧失了卷积网络参数与计算的效率</li>
+</ul>
+<p><img src="/20200710l1/image-20200710170445992.png"></p>
+<h1 id="methods">Methods</h1>
+<p>模型结构参照non-local model[1]</p>
+<p><img src="/20200710l1/image-20200710170828360.png"></p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="稳定训练过程的技巧">稳定训练过程的技巧</h2>
+<p>1、在生成器和判别器中均应用了Spectral normalization的方法：这个方法可以限制参数的分布(Lipschitz 条件)，从而减少梯度爆炸等影响，稳定网络的训练。最初该方法只在判别器中使用，SAGAN中在生成器和判别器中均加入了Spectral normalization。 2、训练中使用Two Timescale Update Rule (TTUR)：通常在GAN中G和D采用交替训练的方法，G训练一次后需要训练多次D（常见的是一次G，五次D），SAGAN使用了TTUR的方法，具体来说就是G和D使用不同的学习率（G为0.0001，D为0.0004），使得每一次生成器的训练之后判别器需要更少的训练次数。</p>
+<p><img src="/20200710l1/image-20200710171335719.png"></p>
+<p><img src="/20200710l1/image-20200710171357415.png"></p>
+<p><img src="/20200710l1/image-20200710171412547.png"></p>
+<p><img src="/20200710l1/image-20200710171429625.png"></p>
+<p><img src="/20200710l1/image-20200710171448198.png"></p>
+<h1 id="参考文献">参考文献</h1>
+<p>[1] Wang, X., Girshick, R., Gupta, A., and He, K. Non-local neural networks. In CVPR, 2018.</p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2018</tag>
+        <tag>code</tag>
+        <tag>谷歌</tag>
+        <tag>注意力机制</tag>
+        <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2017】DeepLabv3:Rethinking Atrous Convolution for Semantic Image Segmentation</title>
+    <url>/20200709l2/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/eveningdong/DeepLabV3-Tensorflow" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/eveningdong/DeepLabV3-Tensorflow</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>为了处理在多个尺度上分割对象的问题，本文设计了atrous卷积模块，该模块采用级联或并行的atrous卷积，通过采用多个atrous速率来捕获多尺度上下文。</p>
+<ul>
+<li>使用空洞卷积，防止分辨率过低情况</li>
+<li>串联不同膨胀率的空洞卷积或者并行不同膨胀率的空洞卷积（v2的ASPP），来获取更多上下文信息</li>
+</ul>
+<p><img src="/20200709l2/image-20200709102519424.png"></p>
+<p><img src="/20200709l2/image-20200709102546058.png"></p>
+<h1 id="methods">Methods</h1>
+<h2 id="atrous-convolution-for-dense-feature-extraction">Atrous Convolution for Dense Feature Extraction</h2>
+<p>同v2中的空洞卷积，卷积计算公式为：</p>
+<p><span class="math display">\[
+y[i]=\sum_{k=1}^{K}{x[i+r\cdot k]w[k]}
+\]</span></p>
+<h2 id="going-deeper-with-atrous-convolution">Going Deeper with Atrous Convolution</h2>
+<p>采用空洞卷积，将多个ResNet Block级联排列。</p>
+<p><img src="/20200709l2/image-20200709103023997.png"></p>
+<h3 id="multi-grid-method">Multi-grid Method</h3>
+<p>每个Block中的三个卷积使用各自的Unit Rate。</p>
+<h2 id="atrous-spatial-pyramid-pooling">Atrous Spatial Pyramid Pooling</h2>
+<p>不同atrous rates的ASPP可以有效捕获到多尺度信息。但随着采样率变大，有效过滤器权重的数量会越来越少。</p>
+<p><img src="/20200709l2/image-20200709103805802.png"></p>
+<p>为了克服上述问题，并将全局上下文信息纳入模型，采用图像级特征。在模型最后一个特征图上应用全局平均池化，将得到的图像级特征放入<span class="math inline">\(1 \times 1\)</span>卷积中，然后双线性插值上采样至所需空间尺寸。</p>
+<p><img src="/20200709l2/image-20200709104325142.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200709l2/image-20200709104413826.png"></p>
+<p><img src="/20200709l2/image-20200709104439976.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>DeepLab</tag>
+        <tag>2017</tag>
+        <tag>谷歌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2017 TPAMI】DeepLabv2: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs</title>
+    <url>/20200709l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://bitbucket.org/aquariusjay/deeplab-public-ver2/src/master/" target="_blank" rel="external nofollow noopener noreferrer">https://bitbucket.org/aquariusjay/deeplab-public-ver2/src/master/</a></p>
+<h1 id="motivation">Motivation</h1>
+<h2 id="dcnn在图像语义分割中的挑战">DCNN在图像语义分割中的挑战</h2>
+<ul>
+<li>特征图的分辨率减小</li>
+<li>目标的多尺度问题</li>
+<li>由于DCNN的不变性产生的定位准确率减小问题</li>
+</ul>
+<h2 id="本文优势">本文优势</h2>
+<ul>
+<li>速度：通过空洞卷积，本文的DCNN能在Nvidia Titan X GPU上以8FPS速度运行，全连接的CRF在CPU上的推断时间为0.5秒</li>
+<li>准确率：在多个数据集上获得state-of-art结果</li>
+<li>简便性：本文系统由两个非常完善的模块组成，DCNN和CRF</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200709l1/image-20200709091315408.png"></p>
+<h2 id="atrous-convolution-for-dense-feature-extraction-and-field-of-view-enlargement">Atrous Convolution for Dense Feature Extraction and Field-of-View Enlargement</h2>
+<p><img src="/20200709l1/image-20200709091423758.png"></p>
+<p><img src="/20200709l1/image-20200709091445146.png"></p>
+<p>卷积公式：</p>
+<p><span class="math display">\[
+y[i]=\sum_{k=1}^{K}{x[i+r\cdot k]w[k]}
+\]</span></p>
+<h2 id="multiscale-image-representations-using-atrous-spatial-pyramid-pooling">Multiscale Image Representations using Atrous Spatial Pyramid Pooling</h2>
+<p>尝试从两种方法来处理语义分割中的尺度可变性：</p>
+<ul>
+<li>使用共享参数方式并行DCNN分支从原始图像的多个输出中提取DCNN的Score Map</li>
+<li>受R-CNN的空间金字塔启发，提出ASPP结构</li>
+</ul>
+<p><img src="/20200709l1/image-20200709091744292.png"></p>
+<h2 id="structured-prediction-with-fully-connected-conditional-random-fields-for-accurate-boundary-recovery">Structured Prediction with Fully-Connected Conditional Random Fields for Accurate Boundary Recovery</h2>
+<p>继续DeepLab v1中的条件随机场对网络输出进行后处理。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200709l1/image-20200709092341631.png"></p>
+<p><img src="/20200709l1/image-20200709092359416.png"></p>
+<p><img src="/20200709l1/image-20200709092429362.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>DeepLab</tag>
+        <tag>TPAMI</tag>
+        <tag>2017</tag>
+        <tag>谷歌</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2015 ICLR】DeepLabv1: Semantic image segmentation with deep convolutional nets and fully connected CRFs</title>
+    <url>/20200708l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/TheLegendAli/DeepLab-Context" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/TheLegendAli/DeepLab-Context</a></p>
+<h1 id="motivation">Motivation</h1>
+<h2 id="存在的问题">存在的问题</h2>
+<ul>
+<li>重复池化和下采样导致分辨率大幅下降，位置信息丢失难以恢复</li>
+<li>空间不变性导致细节信息丢失</li>
+</ul>
+<h2 id="主要的优势">主要的优势</h2>
+<ul>
+<li>速度很快，DCNN 8fps，CRF需要0.5秒</li>
+<li>准确率高，当时在PASCAL的语义分割集上效果最好</li>
+<li>结构简单，DCNN和CRF的组合</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<h2 id="空洞卷积">空洞卷积</h2>
+<p>不更改卷积核大小的情况下，通过增加Input stride增加卷积核的感受野。</p>
+<p><img src="/20200708l1/image-20200709083417500.png"></p>
+<h2 id="crf">CRF</h2>
+<p>卷积网络在分类精度和定位精度之间存在一个自然的取舍：具有多个最大池化层的更深模型在分类任务中很成功，但其不变性的增加和更大的感受野使得从高层次输出中预测位置变得更具挑战性。</p>
+<p><img src="/20200708l1/image-20200709084653268.png"></p>
+<p>本文采用条件随机场（CRFs）处理分割中不平滑问题，使用全连接的CRF模型修复预测结果中的一些小的结构。能量函数为：</p>
+<p><span class="math display">\[
+E(x)=\sum_{i}{\theta_i(x_i)}+\sum_{ij}{\theta_{ij}(x_i, x_j)}
+\]</span></p>
+<p><img src="/20200708l1/image-20200709084713666.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200708l1/image-20200709084729187.png"></p>
+<p><img src="/20200708l1/image-20200709084745073.png"></p>
+<p><img src="/20200708l1/image-20200709084759185.png"></p>
+<p><img src="/20200708l1/image-20200709084831731.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>DeepLab</tag>
+        <tag>2015</tag>
+        <tag>ICLR</tag>
+        <tag>加利福尼亚大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2018 ECCV】DeepLabv3+:Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation</title>
+    <url>/20200707l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/tensorflow/models/tree/master/research/deeplab" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tensorflow/models/tree/master/research/deeplab</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>在语义分割任务中，spatial pyramid pooling module（SPP）可以捕获更多尺度信息，encoder-decoder结构可以更好恢复物体的边缘信息。</p>
+<p><img src="/20200707l1/image-20200709104913290.png"></p>
+<p>将DeepLab v3作为Encoder，添加新的Decoder，得到DeepLab v3+</p>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200707l1/image-20200709105003493.png"></p>
+<h2 id="encoder-decoder-with-atrous-convolution">Encoder-Decoder with Atrous Convolution</h2>
+<h3 id="encoder-decoder-with-atrous-convolution-1">Encoder-Decoder with Atrous Convolution</h3>
+<p><span class="math display">\[
+y[i]=\sum_{k=1}^{K}{x[i+r\cdot k]w[k]}
+\]</span></p>
+<h3 id="depthwise-separable-convolution">Depthwise separable convolution</h3>
+<p>将卷积替换为空洞可分离卷积，在保持性能的同时，降低模型的计算复杂度。</p>
+<p>Depthwise separable convolution = depthwise convolution + pointwise convolution</p>
+<p><img src="/20200707l1/image-20200709105532171.png"></p>
+<h3 id="modified-aligned-xception">Modified Aligned Xception</h3>
+<p><img src="/20200707l1/image-20200709105846543.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200707l1/image-20200709105914625.png"></p>
+<p><img src="/20200707l1/image-20200709105928960.png"></p>
+<p><img src="/20200707l1/image-20200709105953953.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2018</tag>
+        <tag>code</tag>
+        <tag>DeepLab</tag>
+        <tag>谷歌</tag>
+        <tag>ECCV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019 ICML】EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</title>
+    <url>/20200706l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>系统研究了缩放模型，发现平衡好网络的深度、宽度和输入数据的分辨率可以带来更好的性能。</li>
+<li>使用网络结构搜索设计了新的baseline网络，并扩展获得EfficientNet，比之前的卷积网络有更好的准确性和效率。</li>
+</ul>
+<p><img src="/20200706l1/image-20200706155430777.png"></p>
+<p><img src="/20200706l1/image-20200706155556921.png"></p>
+<h1 id="methods">Methods</h1>
+<h2 id="problem-formulation">Problem Formulation</h2>
+<p>定义普通卷积网络为：</p>
+<p><span class="math display">\[
+\mathcal{N}=\bigodot_{i=1 \ldots s} \mathcal{F}_{i}^{L_{i}}\left(X_{\left\langle H_{i}, W_{i}, C_{i}\right\rangle}\right)
+\]</span></p>
+<p>为了进一步减小设计空间，限制所有层必须以恒定的比例均匀缩放。本文的目标是在任何给定的资源约束条件下最大化模型准确性，这可以表述为优化问题:</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\max _{d, w, r} &amp; \text {Accuracy}(\mathcal{N}(d, w, r)) \\
+\text {s.t.} &amp; \mathcal{N}(d, w, r)=\bigodot_{i=1 \ldots s} \hat{\mathcal{F}}_{i}^{d \cdot \hat{L}_{i}}\left(X_{\left\langle r \cdot \hat{H}_{i}, r \cdot \hat{W}_{i}, w \cdot \hat{C}_{i}\right\rangle}\right) \\
+&amp; \operatorname{Memory}(\mathcal{N}) \leq \text { target_memory } \\
+&amp; \operatorname{FLOPS}(\mathcal{N}) \leq \text { target_flops }
+\end{array}
+\]</span></p>
+<h2 id="scaling-dimensions">Scaling Dimensions</h2>
+<p>经分析，增大网络的宽度、深度和分辨率都可以给网络带来提升，但随着增大其增益逐渐减小。（如：ResNet-1000的准确度和ResNet-101的准确率相近）</p>
+<p><img src="/20200706l1/image-20200706160309728.png"></p>
+<h2 id="观察">观察</h2>
+<ul>
+<li>扩大网络宽度，深度或分辨率的任何维度都可以提高准确性，但是对于较大的模型，准确性的增益会降低。</li>
+<li>为了追求更好的准确性和效率，在ConvNet扩展过程中平衡网络宽度，深度和分辨率的所有维度至关重要。</li>
+</ul>
+<h2 id="compound-scaling">Compound Scaling</h2>
+<p>对于更高分辨率的图像，应该增加网络深度，以使较大的接收场可以帮助捕获相似的特征，这些特征在较大的图像中包括更多的像素。</p>
+<p>需要协调和平衡不同的缩放比例，而不是常规的一维缩放比例。</p>
+<p><img src="/20200706l1/image-20200706160711710.png"></p>
+<p>在本文中，提出了一种新的复合缩放方法，该方法使用复合系数<span class="math inline">\(\phi\)</span>原则上均匀地缩放网络的宽度，深度和分辨率。</p>
+<p><span class="math display">\[
+depth: d = \alpha^\phi  \\
+width: w = \beta^\phi  \\
+resolution: r = \gamma^\phi  \\
+s.t. \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2,
+\alpha \geq 1, \beta \geq 1, \gamma \geq 1
+\]</span></p>
+<h2 id="efficientnet-architecture">EfficientNet Architecture</h2>
+<p><img src="/20200706l1/image-20200706161926434.png"></p>
+<p>从基线EfficientNet-B0开始，我们应用复合缩放方法通过两个步骤对其进行扩展：</p>
+<ul>
+<li>将<span class="math inline">\(\phi = 1\)</span>，如果资源的两倍空间可用，则通过小网格搜索<span class="math inline">\(\alpha,\beta,\gamma\)</span>。发现最好的结果为EfficientNet-B0，<span class="math inline">\(\alpha=1.2,\beta=1.1,\gamma=1.15\)</span>，其中<span class="math inline">\(\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2\)</span>。</li>
+<li>固定<span class="math inline">\(\alpha,\beta,\gamma\)</span>，缩放不同的<span class="math inline">\(\phi\)</span>，得到EfficientNetB1-B7。</li>
+</ul>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200706l1/image-20200706162417088.png"></p>
+<p><img src="/20200706l1/image-20200706162434145.png"></p>
+<p><img src="/20200706l1/image-20200706162449048.png"></p>
+<p><img src="/20200706l1/image-20200706162503418.png"></p>
+<p><img src="/20200706l1/image-20200706162520225.png"></p>
+<p><img src="/20200706l1/image-20200706162539148.png"></p>
+<p><img src="/20200706l1/image-20200706162553755.png"></p>
+<p><img src="/20200706l1/image-20200706162605961.png"></p>
+<p><img src="/20200706l1/image-20200706162651082.png"></p>
+<p><img src="/20200706l1/image-20200706162634345.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>2019</tag>
+        <tag>谷歌</tag>
+        <tag>ICML</tag>
+        <tag>网络结构搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】FOAL: Fast Online Adaptive Learning for cardiac motion estimation</title>
+    <url>/20200702l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<ul>
+<li>临床应用中，训练数据与测试数据不匹配，性能急剧下降</li>
+<li>在部署应用前不可能收集到所有代表性的数据集用于训练模型</li>
+</ul>
+<p>提出的框架包含一个在线自适应阶段和一个离线元学习阶段。</p>
+<p>本文贡献：</p>
+<ul>
+<li>提出了一种新颖的在线模型自适应方法，将一个训练好的baseline模型适应于新视频。</li>
+<li>提出一种元学习方法提升在线优化器。</li>
+<li>提出用于在密集运动估计任务中训练元学习的实用解决方案。</li>
+<li>本文方法不限于运动估计任务。</li>
+</ul>
+<p>本文采用了与参考文献22类似的self-supervision思想。</p>
+<p>通常很难获得真正的心脏运动，因此使用分割蒙版对上述工作进行了定量评估。 在这项工作中，我们也使用这种类型的评估。</p>
+<p><img src="/20200702l1/image-20200703111837160.png"></p>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200702l1/image-20200703112008806.png"></p>
+<h2 id="dense-motion-tracking">Dense Motion Tracking</h2>
+<p>整体思想是一种从参考文献22中得到启发的端到端无监督学习方法。</p>
+<p>为了进行无监督学习，空间变换器网络[13]用于将源图像变形/扭曲为参考图像，并使用图像重建损失<span class="math inline">\(L_{mse}\)</span>来最小化扭曲的源图像和参考图像之间的差异。</p>
+<p><span class="math inline">\(L_{mse}\)</span>是均方误差（MSE）；<span class="math inline">\(L_{smooth}\)</span>是参考文献26中提出的运动域平滑损失，用于避免突然的运动变化；<span class="math inline">\(L_{con}\)</span>是文献22中提出的双向（前后）流一致性损失。</p>
+<p><span class="math display">\[L_{total} = L_{mse} + \alpha_sL_{smooth} + \beta_cL_{con}\]</span></p>
+<h2 id="online-optimizer">Online Optimizer</h2>
+<p>在提出dense tracking的背景下，扩展了tracker以解决数据集分布不匹配的问题。</p>
+<p>背后的思想是使给定的tracker能够自动适应新的视频<span class="math inline">\(x\)</span>。</p>
+<p><img src="/20200702l1/image-20200703135434138.png"></p>
+<p>通过随机梯度下降更新参数，梯度下降步骤是在在线阶段对网络的所有参数执行的。因此，太多的步骤在所有图像对（源和参考）上对它们进行优化在计算上是相当昂贵的。本文目标是仅使用少量的在线样本就可以在少数几个步骤中适应离线模型。通过元学习来优化此过程。（该idea来自MAML【参考文献7】）</p>
+<h2 id="meta-learning">Meta-learning</h2>
+<p>元学习更新策略：</p>
+<p><span class="math display">\[\theta \leftarrow \theta-\beta \nabla_{\theta} \frac{1}{N} \sum_{i}^{N} L_{i}\left(f_{\theta_{i}^{\prime}}\right)\]</span></p>
+<p><img src="/20200702l1/image-20200703143808146.png"></p>
+<h2 id="practical-version-of-the-meta-learning">Practical Version of the Meta-Learning</h2>
+<h3 id="memory-limitation-and-solution">Memory limitation and solution</h3>
+<p>Dense motion tracker需要较大尺寸的图像，元学习的优化器需要计算与特定视频相关联的每个独立模型的导数。未解决这个问题，通过利用等式中的梯度算子和平均算子是可交换的性质，交换两个运算符，如下所示：</p>
+<p><span class="math display">\[\nabla_{\theta} \frac{1}{N} \sum_{i}^{N} L_{i}\left(f_{\theta_{i}^{\prime}}\right) \Leftrightarrow \frac{1}{N} \sum_{i}^{N} \nabla_{\theta} L_{i}\left(f_{\theta_{i}^{\prime}}\right)\]</span></p>
+<h3 id="first-order-derivative-approximation">First order derivative approximation</h3>
+<p>上式中需要二阶导数，涉及到计算二阶Hessian矩阵，这在计算上是昂贵的。作为解决方法，本文使用一阶近似，其有效性在MAML中得到了证明[7]。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200702l1/image-20200703144556934.png"></p>
+<p><img src="/20200702l1/image-20200703144608830.png"></p>
+<p><img src="/20200702l1/image-20200703144540889.png"></p>
+<p><img src="/20200702l1/image-20200703144627503.png"></p>
+<p><img src="/20200702l1/image-20200703144646182.png"></p>
+<p><img src="/20200702l1/image-20200703144702220.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>CVPR</tag>
+        <tag>元学习</tag>
+        <tag>无监督</tag>
+        <tag>剑桥大学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】FocalMix: Semi-Supervised Learning for 3D Medical Image Detection</title>
+    <url>/20200701l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>作者认为医学影像的成功，不仅归因于深度学习的最新进展，而且归因于大量经过仔细注释的数据。</p>
+<ul>
+<li>标注医学影像数据非常昂贵且十分耗时</li>
+<li>医院信息系统中存储大量未处理过的医学影像</li>
+</ul>
+<p>如何能够在不加标注的情况下利用这些原始医学影像来提升深度学习模型。</p>
+<p>本文贡献：</p>
+<ul>
+<li>提出了一个新颖的3D医疗影像半监督学习检测框架FocalMix</li>
+<li>本文工作最先将半监督学习应用于医学图像检测领域</li>
+<li>通过广泛实验，证明了本文方法的有效性</li>
+</ul>
+<p><img src="/20200701l1/image-20200701220851655.png"></p>
+<h1 id="methods">Methods</h1>
+<p>MixMatch框架主要包括两个模块：</p>
+<ul>
+<li>target prediction</li>
+<li>MixUp augmentation</li>
+</ul>
+<p><img src="/20200701l1/image-20200701221231901.png"></p>
+<h2 id="soft-target-focal-loss">Soft-target Focal Loss</h2>
+<p>半监督学习通常涉及soft training targets问题。</p>
+<p>提出的soft-target focal loss为</p>
+<p><span class="math display">\[SFL(p)=[\alpha_0+y(\alpha_1-\alpha_0)]\cdot|y-p|^\gamma \cdot CE(y,p)\]</span></p>
+<h2 id="anchor-level-target-prediction">Anchor-level Target Prediction</h2>
+<h2 id="mixup-augmentation-for-detection">MixUp Augmentation for Detection</h2>
+<p>MixUp增强是MixMatch框架中的重要组件，它鼓励模型在训练示例之间线性表现，以实现更好的泛化性能。</p>
+<p>本文介绍了两种适用于医学图像中病灶检测的MixUp方法：图像级MixUp和对象级MixUp。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200701l1/image-20200701230247513.png"></p>
+<p><img src="/20200701l1/image-20200701230259874.png"></p>
+<p><img src="/20200701l1/image-20200701230309856.png"></p>
+<p><img src="/20200701l1/image-20200701230320644.png"></p>
+<p><img src="/20200701l1/image-20200701230339667.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>CVPR</tag>
+        <tag>半监督学习</tag>
+        <tag>目标检测</tag>
+        <tag>北京大学</tag>
+        <tag>医准智能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】CPR-GCN:Conditional Partial-Residual Graph Convolutional Network in Automated Anatomical Labeling of Coronary Arteries</title>
+    <url>/20200630l1/</url>
+    <content><![CDATA[<p><code>图卷积之前了解不多，这篇文章没怎么读懂，还是做一下记录。</code></p>
+<h1 id="motivation">Motivation</h1>
+<p>现有方法通常依赖于位置信息和对冠状动脉树的拓扑结构的先验知识，当主分支混乱时，很容易产生不好的结果。</p>
+<p>目前图卷积在结构数据中应用广泛，这篇文章基于GCN提出了conditional partial-residual graph convolutional network （CPR-GCN）。</p>
+<p>如下图，受试者之间的冠状动脉相差很大，这是标记系统的主要挑战。</p>
+<p><img src="/20200630l1/image-20200630140915596.png"></p>
+<p>本文贡献：</p>
+<ul>
+<li>提出了CPR-GCN，这是一种条件的残差图卷积网络，可以端到端标记冠状动脉树。</li>
+<li>本文首次提出在冠状动脉标注领域中使用3D图像特征。</li>
+<li>CPR-GCN与混合模型（3D CNN结合BiLSTMs）联合训练，有很好的效果。</li>
+</ul>
+<p>相关工作中提出的问题：</p>
+<ul>
+<li>TreeLab-Net主要是基于两个分支的网络，而在冠状动脉中经常有多个分支，这个超出了TreeLab-Net的能力。</li>
+<li>堆叠多个GCN层容易出现过渡平滑。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>CPR-GCN主要包含partial-residual GCN和conditions extractor两部分。</p>
+<p><img src="/20200630l1/image-20200630142318333.png"></p>
+<p><img src="/20200630l1/image-20200630142345121.png"></p>
+<h2 id="position-domain-features">Position Domain Features</h2>
+<p>参考文献【22】中使用球状坐标转换将3D坐标<span class="math inline">\(P_k=[(x_i, y_i, z_i)]_{i=1}^{Length_k}\)</span>转换成了2D坐标<span class="math inline">\([(\varphi_i, \theta_i)]_{i=1}^{Length_k}\)</span>。</p>
+<p>角度范围在<span class="math inline">\([0,2\pi)\)</span>，容易在<span class="math inline">\(2\pi\)</span>与<span class="math inline">\(0\)</span>之间出现问题。</p>
+<p>本文使用<span class="math inline">\(S^2\)</span>形式表示<span class="math inline">\(\varphi , \theta\)</span>克服此问题。</p>
+<p>这里使用<span class="math inline">\(2 \times 2\)</span>的矩阵<span class="math inline">\(M=\left[\begin{array}{ll}\sin \theta &amp; \sin \varphi \\ \cos \theta &amp; \cos \varphi\end{array}\right]\)</span>，<span class="math inline">\(\sin(\cdot), \cos(\cdot)\)</span>的周期使得<span class="math inline">\(M\)</span>在整个<span class="math inline">\(S^2\)</span>上是稳定的，这种坐标变换被称为<span class="math inline">\(SCT S^2\)</span>。</p>
+<p><span class="math display">\[\begin{array}{ll}
+x=r \sin \theta \cos \varphi &amp; r=\sqrt{x^{2}+y^{2}+z^{2}} \\
+y=r \sin \theta \sin \varphi &amp; \cos \theta=z / r, \theta \in[0, \pi] \\
+z=r \cos \theta &amp; \sin \varphi=x /(\operatorname{rin} \theta), \cos \varphi=y /(\operatorname{rin} \theta)
+\end{array}\]</span></p>
+<h2 id="image-domain-conditions">Image Domain Conditions</h2>
+<p>大多数医学图像（MRI、CCTA）属于3D信息，具有顺序的依赖性，这里使用3D CNN提取空间特征，然后使用BiLSTM学习顺序特征。</p>
+<p>将最后一个状态作为条件信息，因为图像的重要性不如位置域特征。</p>
+<p><img src="/20200630l1/image-20200630145438310.png"></p>
+<h2 id="partial-residual-block-of-gcn">Partial-Residual Block of GCN</h2>
+<p>图卷积的计算公式如下所示：</p>
+<p><span class="math display">\[\begin{array}{l}
+H^{(l+1)}=\sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^{l} W^{l}\right) \\
+\tilde{A}=A+I_{N}, \tilde{D}_{i i}=\sum_{j} \tilde{A}_{i j}
+\end{array}\]</span></p>
+<p>将来自位置特征<span class="math inline">\(x\)</span>与CCTA图像域条件<span class="math inline">\(y\)</span>的组合作为图模型中的节点，边缘定义为parent-children关系。</p>
+<p>每当分支结构存在下级分支时，再加入更多节点。</p>
+<p><img src="/20200630l1/image-20200630145655538.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200630l1/image-20200630150056209.png"></p>
+<p><img src="/20200630l1/image-20200630150110724.png"></p>
+<p><img src="/20200630l1/image-20200630150125011.png"></p>
+<p><img src="/20200630l1/image-20200630150150696.png"></p>
+<p><img src="/20200630l1/image-20200630150208027.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>图卷积</tag>
+        <tag>CVPR</tag>
+        <tag>阿里巴巴</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】Unsupervised Instance Segmentation in Microscopy Images via Panoptic Domain Adaptation and Task Re-weighting</title>
+    <url>/20200629l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>基于无监督域自适应的数字病理学核实例分割，能够减轻标注的工作量和跨数据集的域迁移负担。</p>
+<p>通过学习荧光显微镜图像，提出一种用于组织病理学图像的无监督核分割的Cycle Consistency Panoptic Domain Adaptive Mask R-CNN (CyC-PDAM)</p>
+<p><img src="/20200629l1/image-20200629122922119.png"></p>
+<p>将目标检测中的UDA方法直接用于实例分割任务主要存在两个问题：</p>
+<ul>
+<li>现有UDA方法侧重于减轻图像级（图像对比度、亮度等）和示例级别（对象比例、样式等）的域偏差。忽视了语义级别的域迁移（如前景和背景之间的关系以及对象的空间分布）。</li>
+<li>UDA目标检测方法是多任务学习，可同时优化不同的损失函数。如果没有学习到域不变特征，则损失函数将使得模型偏向源域。</li>
+</ul>
+<p>本文贡献：</p>
+<ul>
+<li>为组织病理学图像中的UDA核实例分割提出了CyC-PDAM模型。</li>
+<li>提出了一个简单的原子核修复机制，以去除合成图像中的假阳性对象。</li>
+<li>CyC-PDAM通过融合实例级别适应模块和语义级别适应模块，生成了基于全景级别的域不变性特征。</li>
+<li>提出了一种任务重新加权机制，减轻对源域的偏置。</li>
+<li>与最新的UDA方法相比，CyC-PDAM具有竞争优势。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>提出的方法主要基于CyCADA，将CyCADA与Mask R-CNN相结合。</p>
+<p><img src="/20200629l1/image-20200629123041727.png"></p>
+<p><img src="/20200629l1/image-20200629125624560.png"></p>
+<h2 id="cycada-with-mask-r-cnn">CyCADA with Mask R-CNN</h2>
+<p>目前没有用于实例分割的UDA模型，于是设计了域自适应的Mask-R-CNN。</p>
+<p>Backbone主要使用ResNet101和Feature Pyramid Network（FPN）。</p>
+<p>在FPN后加入一个判别器用于图像级别自适应，实例分支后加入另一个判别器进行实例级别自适应。</p>
+<p>图像级判别器由4个卷积层和一个gradient reversal layer（GRL）组成，具体参数如下表。</p>
+<p>实例级判别器由3个全连接层和一个GRL组成，输入为<span class="math inline">\(14 \times 14 \times 256\)</span>，平均池化降采样至<span class="math inline">\(2 \times 2 \times 256\)</span>，然后调整为<span class="math inline">\(1024 \times 1\)</span>，再与bounding box分支的<span class="math inline">\(1024 \times 1\)</span>特征相加。</p>
+<p><img src="/20200629l1/image-20200629123906184.png"></p>
+<h2 id="nuclei-inpainting-mechanism">Nuclei Inpainting Mechanism</h2>
+<p>CycleGAN能够很有效的合成目标域图像，但生成图像的标签空间可能会发生变化。合成图像中可能存在多余的和不需要的原子核，这些将被视为背景类。</p>
+<p><img src="/20200629l1/image-20200629124923143.png"></p>
+<p>首先计算出辅助生成的核的Mask（<span class="math inline">\(M_{aux}\)</span>）：</p>
+<p><span class="math display">\[M_{aux}=(otsu(S_{raw})\cup M)-M\]</span></p>
+<p>其中，<span class="math inline">\(S_{raw}\)</span>为初始生成的图像，<span class="math inline">\(M\)</span>为对应的Mask，<span class="math inline">\(ostu(S_{raw})\)</span>为使用Otsu二值化的结果。</p>
+<p>去除多余的核，得到合成图像<span class="math inline">\(S_{inp}\)</span>。</p>
+<p><span class="math display">\[S_{inp}=inp(S_{raw},M_{aux})\]</span></p>
+<p>将<span class="math inline">\(M_{aux}\)</span>标记的多余的核替换为未标记的背景像素值，实现原子核修复的视觉效果。直接修复使得合成图像的文理和外观不太真实。但，image-level adaptation能够解决这个问题。</p>
+<h2 id="panoptic-level-domain-adaptation">Panoptic Level Domain Adaptation</h2>
+<blockquote>
+<p>In addition to the image- and feature-level domain bias, the domain shift at the semantic level also exists.</p>
+</blockquote>
+<p>在FPN的输出后加入语义分支，用于分割预测。</p>
+<p>由于荧光显微镜图像和组织病理学图像均可以从组织样品中获取，并且它们可以显示互补和相关的信息，因此合成的和真实的组织病理学图像的这些语义分割标签空间具有很强的相似性。</p>
+<p><img src="/20200629l1/image-20200629130643939.png"></p>
+<h2 id="task-re-weighting-mechanism">Task Re-weighting Mechanism</h2>
+<p>提出了一种任务重新加权机制，以根据域鉴别符的预测为每个特定于任务的损失函数增加一个权衡权重。</p>
+<p>设定最终预测任务的源域目标域的特征概率图分别为<span class="math inline">\(p_s\)</span>和<span class="math inline">\(p_t\)</span>，特定任务的损失为<span class="math inline">\(L\)</span>，重新加权的损失为<span class="math inline">\(L_{rw}\)</span>。</p>
+<p><span class="math display">\[L_{r w}=\min \left(\frac{p_{t}}{p_{s}}, \beta\right) L=\min \left(\frac{1-p_{s}}{p_{s}}, \beta\right) L\]</span></p>
+<p>如果源域趋向1，则减小损失，以减轻模型对源域的偏向。</p>
+<p>网络结构中分别对RPN、语义分支、实例分支的损失进行加权。</p>
+<h2 id="network-overview-and-training-details">Network Overview and Training Details</h2>
+<p><span class="math display">\[\begin{aligned}
+L_{\text {pdam}} &amp;=\alpha_{\text {img}} L_{\text {rpn}}+\alpha_{\text {ins}} L_{\text {det}}+\alpha_{\text {sem}} L_{(\text {sem}-s e g)} \\
+&amp;+\alpha_{\text {da}}\left(L_{(\text {img}-d a)}+L_{(\text {sem}-d a)}+L_{(\text {ins}-d a)}\right)
+\end{aligned}\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20200629l1/image-20200629131606545.png"></p>
+<p><img src="/20200629l1/image-20200629131623282.png"></p>
+<p><img src="/20200629l1/image-20200629131649659.png"></p>
+<p><img src="/20200629l1/image-20200629131727655.png"></p>
+<p><img src="/20200629l1/image-20200629131740380.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>CVPR</tag>
+        <tag>无监督学习</tag>
+        <tag>实例分割</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 MICCAI】PraNet: Parallel Reverse Attention Network for Polyp Segmentation</title>
+    <url>/20200628l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/DengPingFan/PraNet" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/DengPingFan/PraNet</a></p>
+<h1 id="motivation">Motivation</h1>
+<p>息肉分割存在两个主要问题：</p>
+<ul>
+<li>相同类型的息肉具有不同的大小、颜色和质地</li>
+<li>息肉与其周围粘膜之间的边界不清晰</li>
+</ul>
+<p>本文提出一种新颖的深度神经网络，称为并行反向注意力网络（PraNet）。模仿临床医生，首先粗略定位息肉，然后根据局部特征准确提取其Mask。此方法具有三个优点：</p>
+<ul>
+<li>更好的学习能力</li>
+<li>增强的泛化能力</li>
+<li>更高的训练效率</li>
+</ul>
+<p>本文贡献：</p>
+<ul>
+<li>提出了实时息肉分割框架PraNet</li>
+<li>介绍了针对息肉分割的评价指标，提供SOTA模型</li>
+<li>在五个数据集上都优于现有模型，并且能够实时推断、训练时间减少</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p><img src="/20200628l1/image-20200628204135114.png"></p>
+<h2 id="feature-aggregating-via-parallel-partial-decoder">Feature Aggregating via Parallel Partial Decoder</h2>
+<p>比较流行的医学影像分割方法主要依靠U-Net或U-Net的变体，这些方法聚合多级特征，但与高级特征相比，低级特征有较大的空间分辨率而需要更多计算资源，对性能的贡献较小。</p>
+<p>针对此问题，提出Parallel Partial Decoder结构。</p>
+<ul>
+<li>通过Res2Net-based backbone提取5级特征<span class="math inline">\(\{f_i, i=1,...,5\}\)</span></li>
+<li>将特征分为低级特征<span class="math inline">\(\{f_i, i=1,2\}\)</span>和高级特征<span class="math inline">\(\{f_i, i=3,4,5\}\)</span></li>
+<li>引入partial decoder <span class="math inline">\(p_d(\cdot)\)</span>，用于并行聚合高级特征。通过<span class="math inline">\(PD=p_d(f_3, f_4, f_5)\)</span>计算可以得到全局图<span class="math inline">\(S_g\)</span></li>
+</ul>
+<h2 id="reverse-attention-module">Reverse Attention Module</h2>
+<p>临床阶段，医生首先粗略定位息肉区域，然后仔细找出息肉的精确位置。前文提到的全局图<span class="math inline">\(S_g\)</span>产生自最深层网络，只能获得息肉相对粗糙的位置，而没有结构信息。</p>
+<p>提出一种基于擦除方式的策略逐步探索可判别的息肉区域，自适应的并行学习高级特征中的Reverse Attention。</p>
+<p>通过将高级特征<span class="math inline">\(\{f_i, i=3,4,5\}\)</span>逐像素与Reverse Attention权重<span class="math inline">\(A_i\)</span>相乘得到Reverse Attention特征。</p>
+<p><span class="math display">\[R_i=f_i \odot A_i\]</span></p>
+<p><span class="math inline">\(A_i\)</span>主要用于salient object detection，可以通过下面公式计算得到</p>
+<p><span class="math display">\[A_i=\ominus(\sigma(P(S_{i+1})))\]</span></p>
+<p>其中，<span class="math inline">\(P(\cdot)\)</span>为上采样操作，<span class="math inline">\(\sigma(\cdot)\)</span>为Sigmoid函数，<span class="math inline">\(\ominus(\cdot)\)</span>为从矩阵E中减去输入的逆运算。</p>
+<h2 id="learning-process-and-implementation-details">Learning Process and Implementation Details</h2>
+<p><span class="math display">\[L=L_{IoU}^{w}+L_{BCE}^{w}\]</span></p>
+<p>对IoU损失和BCE损失分别加权，有助于检测目标。</p>
+<p>另外对三个side-outputs<span class="math inline">\((S_3, S_4,S_5)\)</span>进行Deep Supervision。</p>
+<p><span class="math display">\[\mathcal{L}_{\text {total}}=\mathcal{L}\left(G, S_{g}^{u p}\right)+\sum_{i=3}^{i=5} \mathcal{L}\left(G, S_{i}^{u p}\right)\]</span></p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="datasets">Datasets</h2>
+<ul>
+<li>ETIS</li>
+<li>CVC-ClinicDB/CVC-612</li>
+<li>CVC-ColonDB</li>
+<li>EndoScene</li>
+<li>Kvasir</li>
+</ul>
+<p>对比模型：</p>
+<ul>
+<li>U-Net</li>
+<li>U-Net++</li>
+<li>ResUNet-mod</li>
+<li>ResUNet++</li>
+<li>SFA</li>
+</ul>
+<h2 id="results">Results</h2>
+<p><img src="/20200628l1/image-20200628211818324.png"></p>
+<p><img src="/20200628l1/image-20200628211859801.png"></p>
+<p><img src="/20200628l1/image-20200628211912419.png"></p>
+<p><img src="/20200628l1/image-20200628211927688.png"></p>
+<p><img src="/20200628l1/image-20200628212011714.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>MICCAI</tag>
+        <tag>图像分割</tag>
+        <tag>code</tag>
+        <tag>息肉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】Structure Boundary Preserving Segmentation for Medical Image with Ambiguous Boundary</title>
+    <url>/20200627l2/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<p>图像分割在医学影像中存在两个关键问题：</p>
+<ul>
+<li>分割区域边界模糊，存在歧义性</li>
+<li>没有专业领域知识，分割区域不确定</li>
+</ul>
+<p>针对以上问题，提出了能够保存目标区域边界信息的医学图像分割框架：</p>
+<ul>
+<li>首先，提出了一种新颖的关键点选择算法。</li>
+<li>然后，使用一种称为边界保留块（Boundary Preserving Block，BPB）的新型结构边界保留模型将这些点编码到分割网络中。</li>
+<li>为了将专家知识嵌入到全自动分割模型中，在没有用户交互的情况下，以对抗性方式引入一种新型的基于结构边界信息的判别网络，成为形状边界感知评估器（Shape Boundary-aware Evaluator，SBE）。</li>
+</ul>
+<p><img src="/20200627l2/image-20200627201825789.png"></p>
+<h1 id="methods">Methods</h1>
+<p>整体框架分为三部分：</p>
+<ul>
+<li>Segmentation network</li>
+<li>Boundary Preserving Block</li>
+<li>Shape Boundary-aware Evaluator</li>
+</ul>
+<p><img src="/20200627l2/image-20200627201903381.png"></p>
+<h2 id="boundary-key-point-selection-algorithm">Boundary Key Point Selection Algorithm</h2>
+<p>首先提出一个关键点选择算法，找出符合目标区域边界的关键点。</p>
+<ul>
+<li><p>首先，使用传统的边缘检测算法从GT中找出目标物体的边界。</p>
+<p>在目标边界上随机选取n个点，表示为<span class="math inline">\(P_{n}^{t}=\{(x_1^t, y_1^t),(x_2^t, y_2^t),...,(x_n^t, y_n^t)\}\)</span></p></li>
+<li><p>然后，我们通过n轮后的n个点构造边界区域<span class="math inline">\(S_n^t\)</span>。</p></li>
+<li><p>最后，选取使得IOU最大时的结构边界点为最终的边界点。</p>
+<p><span class="math display">\[\tilde{P}=P_{n}^{\tilde{t}}, \text { where } \tilde{t}=\underset{t \in\{1, \cdots, T\}}{\arg \max } \operatorname{IOU}\left(\mathrm{S}_{n}^{t}, \mathrm{S}_{G T}\right)\]</span></p></li>
+<li><p>选取的关键点集<span class="math inline">\(\tilde{P}\)</span>转换为2维的边界点图（boundary point map）。以这些点为中心，周围半径为R内置为1，其余为0（可以看做二维概率图或heapmap，更适合卷积网络训练和预测）</p></li>
+</ul>
+<p><img src="/20200627l2/image-20200627203024706.png"></p>
+<h2 id="boundary-preserving-block-bpb">Boundary Preserving Block (BPB)</h2>
+<p>通过生成的边界关键点图，分割模型可以在无需交互的情况下将结构边界信息进行编码。</p>
+<p><img src="/20200627l2/image-20200627203826128.png"></p>
+<h2 id="shape-boundary-aware-evaluator-sbe">Shape Boundary-aware Evaluator (SBE)</h2>
+<p>模型最终产生的分割图预测与中间卷积模块中产生的边界点图可以通过形状边界判别器来约束它们之间表达的一致性。</p>
+<p>将边界关键点图和给定的分割图像作为输入concat后输入到SBE结构中。</p>
+<p>当边界与分割图一致时得分高，不一致时得分低。</p>
+<p>通过损失<span class="math inline">\(L_{SBE}\)</span>训练SBE网络。</p>
+<p><span class="math display">\[L_{SBE}=-log(D(S_{GT};M_{GT}))-log(1-D(\hat{S}_{Pred};M_{GT}))\]</span></p>
+<h2 id="training-segmentation-network">Training Segmentation Network</h2>
+<p>通过三个损失进行训练整个网络。</p>
+<p><span class="math display">\[L_{Total}=L_{Seg}+L_{BA}+\sum_{i=1}^{l}{L_{Map}^{i}}\]</span></p>
+<p>分割损失为：</p>
+<p><span class="math display">\[\begin{aligned}
+L_{S e g}=&amp;-\mathrm{S}_{G T} \cdot \log \left(\hat{\mathrm{S}}_{P r e d}\right)-\left(1-\mathrm{S}_{G T}\right) \cdot \log \left(1-\hat{\mathrm{S}}_{P r e d}\right)
+\end{aligned}\]</span></p>
+<p>关键点损失：</p>
+<p><span class="math display">\[L_{M a p}^{i}=-\mathrm{M}_{G T}^{i} \cdot \log \hat{\mathrm{M}}^{i}-\left(1-\mathrm{M}_{G T}^{i}\right) \cdot \log \left(1-\hat{\mathrm{M}}^{i}\right)\]</span></p>
+<p>边界感知损失：</p>
+<p><span class="math display">\[L_{BA}=-log{(D(\hat{S}_{Pred};M_{GT}))}\]</span></p>
+<p>其中，<span class="math inline">\(D(\cdot)\)</span>表示SBE接受分割图和边界关键点图作为输入并产生预测分数。</p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="datasets">Datasets</h2>
+<ul>
+<li>PH2+ISBI 2016 Skin Lesion Challenge dataset</li>
+<li>(私有) Transvaginal Ultrasound (TVUS) dataset</li>
+</ul>
+<h2 id="results">Results</h2>
+<p>文中有提到一句话：</p>
+<blockquote>
+<p>Even the images have ambiguous structure boundary or heterogeneous texture, our method preserves structure boundary of target region; on the other hand, segmentation results obtained from U-Net failed to preserve boundary.</p>
+</blockquote>
+<p>这篇文章对U-Net不起作用？</p>
+<p>还有个疑问，在与其他方法对比时，不同数据集使用了不同主干网络，没有提及其他主干网络搭配自己的方法，是结果不好吗？</p>
+<p><img src="/20200627l2/image-20200627205528925.png"></p>
+<p><img src="/20200627l2/image-20200627205540306.png"></p>
+<p><img src="/20200627l2/image-20200627205607865.png"></p>
+<p><img src="/20200627l2/image-20200627205624499.png"></p>
+<p><img src="/20200627l2/image-20200627205633733.png"></p>
+<p><img src="/20200627l2/image-20200627205646059.png"></p>
+<p><img src="/20200627l2/image-20200627205704449.png"></p>
+<p><img src="/20200627l2/image-20200627205725397.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>CVPR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 CVPR】Synthetic Learning: Learn From Distributed Asynchronized Discriminator GAN Without Sharing Medical Image Data</title>
+    <url>/20200627l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/tommy-qichang/AsynDGAN" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tommy-qichang/AsynDGAN</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>隐私问题在每个领域都很重要，尤其是在医疗领域。</li>
+<li>由于政策的限制，每年产生的医疗影像很多，然而能够获得的数据太少。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<h2 id="贡献">贡献</h2>
+<p>没有针对特定任务训练模型，而是分布式学习判别器，集中学习生成器，生成新数据。</p>
+<ul>
+<li>能够在不共享患者原始数据的情况下，从多个数据集中了解真实图像的分布情况。</li>
+<li>与其他分布式深度学习方法相比，更高效，所需带宽更低。</li>
+<li>与一个真实数据集训练的模型相比，具有更高的性能，与所有真实数据集训练的模型相比，性能几乎相同。</li>
+<li>证明保证了生成器能够以一种非常重要的方式学习分布的分布，从而是无偏的。</li>
+</ul>
+<h2 id="网络结构">网络结构</h2>
+<p>所有结构共用同一个生成器，在不同医院实体中采用不同参数的判别器。</p>
+<p>对于分割任务，采用UNet来测试性能。</p>
+<p><img src="/20200627l1/image-20200627141939598.png"></p>
+<h2 id="中央生成器">中央生成器</h2>
+<ul>
+<li>对于分割任务，采用自编码器（Encoder-Decoder）。</li>
+<li>降采样使用stride为2的卷积，9个残差块，两个反卷积。</li>
+<li>非残差块采用BN和ReLU。</li>
+<li>第一层和最后一层使用<span class="math inline">\(7 \times 7\)</span>卷积核外，其他卷积使用<span class="math inline">\(3 \times 3\)</span>卷积核。</li>
+</ul>
+<h2 id="判别器">判别器</h2>
+<p>每一个医院使用不同参数的判别器，分割任务中采用PatchGAN</p>
+<h2 id="优化过程">优化过程</h2>
+<p>依次优化判别器后，最后再优化生成器。</p>
+<p>更新G时，使用判别损失<span class="math inline">\(\sum_{j=1}^{N}{loss(D_{j})}\)</span>。</p>
+<p><img src="/20200627l1/image-20200627142646116.png"></p>
+<p><img src="/20200627l1/image-20200627142714654.png"></p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="datasets">Datasets</h2>
+<ul>
+<li>BraTS2018</li>
+<li>Multi-Organ</li>
+</ul>
+<h2 id="results">Results</h2>
+<p><img src="/20200627l1/image-20200627143613840.png"></p>
+<p><img src="/20200627l1/image-20200627143633392.png"></p>
+<p><img src="/20200627l1/image-20200627143648298.png"></p>
+<p><img src="/20200627l1/image-20200627143720935.png"></p>
+<p><img src="/20200627l1/image-20200627143736546.png"></p>
+<p><img src="/20200627l1/image-20200627143747684.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>CVPR</tag>
+        <tag>code</tag>
+        <tag>GAN</tag>
+        <tag>联邦学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019】See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification</title>
+    <url>/20200624l2/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/GuYuc/WS-DAN.PyTorch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/GuYuc/WS-DAN.PyTorch</a></p>
+<h1 id="motivation">Motivation</h1>
+<h2 id="弱监督学习">弱监督学习</h2>
+<p>什么是弱监督学习</p>
+<p>弱监督是相对监督而言，所谓的监督简单的说就是label，所以监督的强弱就是从label来划分的，弱监督就是data的label并不是很完善的情况，其种类如下：</p>
+<ul>
+<li>不完整监督： 部分样本label缺失。 即只有训练数据集的一个（通常很小的）子集有标签，其它数据则没有标签。在很多任务中都存在这种情况。例如，在图像分类中，真值标签是人工标注的；从互联网上获得大量的图片很容易，然而由于人工标注的费用，只能标注其中一个小子集的图像。</li>
+<li>粗粒度监督： 只有粗粒度的标签。 又以图像分类任务为例。我们希望图片中的每个物体都被标注；然而我们只有图片级的标签而没有物体级的标签。比如说你有一张水果的图片，但是你不知道图片中的水果具体是苹果还是梨。</li>
+<li>不准确监督：给的label包含噪声，甚至是错误的label，比如把“行人”标注为“汽车”。 即给定的标签并不总是真值。出现这种情况的原因有，标注者粗心或疲倦，或者一些图像本身就难以分类。</li>
+</ul>
+<h2 id="数据增强">数据增强</h2>
+<p>数据增强是常用的增加数据训练数据量的方法，被用来预防过拟合和提高深度学习模型的表现。在计算机视觉领域实践应用中常用的数据增强方法主要有：剪裁、翻转、旋转、比例缩放、位移、高斯噪声以及更高级的增强技术条件型生成对抗网络（Conditional GAN）。</p>
+<ul>
+<li>剪裁(Crop)：从原始图像中随机抽样一部分，然后将此部分调整为原图像大小。这种方法通常也被称为随机剪裁。</li>
+<li>翻转(Flip)：可以对图片进行水平和垂直翻转。</li>
+<li>旋转(Rotation)：对图像按照图像中心进行旋转一定角度，并将大小作为原图的大小。</li>
+<li>比例缩放(Scale)：图像可以向内或者向外缩放。向内缩放后通常图像会小于原图，通常会对超出边界做处内容假设；向外缩放后通常会大于原图，通常会新图中剪裁出一部分。（它和随机剪裁得到对图像具有一定区别，有兴趣可以自己拿一张图片试一下看一下效果）</li>
+<li>位移(Translation)：对同图像中对目标按照x或y方向平移，因为多数情况，我们的目标对象可能出现在图像的任何位置。</li>
+<li>高斯噪声(Gaussian Noise)：当神经网络试图学习高频特征（即非常频繁出现的无意义模式），而这些高频特征对模型提升没有什么帮助的时候发生过拟合(Overfitting)。因此，对这些数据人为加入噪声，使其特征失真，减弱其对模型的影响，高斯噪声就是这种方法之一，</li>
+<li>条件型生成对抗网络(Conditional GANs)：是一种强大的神经网络，能将一张图片从一个领域转换到另一个领域中去，比如改变风景图片的季节、转换图片风格等。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<h2 id="创新点">创新点</h2>
+<ul>
+<li>双线性注意力池化机制(Bilinear Attention Pooling, 下文简称BAP)</li>
+<li>类center loss的注意力监督机制</li>
+<li>基于注意力的数据增强策略</li>
+</ul>
+<p><img src="/20200624l2/image-20200624213638315.png"></p>
+<h2 id="weakly-supervised-attention-learning">Weakly Supervised Attention Learning</h2>
+<p>训练过程：</p>
+<p><img src="/20200624l2/image-20200624214610530.png"></p>
+<p>测试过程：</p>
+<p><img src="/20200624l2/image-20200624214631313.png"></p>
+<h3 id="spatial-representation">Spatial Representation</h3>
+<p>采用Attention map来实现注意力机制</p>
+<p><span class="math display">\[A=f(F)=\bigcup_{k=1}^{M} A_{k}\]</span></p>
+<h3 id="bilinear-attention-pooling">Bilinear Attention Pooling</h3>
+<p>首先通过网络的主干（如resnet18）部分分别得到特征图（a）和注意力图（b）。每一个注意力图都代表了目标的特定部分。通过对注意力图和特征图的元素点乘得到各个分部特征图，让后利用卷积或者池化处理分部特征图，最后将各个分部特征图结合得到特征矩阵。</p>
+<p><img src="/20200624l2/image-20200624214702745.png"></p>
+<h3 id="attention-regularization">Attention Regularization</h3>
+<p>使用attention center loss， 进行弱监督attention 的学习。</p>
+<h2 id="attention-guided-data-augmentation">Attention-guided Data Augmentation</h2>
+<h3 id="augmentation-map">Augmentation Map</h3>
+<p>由Attention Map 生成Augmentation Map，指导后续数据增强。</p>
+<p><span class="math display">\[A_{k}^{*}=\frac{A_{k}-\min \left(A_{k}\right)}{\max \left(A_{k}\right)-\min \left(A_{k}\right)}\]</span></p>
+<h3 id="attention-cropping">Attention Cropping</h3>
+<p>使用<span class="math inline">\(C_{k}\)</span>对图像进行裁剪。</p>
+<p><span class="math display">\[C_{k}(i, j)=\left\{\begin{array}{ll}
+1, &amp; \text { if } A_{k}^{*}(i, j)&gt;\theta_{c} \\
+0, &amp; \text { otherwise }
+\end{array}\right.\]</span></p>
+<h3 id="attention-dropping">Attention Dropping</h3>
+<p>为了鼓励attention map表达不同区域，提出了Attention Dropping，擦除部分图像。</p>
+<p><span class="math display">\[D_{k}(i, j)=\left\{\begin{array}{ll}
+0, &amp; \text { if } A_{k}^{*}(i, j)&gt;\theta_{d} \\
+1, &amp; \text { otherwise }
+\end{array}\right.\]</span></p>
+<h2 id="object-localization-and-refinement">Object Localization and Refinement</h2>
+<p><img src="/20200624l2/image-20200624215158271.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p>注意力剪裁和随机剪裁的比较： 随机剪裁容易剪裁到图像的背景，而注意力剪裁知道取那些部分会see better。</p>
+<p><img src="/20200624l2/f4.png"></p>
+<p>注意力丢弃和随机丢弃的比较： 随机丢弃可能会将整个目标丢弃或者只丢弃背景部分，而注意力丢弃对剔除目标显著部分和的注意力求具有更高的效率。</p>
+<p><img src="/20200624l2/f4-b.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>弱监督学习</tag>
+        <tag>code</tag>
+        <tag>2019</tag>
+        <tag>细粒度分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>conda虚拟环境的创建、查看、删除</title>
+    <url>/20200624l1/</url>
+    <content><![CDATA[<h1 id="虚拟环境的创建">虚拟环境的创建</h1>
+<p>创建一个名为<code>py36</code>的虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n py36 python=3.6</span><br></pre></td></tr></table></figure>
+<h1 id="查看已有的虚拟环境列表">查看已有的虚拟环境列表</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<h1 id="删除虚拟环境">删除虚拟环境</h1>
+<p>删除名为<code>py36</code>的虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda remove -n py36 --all</span><br></pre></td></tr></table></figure>
+<h1 id="虚拟环境的激活">虚拟环境的激活</h1>
+<p>激活名为<code>py36</code>的虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate py36</span><br></pre></td></tr></table></figure>
+<h1 id="虚拟环境的退出">虚拟环境的退出</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
+        <tag>虚拟环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】PointRend: Image Segmentation as Rendering</title>
+    <url>/20200623l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/facebookresearch/detectron2/tree/master/projects/PointRend" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/facebookresearch/detectron2/tree/master/projects/PointRend</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>过采样（ oversample ）：对于图片中低频区域（ 属于同一个物体 ），没必要使用 太多的采样点，却使用太多采样点造成过采样；</li>
+<li>欠采样（ undersample ） ：对于图片中高频区域（ 靠近物体边界 ），如果这些区域的采样过于稀疏，导致分割出的边界过于平滑，不大真实。</li>
+</ul>
+<p><img src="/20200623l1/image-20200623160128310.png"></p>
+<h1 id="method">Method</h1>
+<p>渲染：渲染器将模型（如 3D 网格）映射到点阵图像，即像素的规则网格。</p>
+<p>计算机图形学的思路：对图像平面中被自适应选择点的不规则子集计算出像素值。从而高效渲染出抗锯齿的高分辨率图像。</p>
+<p>图像分割，同样可以视作底层连续实体的占用图，然后从中输出预测标签的矩形网格。类比计算机图形学的思路，使用细分策略来自适应地选择一组非均匀点，进而计算标签。</p>
+<p>图像分割步骤</p>
+<ul>
+<li>使用轻量级的分割头，对每个检测到的对象（红框）进行粗略的mask预测。</li>
+<li>选择一组点（红色点），用小规模的多层感知器（MLP）为每个点进行独立预测。</li>
+<li>对这样的细分算法进行迭代，以从粗到细的方式计算mask。</li>
+</ul>
+<p>PointRend模块主要由以下三部分组成：</p>
+<ol type="1">
+<li><p>点选择策略: 选择少数的一些点（<code>难点</code>）进行预测，避免在高分辨率的输出中过量的计算所有的像素；</p></li>
+<li><p>point-wise: 特征表示：提取被选择出来的点的特征，这些特征通过双线性插值计算，然后沿着通道维度编码子像素信息预测分割；</p></li>
+<li><p>point head: 小的网络，进行预测。</p></li>
+</ol>
+<p><img src="/20200623l1/image-20200623160207304.png"></p>
+<h2 id="point-selection">Point Selection</h2>
+<p>PointRend的核心思想是，在图像平面中自适应地选择预测分割标签的点。那么这些点主要分布在哪里呢？理论上讲，这些点应该在高频区域分布较广（比如说图像的边缘）。</p>
+<p>推断：用于推断的点选择策略受到计算机图形学中自适应细分（adaptive subdivision）这一经典技术的启发。该技术通过计算与其近邻的值显著不同的位置，来高效渲染高分辨率图像（如通过光线追踪）；其他位置的值则通过内插已经计算好的输出值来获得（从粗糙网格开始）。</p>
+<p><img src="/20200623l1/image-20200623160231982.png"></p>
+<p><strong>训练：</strong>在训练过程中，PointRend 还需要选择点来构建训练 point head 所需的逐点特征。原则上，点选择策略类似于推断过程中使用的细分策略。但是，细分策略使用的顺序步骤对于利用反向传播训练神经网络不那么友好。因此，训练过程使用基于随机采样的非迭代策略。</p>
+<p><img src="/20200623l1/image-20200623160247553.png"></p>
+<h2 id="逐点表示">逐点表示</h2>
+<p>PointRend通过组合低层特征 (fine-grained features) 和高层特征 (coarse prediction)，在选定的点上构造逐点特征。在细粒度特征（fine-grained features）方面，为了让PointRend呈现出精细的分割细节，研究人员为CNN特征图中的每个采样点提取了特征向量。</p>
+<p>细粒度特征虽然可以解析细节，但也存在两方面的不足：</p>
+<p>（1）不包含特定于区域的信息，对于实例分割任务，就可能在同一点上预测出不同的标签。比如两个重叠的实例中的一点具有相同的细粒度特征，故该点只会被预测到其中一个实例中。</p>
+<p>（2）用于细粒度特征的特征映射，可能仅包含相对较低级别的信息。受通过哪张feature map提取细粒度特征的影响，提取到的细粒度特征可能只包含low level的特征，相比之下具有更多上下文和语义信息的feature map会更有价值。</p>
+<p>基于上述讨论，第二种特征是从网络中抽取一个粗的分割预测，比如对每个点，预测一个k维的向量用来对应表示k个类别各自的概率。这种粗预测特征，类似现有的语义分割结构，同样使用与现有模型相同的监督方式进行监督。比如对实例分割，粗预测特征可以使用Mask R-CNN输出的轻量级7*7 mask head。再比如对于语义分割，它可以是预测一个原图下采样16倍的feature map.</p>
+<p>这就需要粗略分割预测 (coarse prediction) 来进行补充，提供更多全局背景。</p>
+<p>这样的粗略预测类似于现有架构的输出。以实例分割为例，coarse prediction可以是Mask R-CNN中 7×7 轻量级mask head的输出。</p>
+<h2 id="point-head">Point Head</h2>
+<p>对于每个选定点的逐点特征表示，PointRend使用简单的多层感知器进行逐点分割预测。</p>
+<p>多层感知器在所有点（所有区域）上共享权重。</p>
+<p>并且，由于多层感知器会针对每个点预测分割标签，可以通过特定任务的分割损失进行训练。</p>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li><a href="https://blog.csdn.net/qq_41997920/article/details/104536014" target="_blank" rel="external nofollow noopener noreferrer">PointRend: Image Segmentation as Rendering（论文解读二十四）</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>图像分割</tag>
+        <tag>code</tag>
+        <tag>arxiv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2019 MICCAI】Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels</title>
+    <url>/20200619l1/</url>
+    <content><![CDATA[<h1 id="motivation">Motivation</h1>
+<ul>
+<li>目前的CT病变检测都是采用的两阶段的方法，使用centroid或bbox标注</li>
+<li>现有方法对小目标检测能力较弱</li>
+</ul>
+<h2 id="faster-r-cnn">Faster R-CNN</h2>
+<ul>
+<li>两阶段检测</li>
+<li>检测速度慢</li>
+</ul>
+<p><img src="/20200619l1/image-20200619111304812.png"></p>
+<h2 id="dce">3DCE</h2>
+<ul>
+<li>小病灶的检测效果不好</li>
+</ul>
+<p><img src="/20200619l1/image-20200619111352772.png"></p>
+<h2 id="retinanet">RetinaNet</h2>
+<p>ResNet+FPN作为backbone，再利用单级的目标识别法+Focal Loss。</p>
+<p>本文在RetinaNet的基础上进行改进。</p>
+<p><img src="/20200619l1/image-20200619111444428.png"></p>
+<h1 id="method">Method</h1>
+<p>改进之处：</p>
+<ul>
+<li><p>Optimized anchor configuration；摒弃默认的anchor配置，采用differential evolution search algorithm来找合适的anchor配置。</p></li>
+<li><p>Dense mark supervision</p></li>
+<li><p>Attention gate</p></li>
+</ul>
+<h2 id="model-design">Model Design</h2>
+<ul>
+<li><p>主干网络：RetinaNet</p></li>
+<li><p>网络结构使用VGG19，尝试使用Resnet50，效果变差</p></li>
+<li><p>采用了特征金字塔，利于检测小目标</p></li>
+<li><p>使用Focal Loss，解决样本不平衡问题</p></li>
+<li><p>采用差分进化算法选取最优锚点</p></li>
+</ul>
+<p><img src="/20200619l1/image-20200619111759526.png"></p>
+<h2 id="weak-recist-labels">Weak RECIST Labels</h2>
+<ul>
+<li>大多数病变存在凸轮廓线</li>
+<li>Deep Lesion提供病变区域的直径</li>
+<li>基于GrubCut方法生成Mask标签</li>
+</ul>
+<h1 id="experiments">Experiments</h1>
+<p>lesion detection sensitivities at different false positives (FP) per image</p>
+<p><img src="/20200619l1/image-20200619112424396.png"></p>
+<p><img src="/20200619l1/image-20200619112339682.png"></p>
+<p><img src="/20200619l1/image-20200619112444858.png"></p>
+<h1 id="几个小问题">几个小问题</h1>
+<ul>
+<li>作者在文章中提到：网络主干结构采用了VGG-19，也尝试了ResNet-50，但是效果却变差了。这是为什么？</li>
+<li>Attention 现在非常流行，但在分割任务中还没有看到<strong>solid的paper</strong>能证明加入attention module能<strong>显著提升性能</strong>，反例倒是有（e.g., NVIDIA 在BraTS 2018中的Slide）。</li>
+<li>有没有可能直接进行分割来代替目标检测？idea不是空穴来风，参见<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1904.13300" rel="external nofollow noopener noreferrer" target="_blank">Segmentation is All You Need</a>。</li>
+</ul>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li><a href="https://zhuanlan.zhihu.com/p/72278969" target="_blank" rel="external nofollow noopener noreferrer">MICCAI 2019-CT病灶检测:与AI一教高下</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>MICCAI</tag>
+        <tag>2019</tag>
+        <tag>目标检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Latex: 引入已有PDF文件</title>
+    <url>/20200603l2/</url>
+    <content><![CDATA[<p>引入包： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;pdfpages&#125;</span><br></pre></td></tr></table></figure> 引入需要加载的PDF文件 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\includepdf[pages&#x3D;&#123;1&#125;]&#123;first.pdf&#125;</span><br></pre></td></tr></table></figure></p>
+<p>加入页面后想加入空白页可以使用： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\cleardoublepage</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Latex</category>
+      </categories>
+      <tags>
+        <tag>Latex</tag>
+        <tag>PDF</tag>
+        <tag>空白页</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Latex: 算法标题 Algorithm如何重命名</title>
+    <url>/20200603l1/</url>
+    <content><![CDATA[<p>原文地址：<a href="https://www.latexstudio.net/archives/7898.html" target="_blank" rel="external nofollow noopener noreferrer">https://www.latexstudio.net/archives/7898.html</a></p>
+<p>【问题描述】</p>
+<p>使用 <code>\usepackage{algorithm2e}</code>如何使得caption{}排版结果产生的“Agorithm”变为 “算法”？</p>
+<p>【解决方案】</p>
+<p>milksea 回复： 改这两个</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\renewcommand&#123;\listalgorithmcfname&#125;&#123;List of Algorithms&#125;</span><br><span class="line">\renewcommand&#123;\algorithmcfname&#125;&#123;Algorithm&#125;</span><br></pre></td></tr></table></figure>
+<p>中文就是要放在中文环境里，使用如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\renewcommand&#123;\algorithmcfname&#125;&#123;算法&#125;</span><br></pre></td></tr></table></figure>
+<p>另外若是使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;algorithm&#125;</span><br><span class="line">\usepackage&#123;algorithmic&#125;</span><br></pre></td></tr></table></figure>
+<p>修改方法为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\floatname&#123;algorithm&#125;&#123;Procedure&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Latex</category>
+      </categories>
+      <tags>
+        <tag>Latex</tag>
+        <tag>Algorithm</tag>
+        <tag>Caption</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 词典(Dict)加载与保存</title>
+    <url>/20200523l1/</url>
+    <content><![CDATA[<p>Dict的加载：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_dict</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="string">'''load dict from json file'''</span></span><br><span class="line">    <span class="keyword">with</span> open(filename,<span class="string">"r"</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">	    dic = json.load(json_file)</span><br><span class="line">    <span class="keyword">return</span> dic</span><br></pre></td></tr></table></figure>
+<p>Dict的保存：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonEncoder</span><span class="params">(json.JSONEncoder)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">default</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, np.integer):</span><br><span class="line">            <span class="keyword">return</span> int(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.floating):</span><br><span class="line">            <span class="keyword">return</span> float(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.ndarray):</span><br><span class="line">            <span class="keyword">return</span> obj.tolist()</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, datetime):                                 </span><br><span class="line">            <span class="keyword">return</span> obj.__str__()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> super(MyEncoder, self).default(obj)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_dict</span><span class="params">(filename, dic)</span>:</span></span><br><span class="line">    <span class="string">'''save dict into json file'''</span></span><br><span class="line">    <span class="keyword">with</span> open(filename,<span class="string">'w'</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">        json.dump(dic, json_file, ensure_ascii=<span class="literal">False</span>, cls=JsonEncoder)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Dict</tag>
+        <tag>Dict 保存</tag>
+        <tag>Dict 加载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020 TIP】Coarse-to-Fine Semantic Segmentation From Image-Level Labels</title>
+    <url>/20200519l1/</url>
+    <content><![CDATA[<p>IEEE TRANSACTIONS ON IMAGE PROCESSING, VOL. 29, 2020</p>
+<h1 id="motivation">Motivation</h1>
+<p>语义分割分为三类：</p>
+<ul>
+<li>基于像素级标注的全监督训练</li>
+<li>基于目标级标注的弱监督训练（Bbox、spots、scribbles）</li>
+<li>基于图像级标注的弱监督训练</li>
+</ul>
+<p>基于像素级的标注需要耗费太多精力，本文考虑基于图像级标注来实现语义分割，可以大大减少像素级标注的工作量。</p>
+<h1 id="method">Method</h1>
+<p><img src="/20200519l1/image-20200520091312082.png"></p>
+<p>首先通过初始网络生成初始分割结果，再利用图模型优化，指导语义分割模型学习，反复迭代优化。</p>
+<p>框架分为三部分： coarse mask generation, coarse mask enhancement, recursive mask refinement</p>
+<p><img src="/20200519l1/image-20200520091439726.png"></p>
+<h2 id="coarse-mask-generation">Coarse Mask Generation</h2>
+<p>采用一个8层的CNN结构，能够无监督的方式生成初始分割结果，这一步骤不考虑类别信息。</p>
+<h2 id="coarse-mask-enhancement">Coarse Mask Enhancement</h2>
+<p>通过GrabCut算法优化分割结果。</p>
+<h2 id="recursive-mask-refinement">Recursive Mask Refinement</h2>
+<p>将类别信息赋值给分割结果，作为语义分割模型的标签指导训练，生成的结果再返回到Coarse Mask Enhancement。</p>
+<p><img src="/20200519l1/image-20200520092215557.png"></p>
+<h2 id="model-parameterization">Model Parameterization</h2>
+<p><img src="/20200519l1/image-20200520092259624.png"></p>
+<h2 id="extend-the-proposed-framework-to-foreground-segmentation">Extend the Proposed Framework to Foreground Segmentation</h2>
+<p>框架可以延伸到前景分割中，提出dilated feature pyramid network ，采用空洞卷积扩大感受野。</p>
+<p>Inspired by dilated convolution and multi-scale feature learning, we propose the Dilated Feature Pyramid Network (DFPN) for foreground segmentation task as shown in Fig. 4. The proposed DFPN has the same architecture as FPN [43] except adding the dilated convolution layers for three branches to enlarge the receptive field of the network.</p>
+<p><img src="/20200519l1/image-20200520092358141.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p>训练阶段只采用了有单个类别的图像，测试发现可以识别图像中多个类别信息。</p>
+<p><img src="/20200519l1/image-20200519164102851.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>TIP</tag>
+        <tag>半监督</tag>
+        <tag>Image level label</tag>
       </tags>
   </entry>
   <entry>
@@ -168,7 +2107,7 @@
 <p><strong>应用实例：</strong> 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的具体实现。 2、Hibernate 换数据库只需换方言和驱动就可以。</p>
 <p><strong>优点：</strong> 1、一个调用者想创建一个对象，只要知道其名称就可以了。 2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。 3、屏蔽产品的具体实现，调用者只关心产品的接口。</p>
 <p><strong>缺点：</strong>每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</p>
-<p><strong>使用场景：</strong> 1、日志记录器：记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 2、数据库访问，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 3、设计一个连接服务器的框架，需要三个协议，&quot;POP3&quot;、&quot;IMAP&quot;、&quot;HTTP&quot;，可以把这三个作为产品类，共同实现一个接口。</p>
+<p><strong>使用场景：</strong> 1、日志记录器：记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 2、数据库访问，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 3、设计一个连接服务器的框架，需要三个协议，"POP3"、"IMAP"、"HTTP"，可以把这三个作为产品类，共同实现一个接口。</p>
 <p><strong>注意事项：</strong>作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂对象适合使用工厂模式，而简单对象，特别是只需要通过 new 就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</p>
 <h2 id="实现">实现</h2>
 <p>我们将创建一个 <em>Shape</em> 接口和实现 <em>Shape</em> 接口的实体类。下一步是定义工厂类 <em>ShapeFactory</em>。</p>
@@ -235,11 +2174,11 @@
 <p>建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
 <p>一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。</p>
 <p><strong>意图：</strong>将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。</p>
-<p><strong>主要解决：</strong>主要解决在软件系统中，有时候面临着&quot;一个复杂对象&quot;的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。</p>
+<p><strong>主要解决：</strong>主要解决在软件系统中，有时候面临着"一个复杂对象"的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。</p>
 <p><strong>何时使用：</strong>一些基本部件不会变，而其组合经常变化的时候。</p>
 <p><strong>如何解决：</strong>将变与不变分离开。</p>
 <p><strong>关键代码：</strong>建造者：创建和提供实例，导演：管理建造出来的实例的依赖关系。</p>
-<p><strong>应用实例：</strong> 1、去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的&quot;套餐&quot;。 2、JAVA 中的 StringBuilder。</p>
+<p><strong>应用实例：</strong> 1、去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的"套餐"。 2、JAVA 中的 StringBuilder。</p>
 <p><strong>优点：</strong> 1、建造者独立，易扩展。 2、便于控制细节风险。</p>
 <p><strong>缺点：</strong> 1、产品必须有共同点，范围有限制。 2、如内部变化复杂，会有很多的建造类。</p>
 <p><strong>使用场景：</strong> 1、需要生成的对象具有复杂的内部结构。 2、需要生成的对象内部属性本身相互依赖。</p>
@@ -257,7 +2196,7 @@
 <p><strong>主要解决：</strong>在运行期建立和删除原型。</p>
 <p><strong>何时使用：</strong> 1、当一个系统应该独立于它的产品创建，构成和表示时。 2、当要实例化的类是在运行时刻指定时，例如，通过动态装载。 3、为了避免创建一个与产品类层次平行的工厂类层次时。 4、当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆它们可能比每次用合适的状态手工实例化该类更方便一些。</p>
 <p><strong>如何解决：</strong>利用已有的一个原型对象，快速地生成和原型对象一样的实例。</p>
-<p><strong>关键代码：</strong> 1、实现克隆操作，在 JAVA 继承 Cloneable，重写 clone()，在 .NET 中可以使用 Object 类的 MemberwiseClone() 方法来实现对象的浅拷贝或通过序列化的方式来实现深拷贝。 2、原型模式同样用于隔离类对象的使用者和具体类型（易变类）之间的耦合关系，它同样要求这些&quot;易变类&quot;拥有稳定的接口。</p>
+<p><strong>关键代码：</strong> 1、实现克隆操作，在 JAVA 继承 Cloneable，重写 clone()，在 .NET 中可以使用 Object 类的 MemberwiseClone() 方法来实现对象的浅拷贝或通过序列化的方式来实现深拷贝。 2、原型模式同样用于隔离类对象的使用者和具体类型（易变类）之间的耦合关系，它同样要求这些"易变类"拥有稳定的接口。</p>
 <p><strong>应用实例：</strong> 1、细胞分裂。 2、JAVA 中的 Object clone() 方法。</p>
 <p><strong>优点：</strong> 1、性能提高。 2、逃避构造函数的约束。</p>
 <p><strong>缺点：</strong> 1、配备克隆方法需要对类的功能进行通盘考虑，这对于全新的类不是很难，但对于已有的类不一定很容易，特别当一个类引用不支持串行化的间接对象，或者引用含有循环结构的时候。 2、必须实现 Cloneable 接口。</p>
@@ -273,7 +2212,7 @@
 <p>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内存卡。</p>
 <p>我们通过下面的实例来演示适配器模式的使用。其中，音频播放器设备只能播放 mp3 文件，通过使用一个更高级的音频播放器来播放 vlc 和 mp4 文件。</p>
 <p><strong>意图：</strong>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
-<p><strong>主要解决：</strong>主要解决在软件系统中，常常要将一些&quot;现存的对象&quot;放到新的环境中，而新环境要求的接口是现对象不能满足的。</p>
+<p><strong>主要解决：</strong>主要解决在软件系统中，常常要将一些"现存的对象"放到新的环境中，而新环境要求的接口是现对象不能满足的。</p>
 <p><strong>何时使用：</strong> 1、系统需要使用现有的类，而此类的接口不符合系统的需要。 2、想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些源类不一定有一致的接口。 3、通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。）</p>
 <p><strong>如何解决：</strong>继承或依赖（推荐）。</p>
 <p><strong>关键代码：</strong>适配器继承或依赖已有的对象，实现想要的目标接口。</p>
@@ -317,7 +2256,7 @@
 <p>组合模式（Composite Pattern），又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。</p>
 <p>这种模式创建了一个包含自己对象组的类。该类提供了修改相同对象组的方式。</p>
 <p>我们通过下面的实例来演示组合模式的用法。实例演示了一个组织中员工的层次结构。</p>
-<p><strong>意图：</strong>将对象组合成树形结构以表示&quot;部分-整体&quot;的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
+<p><strong>意图：</strong>将对象组合成树形结构以表示"部分-整体"的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
 <p><strong>主要解决：</strong>它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理简单元素一样来处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。</p>
 <p><strong>何时使用：</strong> 1、您想表示对象的部分-整体层次结构（树形结构）。 2、您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</p>
 <p><strong>如何解决：</strong>树枝和叶子实现统一接口，树枝内部组合该接口。</p>
@@ -340,7 +2279,7 @@
 <p><strong>何时使用：</strong>在不想增加很多子类的情况下扩展类。</p>
 <p><strong>如何解决：</strong>将具体功能职责划分，同时继承装饰者模式。</p>
 <p><strong>关键代码：</strong> 1、Component 类充当抽象角色，不应该具体实现。 2、修饰类引用和继承 Component 类，具体扩展类重写父类方法。</p>
-<p><strong>应用实例：</strong> 1、孙悟空有 72 变，当他变成&quot;庙宇&quot;后，他的根本还是一只猴子，但是他又有了庙宇的功能。 2、不论一幅画有没有画框都可以挂在墙上，但是通常都是有画框的，并且实际上是画框被挂在墙上。在挂在墙上之前，画可以被蒙上玻璃，装到框子里；这时画、玻璃和画框形成了一个物体。</p>
+<p><strong>应用实例：</strong> 1、孙悟空有 72 变，当他变成"庙宇"后，他的根本还是一只猴子，但是他又有了庙宇的功能。 2、不论一幅画有没有画框都可以挂在墙上，但是通常都是有画框的，并且实际上是画框被挂在墙上。在挂在墙上之前，画可以被蒙上玻璃，装到框子里；这时画、玻璃和画框形成了一个物体。</p>
 <p><strong>优点：</strong>装饰类和被装饰类可以独立发展，不会相互耦合，装饰模式是继承的一个替代模式，装饰模式可以动态扩展一个实现类的功能。</p>
 <p><strong>缺点：</strong>多层装饰比较复杂。</p>
 <p><strong>使用场景：</strong> 1、扩展一个类的功能。 2、动态增加功能，动态撤销。</p>
@@ -356,7 +2295,7 @@
 <p>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
 <p><strong>意图：</strong>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
 <p><strong>主要解决：</strong>降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。</p>
-<p><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个&quot;接待员&quot;即可。 2、定义系统的入口。</p>
+<p><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个"接待员"即可。 2、定义系统的入口。</p>
 <p><strong>如何解决：</strong>客户端不与系统耦合，外观类与系统耦合。</p>
 <p><strong>关键代码：</strong>在客户端和复杂系统之间再加一层，这一层将调用顺序、依赖关系等处理好。</p>
 <p><strong>应用实例：</strong> 1、去医院看病，可能要去挂号、门诊、划价、取药，让患者或患者家属觉得很复杂，如果有提供接待人员，只让接待人员来处理，就很方便。 2、JAVA 的三层开发模式。</p>
@@ -414,7 +2353,7 @@
 <p><strong>何时使用：</strong>在处理消息的时候以过滤很多道。</p>
 <p><strong>如何解决：</strong>拦截的类都实现统一接口。</p>
 <p><strong>关键代码：</strong>Handler 里面聚合它自己，在 HandlerRequest 里判断是否合适，如果没达到条件则向下传递，向谁传递之前 set 进去。</p>
-<p><strong>应用实例：</strong> 1、红楼梦中的&quot;击鼓传花&quot;。 2、JS 中的事件冒泡。 3、JAVA WEB 中 Apache Tomcat 对 Encoding 的处理，Struts2 的拦截器，jsp servlet 的 Filter。</p>
+<p><strong>应用实例：</strong> 1、红楼梦中的"击鼓传花"。 2、JS 中的事件冒泡。 3、JAVA WEB 中 Apache Tomcat 对 Encoding 的处理，Struts2 的拦截器，jsp servlet 的 Filter。</p>
 <p><strong>优点：</strong> 1、降低耦合度。它将请求的发送者和接收者解耦。 2、简化了对象。使得对象不需要知道链的结构。 3、增强给对象指派职责的灵活性。通过改变链内的成员或者调动它们的次序，允许动态地新增或者删除责任。 4、增加新的请求处理类很方便。</p>
 <p><strong>缺点：</strong> 1、不能保证请求一定被接收。 2、系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。 3、可能不容易观察运行时的特征，有碍于除错。</p>
 <p><strong>使用场景：</strong> 1、有多个对象可以处理同一个请求，具体哪个对象处理该请求由运行时刻自动确定。 2、在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。 3、可动态指定一组对象处理请求。</p>
@@ -427,7 +2366,7 @@
 <p>命令模式（Command Pattern）是一种数据驱动的设计模式，它属于行为型模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。</p>
 <p><strong>意图：</strong>将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。</p>
 <p><strong>主要解决：</strong>在软件系统中，行为请求者与行为实现者通常是一种紧耦合的关系，但某些场合，比如需要对行为进行记录、撤销或重做、事务等处理时，这种无法抵御变化的紧耦合的设计就不太合适。</p>
-<p><strong>何时使用：</strong>在某些场合，比如要对行为进行&quot;记录、撤销/重做、事务&quot;等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将&quot;行为请求者&quot;与&quot;行为实现者&quot;解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。</p>
+<p><strong>何时使用：</strong>在某些场合，比如要对行为进行"记录、撤销/重做、事务"等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将"行为请求者"与"行为实现者"解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。</p>
 <p><strong>如何解决：</strong>通过调用者调用接受者执行命令，顺序：调用者→接受者→命令。</p>
 <p><strong>关键代码：</strong>定义三个角色：1、received 真正的命令执行对象 2、Command 3、invoker 使用命令对象的入口</p>
 <p><strong>应用实例：</strong>struts 1 中的 action 核心控制器 ActionServlet 只有一个，相当于 Invoker，而模型层的类会随着不同的应用有不同的模型类，相当于具体的 Command。</p>
@@ -496,7 +2435,7 @@
 <p>备忘录模式（Memento Pattern）保存一个对象的某个状态，以便在适当的时候恢复对象。备忘录模式属于行为型模式。</p>
 <p><strong>意图：</strong>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。</p>
 <p><strong>主要解决：</strong>所谓备忘录模式就是在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。</p>
-<p><strong>何时使用：</strong>很多时候我们总是需要记录一个对象的内部状态，这样做的目的就是为了允许用户取消不确定或者错误的操作，能够恢复到他原先的状态，使得他有&quot;后悔药&quot;可吃。</p>
+<p><strong>何时使用：</strong>很多时候我们总是需要记录一个对象的内部状态，这样做的目的就是为了允许用户取消不确定或者错误的操作，能够恢复到他原先的状态，使得他有"后悔药"可吃。</p>
 <p><strong>如何解决：</strong>通过一个备忘录类专门存储对象状态。</p>
 <p><strong>关键代码：</strong>客户不与备忘录类耦合，与备忘录管理类耦合。</p>
 <p><strong>应用实例：</strong> 1、后悔药。 2、打游戏时的存档。 3、Windows 里的 ctri + z。 4、IE 中的后退。 4、数据库的事务管理。</p>
@@ -542,7 +2481,7 @@
 <p><strong>关键代码：</strong>通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除 if...else 等条件选择语句。</p>
 <p><strong>应用实例：</strong> 1、打篮球的时候运动员可以有正常状态、不正常状态和超常状态。 2、曾侯乙编钟中，'钟是抽象接口','钟A'等是具体状态，'曾侯乙编钟'是具体环境（Context）。</p>
 <p><strong>优点：</strong> 1、封装了转换规则。 2、枚举可能的状态，在枚举状态之前需要确定状态种类。 3、将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。 4、允许状态转换逻辑与状态对象合成一体，而不是某一个巨大的条件语句块。 5、可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</p>
-<p><strong>缺点：</strong> 1、状态模式的使用必然会增加系统类和对象的个数。 2、状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。 3、状态模式对&quot;开闭原则&quot;的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</p>
+<p><strong>缺点：</strong> 1、状态模式的使用必然会增加系统类和对象的个数。 2、状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。 3、状态模式对"开闭原则"的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</p>
 <p><strong>使用场景：</strong> 1、行为随状态改变而改变的场景。 2、条件、分支语句的代替者。</p>
 <p><strong>注意事项：</strong>在行为受状态约束的时候使用状态模式，而且状态不超过 5 个。</p>
 <h2 id="实现-20">实现</h2>
@@ -597,13 +2536,13 @@
 <p>在访问者模式（Visitor Pattern）中，我们使用了一个访问者类，它改变了元素类的执行算法。通过这种方式，元素的执行算法可以随着访问者改变而改变。这种类型的设计模式属于行为型模式。根据模式，元素对象已接受访问者对象，这样访问者对象就可以处理元素对象上的操作。</p>
 <p><strong>意图：</strong>主要将数据结构与数据操作分离。</p>
 <p><strong>主要解决：</strong>稳定的数据结构和易变的操作耦合问题。</p>
-<p><strong>何时使用：</strong>需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作&quot;污染&quot;这些对象的类，使用访问者模式将这些封装到类中。</p>
+<p><strong>何时使用：</strong>需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作"污染"这些对象的类，使用访问者模式将这些封装到类中。</p>
 <p><strong>如何解决：</strong>在被访问的类里面加一个对外提供接待访问者的接口。</p>
 <p><strong>关键代码：</strong>在数据基础类里面有一个方法接受访问者，将自身引用传入访问者。</p>
 <p><strong>应用实例：</strong>您在朋友家做客，您是访问者，朋友接受您的访问，您通过朋友的描述，然后对朋友的描述做出一个判断，这就是访问者模式。</p>
 <p><strong>优点：</strong> 1、符合单一职责原则。 2、优秀的扩展性。 3、灵活性。</p>
 <p><strong>缺点：</strong> 1、具体元素对访问者公布细节，违反了迪米特原则。 2、具体元素变更比较困难。 3、违反了依赖倒置原则，依赖了具体类，没有依赖抽象。</p>
-<p><strong>使用场景：</strong> 1、对象结构中对象对应的类很少改变，但经常需要在此对象结构上定义新的操作。 2、需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作&quot;污染&quot;这些对象的类，也不希望在增加新操作时修改这些类。</p>
+<p><strong>使用场景：</strong> 1、对象结构中对象对应的类很少改变，但经常需要在此对象结构上定义新的操作。 2、需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作"污染"这些对象的类，也不希望在增加新操作时修改这些类。</p>
 <p><strong>注意事项：</strong>访问者可以对功能进行统一，可以做报表、UI、拦截器与过滤器。</p>
 <h2 id="实现-24">实现</h2>
 <p>我们将创建一个定义接受操作的 <em>ComputerPart</em> 接口。<em>Keyboard</em>、<em>Mouse</em>、<em>Monitor</em> 和 <em>Computer</em> 是实现了 <em>ComputerPart</em> 接口的实体类。我们将定义另一个接口 <em>ComputerPartVisitor</em>，它定义了访问者类的操作。<em>Computer</em> 使用实体访问者来执行相应的动作。</p>
@@ -734,15 +2673,15 @@
 <td style="text-align: center;">数据x是由a，b两个元素按顺序组成的，但b数据元素可有可无</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">&quot;&quot;</td>
+<td style="text-align: center;">""</td>
 <td style="text-align: center;">基本数据元素</td>
-<td style="text-align: center;">x=&quot;0&quot;</td>
-<td style="text-align: center;">数据x就是由&quot;0&quot;这个基本数据元素组成</td>
+<td style="text-align: center;">x="0"</td>
+<td style="text-align: center;">数据x就是由"0"这个基本数据元素组成</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">...</td>
 <td style="text-align: center;">范围</td>
-<td style="text-align: center;">x=&quot;1&quot;...&quot;9&quot;</td>
+<td style="text-align: center;">x="1"..."9"</td>
 <td style="text-align: center;">数据x只能等于1~9之间的某个元素</td>
 </tr>
 </tbody>
@@ -760,7 +2699,7 @@
 <p>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
 <p><strong>意图：</strong>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
 <p><strong>主要解决：</strong>降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。</p>
-<p><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个&quot;接待员&quot;即可。 2、定义系统的入口。</p>
+<p><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个"接待员"即可。 2、定义系统的入口。</p>
 <p><strong>如何解决：</strong>客户端不与系统耦合，外观类与系统耦合。</p>
 <p><strong>关键代码：</strong>在客户端和复杂系统之间再加一层，这一层将调用顺序、依赖关系等处理好。</p>
 <p><strong>应用实例：</strong> 1、去医院看病，可能要去挂号、门诊、划价、取药，让患者或患者家属觉得很复杂，如果有提供接待人员，只让接待人员来处理，就很方便。 2、JAVA 的三层开发模式。</p>
@@ -855,7 +2794,7 @@
 <h2 id="概述">概述</h2>
 <p>本文主要介绍ResNet的变体：ResNeSt。</p>
 <p>目前代码已经提供PyTorch和MXNet两个版本。</p>
-<p>【GitHub】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer" class="uri">https://github.com/zhanghang1989/ResNeSt</a></p>
+<p>【Code】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zhanghang1989/ResNeSt</a></p>
 <p>性能显著提升，参数量并没有显著增加。</p>
 <p>借鉴了：Multi-path 和 Feature-map Attention思想。</p>
 <p>其中：</p>
@@ -953,7 +2892,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
       </categories>
       <tags>
         <tag>2020</tag>
-        <tag>github</tag>
+        <tag>code</tag>
         <tag>阅读笔记</tag>
       </tags>
   </entry>
@@ -967,6 +2906,28 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 <h1 id="解决hash冲突的方法中拉链法的好处">解决hash冲突的方法中拉链法的好处</h1>
 <p>与开放定址法相比，拉链法有如下几个优点： (1)拉链法处理冲突简单，且无堆积现象，即非同义词决不会发生冲突，因此平均查找长度较短； (2)由于拉链法中各链表上的结点空间是动态申请的，故它更适合于造表前无法确定表长的情况； (3)开放定址法为减少冲突，要求装填因子α较小，故当结点规模较大时会浪费很多空间。而拉链法中可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计，因此节省空间； (4)在用拉链法构造的散列表中，删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。而对开放地址法构造的散列表，删除结点不能简单地将被删结点的空间置为空，否则将截断在它之后填人散列表的同义词结点的查找路径。这是因为各种开放地址法中，空地址单元(即开放地址)都是查找失败的条件。因此在用开放地址法处理冲突的散列表上执行删除操作，只能在被删结点上做删除标记，而不能真正删除结点。</p>
 <h1 id="哈夫曼树只是一棵最优二叉树不一定是完全二叉树也不一定是平衡二叉树哈夫曼树不关注树的结构只关注带权路径长度">哈夫曼树只是一棵最优二叉树，不一定是完全二叉树，也不一定是平衡二叉树哈夫曼树不关注树的结构，只关注带权路径长度</h1>
+<h1 id="树森林二叉树的遍历等价关系">树、森林、二叉树的遍历等价关系</h1>
+<table>
+<thead>
+<tr class="header">
+<th>树</th>
+<th>森林</th>
+<th>二叉树</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>先根遍历</td>
+<td>先序遍历</td>
+<td>先序遍历</td>
+</tr>
+<tr class="even">
+<td>后序遍历</td>
+<td>中序遍历</td>
+<td>中序遍历</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>知识点</category>
@@ -1036,6 +2997,10 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 <p>DML：插入、更新、删除</p>
 <p>DCL：数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等</p>
 <p>DDL：数据定义语言DDL用来创建数据库中的各种对象-----表、视图、索引、同义词、聚簇等</p>
+<p>查询：SELECT</p>
+<p>操纵：UPDATE, INSERT, DELETE</p>
+<p>定义：CREATE, DROP</p>
+<p>控制：COMMIT, ROLLBACK, GRANT, REVOKE等</p>
 <h1 id="i中的数据保护模式包括有">9i中的数据保护模式包括有？</h1>
 <p><strong>数据库Oracle 9i</strong> ：</p>
 <h2 id="最大保护maximum-protection">最大保护(Maximum protection )</h2>
@@ -1052,7 +3017,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 <h1 id="数据库系统的存储模式如有改变概念模式无需改动">数据库系统的存储模式如有改变，概念模式无需改动</h1>
 <h1 id="视图设计的设计次序">视图设计的设计次序</h1>
 <ol type="1">
-<li>自顶向下。先全局框架，然后逐步细化</li>
+<li><p>自顶向下。先全局框架，然后逐步细化</p></li>
 <li><p>自底向上。先局部概念结构，再集成为全局结构</p></li>
 <li><p>由里向外。先核心结构，再向外扩张</p></li>
 <li><p>混合策略。1与2相结合，先自顶向下设计一个概念结构的框架，再自底向上为框架设计局部概念结构</p></li>
@@ -1067,7 +3032,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 <p>BCNF</p>
 <p>满足3NF，消除每一属性对候选键的传递依赖</p>
 <p>1NF + 消去非主属性对键的部分函数依赖 = 2NF。即2NF中，非主属性完全依赖于主关键字；</p>
-<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在&quot;A → B → C&quot;的决定关系，则C传递函数依赖于A；</p>
+<p>2NF + 消去非主属性对键的传递函数依赖 = 3NF。即3NF中，属性不依赖于其它非主属性。传递函数依赖，指的是如果存在"A → B → C"的决定关系，则C传递函数依赖于A；</p>
 <p>3NF + 消去主属性对键的传递函数依赖 = BCNF。BCNF是3NF的改进形式，即在3NF的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BCNF。</p>
 <h1 id="存储过程的调用">存储过程的调用</h1>
 <p>exec 是sql server的存储过程调用方式，call是mysql的存储过程调用方式，同时调用时必须有参数或者为null</p>
@@ -1083,6 +3048,8 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 <h1 id="查询设计视图窗口分为上下部分">“查询”设计视图窗口分为上下部分</h1>
 <p>上部分：“字段列表区”，用来显示所选择的所有字段。</p>
 <p>下部分：“设计网络”，由一些字段列和一些已命名的列组成。</p>
+<h1 id="sql语句执行顺序">SQL语句执行顺序</h1>
+<p><code>FROM</code>&gt;<code>ON</code>&gt;<code>JOIN</code>&gt;<code>WHERE</code>&gt;<code>GROUP BY</code>&gt;<code>WITH CUBE</code> or <code>WITH ROLLUP</code>&gt;<code>HAVING</code>&gt;<code>SELECT</code>&gt;<code>DISTINCT</code>&gt;<code>ORDER BY</code>&gt;<code>TOP</code></p>
 ]]></content>
       <categories>
         <category>知识点</category>
@@ -1100,32 +3067,32 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
     <content><![CDATA[<h1 id="语句覆盖">语句覆盖</h1>
 <p><strong>每个可执行语句都走一遍即可，即测试用例要覆盖所有的语句</strong>（来源：软件开发的技术基础） <a id="more"></a></p>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916.jpg" alt><figcaption>img</figcaption>
 </figure>
 <h1 id="判定覆盖分支覆盖">判定覆盖（分支覆盖）</h1>
 <p>针对判断语句，在设定案例的时候，要设定True和False的两种案例；与语句覆盖不同的是增加了False的情况。</p>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916-1587460107267.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460107267.jpg" alt><figcaption>img</figcaption>
 </figure>
 <h1 id="条件覆盖">条件覆盖</h1>
 <p>针对判断语句里面案例的取值都要去一次，不考虑条件的取值</p>
 <p><strong>另注</strong>：条件覆盖保证判断中的每个条件都被覆盖（来源：软件开发的技术基础）</p>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916-1587460180539.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460180539.jpg" alt><figcaption>img</figcaption>
 </figure>
 <h1 id="判定条件覆盖">判定/条件覆盖</h1>
 <p>判定覆盖各条件覆盖交叉，针对于判定中的条件取值</p>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916-1587460218160.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460218160.jpg" alt><figcaption>img</figcaption>
 </figure>
 <h1 id="条件组合覆盖">条件组合覆盖</h1>
 <p>判定-条件覆盖的加强版</p>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916-1587460241521.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460241521.jpg" alt><figcaption>img</figcaption>
 </figure>
 <h1 id="路径覆盖">路径覆盖</h1>
 <figure>
-<img src="/20200421l1/5de1f30e76c66137ee061916-1587460268368.jpg" alt="img"><figcaption>img</figcaption>
+<img src="/20200421l1/5de1f30e76c66137ee061916-1587460268368.jpg" alt><figcaption>img</figcaption>
 </figure>
 ]]></content>
       <categories>

@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-<meta name="google-site-verification" content="Af8SVngb0DDTakbpwV3mTIv5viM_03tYvp-BYrFfvfk">
-<meta name="baidu-site-verification" content="ItTV0HCVfQ">
+<meta name="google-site-verification" content="OI0wFaQQy7e5U0Of64XcgA6LjlRABNJZY3WKSBjhpUY">
+<meta name="baidu-site-verification" content="rCCbGiWZvt">
+
+  <meta name="keywords" content="博客">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -19,33 +24,33 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"smilejet.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"smilejet.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="《ResNeSt: Split-Attention Networks》 阅读笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ResNeSt: Split-Attention Networks">
-<meta property="og:url" content="https://smilejet.gitee.io/20200424l1/index.html">
-<meta property="og:site_name" content="Home">
+<meta property="og:url" content="https://smilejet.github.io/20200424l1/index.html">
+<meta property="og:site_name" content="AI-Smile">
 <meta property="og:description" content="《ResNeSt: Split-Attention Networks》 阅读笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424121613880.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424121729777.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424141553855.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424141606687.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424141715775.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424141737925.png">
-<meta property="og:image" content="https://smilejet.gitee.io/20200424l1/image-20200424141754790.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424121613880.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424121729777.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424141553855.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424141606687.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424141715775.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424141737925.png">
+<meta property="og:image" content="https://smilejet.github.io/20200424l1/image-20200424141754790.png">
 <meta property="article:published_time" content="2020-04-24T03:15:40.000Z">
-<meta property="article:modified_time" content="2020-04-24T07:18:04.168Z">
+<meta property="article:modified_time" content="2020-07-09T03:04:46.780Z">
 <meta property="article:author" content="Smile">
 <meta property="article:tag" content="2020">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="code">
 <meta property="article:tag" content="阅读笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://smilejet.gitee.io/20200424l1/image-20200424121613880.png">
+<meta name="twitter:image" content="https://smilejet.github.io/20200424l1/image-20200424121613880.png">
 
-<link rel="canonical" href="https://smilejet.gitee.io/20200424l1/">
+<link rel="canonical" href="https://smilejet.github.io/20200424l1/">
 
 
 <script id="page-configurations">
@@ -58,7 +63,7 @@
   };
 </script>
 
-  <title>ResNeSt: Split-Attention Networks | Home</title>
+  <title>ResNeSt: Split-Attention Networks | AI-Smile</title>
   
 
 
@@ -109,7 +114,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Home</h1>
+      <h1 class="site-title">AI-Smile</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -190,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://smilejet.gitee.io/20200424l1/">
+    <link itemprop="mainEntityOfPage" href="https://smilejet.github.io/20200424l1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/smile.jpg">
@@ -199,7 +204,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home">
+      <meta itemprop="name" content="AI-Smile">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -213,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-24 11:15:40 / 修改时间：15:18:04" itemprop="dateCreated datePublished" datetime="2020-04-24T11:15:40+08:00">2020-04-24</time>
+              <time title="创建时间：2020-04-24 11:15:40" itemprop="dateCreated datePublished" datetime="2020-04-24T11:15:40+08:00">2020-04-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-09 11:04:46" itemprop="dateModified" datetime="2020-07-09T11:04:46+08:00">2020-07-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,7 +245,21 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span><br>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/20200424l1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/20200424l1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -257,7 +282,7 @@
 <h2 id="概述">概述</h2>
 <p>本文主要介绍ResNet的变体：ResNeSt。</p>
 <p>目前代码已经提供PyTorch和MXNet两个版本。</p>
-<p>【GitHub】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer" class="uri">https://github.com/zhanghang1989/ResNeSt</a></p>
+<p>【Code】<a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zhanghang1989/ResNeSt</a></p>
 <p>性能显著提升，参数量并没有显著增加。</p>
 <p>借鉴了：Multi-path 和 Feature-map Attention思想。</p>
 <p>其中：</p>
@@ -359,7 +384,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/2020/" rel="tag"># 2020</a>
-              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/code/" rel="tag"># code</a>
               <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag"># 阅读笔记</a>
           </div>
 
@@ -388,6 +413,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -449,18 +475,18 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -475,7 +501,7 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
   </div>
 
 <div id="vm" style="display:none;">
-<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=53b08kfq93y&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5xrwow1sqzv&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
 </div>
 
 
@@ -509,8 +535,23 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">77k</span>
 </div>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
         
@@ -737,11 +778,40 @@ a_{i}^{k}(c)=\left\{\begin{array}{ll}
     MathJax.texReset();
     MathJax.typeset();
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'rDokR66hff6J3tNbdsnySiku-MdYXbMMI',
+      appKey     : 'QGPP90EywVtzrkwx2sR9agV4',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

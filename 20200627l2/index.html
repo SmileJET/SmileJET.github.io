@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+<meta name="google-site-verification" content="OI0wFaQQy7e5U0Of64XcgA6LjlRABNJZY3WKSBjhpUY">
+<meta name="baidu-site-verification" content="rCCbGiWZvt">
+
+  <meta name="keywords" content="博客">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"smilejet.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="具有模糊边界的医学图像保持结构边界分割">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2020 CVPR】Structure Boundary Preserving Segmentation for Medical Image with Ambiguous Boundary">
+<meta property="og:url" content="https://smilejet.github.io/20200627l2/index.html">
+<meta property="og:site_name" content="AI-Smile">
+<meta property="og:description" content="具有模糊边界的医学图像保持结构边界分割">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627201825789.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627201903381.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627203024706.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627203826128.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205528925.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205540306.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205607865.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205624499.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205633733.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205646059.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205704449.png">
+<meta property="og:image" content="https://smilejet.github.io/20200627l2/image-20200627205725397.png">
+<meta property="article:published_time" content="2020-06-27T11:41:42.000Z">
+<meta property="article:modified_time" content="2020-06-27T13:00:57.468Z">
+<meta property="article:author" content="Smile">
+<meta property="article:tag" content="图像分割">
+<meta property="article:tag" content="2020">
+<meta property="article:tag" content="CVPR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://smilejet.github.io/20200627l2/image-20200627201825789.png">
+
+<link rel="canonical" href="https://smilejet.github.io/20200627l2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【2020 CVPR】Structure Boundary Preserving Segmentation for Medical Image with Ambiguous Boundary | AI-Smile</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AI-Smile</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://smilejet.github.io/20200627l2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/smile.jpg">
+      <meta itemprop="name" content="Smile">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI-Smile">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【2020 CVPR】Structure Boundary Preserving Segmentation for Medical Image with Ambiguous Boundary
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-27 19:41:42 / 修改时间：21:00:57" itemprop="dateCreated datePublished" datetime="2020-06-27T19:41:42+08:00">2020-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">阅读笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/20200627l2/" class="post-meta-item leancloud_visitors" data-flag-title="【2020 CVPR】Structure Boundary Preserving Segmentation for Medical Image with Ambiguous Boundary" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/20200627l2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/20200627l2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <div class="post-description">具有模糊边界的医学图像保持结构边界分割</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="motivation">Motivation</h1>
+<p>图像分割在医学影像中存在两个关键问题：</p>
+<ul>
+<li>分割区域边界模糊，存在歧义性</li>
+<li>没有专业领域知识，分割区域不确定</li>
+</ul>
+<p>针对以上问题，提出了能够保存目标区域边界信息的医学图像分割框架：</p>
+<ul>
+<li>首先，提出了一种新颖的关键点选择算法。</li>
+<li>然后，使用一种称为边界保留块（Boundary Preserving Block，BPB）的新型结构边界保留模型将这些点编码到分割网络中。</li>
+<li>为了将专家知识嵌入到全自动分割模型中，在没有用户交互的情况下，以对抗性方式引入一种新型的基于结构边界信息的判别网络，成为形状边界感知评估器（Shape Boundary-aware Evaluator，SBE）。</li>
+</ul>
+<p><img src="/20200627l2/image-20200627201825789.png"></p>
+<h1 id="methods">Methods</h1>
+<p>整体框架分为三部分：</p>
+<ul>
+<li>Segmentation network</li>
+<li>Boundary Preserving Block</li>
+<li>Shape Boundary-aware Evaluator</li>
+</ul>
+<p><img src="/20200627l2/image-20200627201903381.png"></p>
+<h2 id="boundary-key-point-selection-algorithm">Boundary Key Point Selection Algorithm</h2>
+<p>首先提出一个关键点选择算法，找出符合目标区域边界的关键点。</p>
+<ul>
+<li><p>首先，使用传统的边缘检测算法从GT中找出目标物体的边界。</p>
+<p>在目标边界上随机选取n个点，表示为<span class="math inline">\(P_{n}^{t}=\{(x_1^t, y_1^t),(x_2^t, y_2^t),...,(x_n^t, y_n^t)\}\)</span></p></li>
+<li><p>然后，我们通过n轮后的n个点构造边界区域<span class="math inline">\(S_n^t\)</span>。</p></li>
+<li><p>最后，选取使得IOU最大时的结构边界点为最终的边界点。</p>
+<p><span class="math display">\[\tilde{P}=P_{n}^{\tilde{t}}, \text { where } \tilde{t}=\underset{t \in\{1, \cdots, T\}}{\arg \max } \operatorname{IOU}\left(\mathrm{S}_{n}^{t}, \mathrm{S}_{G T}\right)\]</span></p></li>
+<li><p>选取的关键点集<span class="math inline">\(\tilde{P}\)</span>转换为2维的边界点图（boundary point map）。以这些点为中心，周围半径为R内置为1，其余为0（可以看做二维概率图或heapmap，更适合卷积网络训练和预测）</p></li>
+</ul>
+<p><img src="/20200627l2/image-20200627203024706.png"></p>
+<h2 id="boundary-preserving-block-bpb">Boundary Preserving Block (BPB)</h2>
+<p>通过生成的边界关键点图，分割模型可以在无需交互的情况下将结构边界信息进行编码。</p>
+<p><img src="/20200627l2/image-20200627203826128.png"></p>
+<h2 id="shape-boundary-aware-evaluator-sbe">Shape Boundary-aware Evaluator (SBE)</h2>
+<p>模型最终产生的分割图预测与中间卷积模块中产生的边界点图可以通过形状边界判别器来约束它们之间表达的一致性。</p>
+<p>将边界关键点图和给定的分割图像作为输入concat后输入到SBE结构中。</p>
+<p>当边界与分割图一致时得分高，不一致时得分低。</p>
+<p>通过损失<span class="math inline">\(L_{SBE}\)</span>训练SBE网络。</p>
+<p><span class="math display">\[L_{SBE}=-log(D(S_{GT};M_{GT}))-log(1-D(\hat{S}_{Pred};M_{GT}))\]</span></p>
+<h2 id="training-segmentation-network">Training Segmentation Network</h2>
+<p>通过三个损失进行训练整个网络。</p>
+<p><span class="math display">\[L_{Total}=L_{Seg}+L_{BA}+\sum_{i=1}^{l}{L_{Map}^{i}}\]</span></p>
+<p>分割损失为：</p>
+<p><span class="math display">\[\begin{aligned}
+L_{S e g}=&amp;-\mathrm{S}_{G T} \cdot \log \left(\hat{\mathrm{S}}_{P r e d}\right)-\left(1-\mathrm{S}_{G T}\right) \cdot \log \left(1-\hat{\mathrm{S}}_{P r e d}\right)
+\end{aligned}\]</span></p>
+<p>关键点损失：</p>
+<p><span class="math display">\[L_{M a p}^{i}=-\mathrm{M}_{G T}^{i} \cdot \log \hat{\mathrm{M}}^{i}-\left(1-\mathrm{M}_{G T}^{i}\right) \cdot \log \left(1-\hat{\mathrm{M}}^{i}\right)\]</span></p>
+<p>边界感知损失：</p>
+<p><span class="math display">\[L_{BA}=-log{(D(\hat{S}_{Pred};M_{GT}))}\]</span></p>
+<p>其中，<span class="math inline">\(D(\cdot)\)</span>表示SBE接受分割图和边界关键点图作为输入并产生预测分数。</p>
+<h1 id="experiments">Experiments</h1>
+<h2 id="datasets">Datasets</h2>
+<ul>
+<li>PH2+ISBI 2016 Skin Lesion Challenge dataset</li>
+<li>(私有) Transvaginal Ultrasound (TVUS) dataset</li>
+</ul>
+<h2 id="results">Results</h2>
+<p>文中有提到一句话：</p>
+<blockquote>
+<p>Even the images have ambiguous structure boundary or heterogeneous texture, our method preserves structure boundary of target region; on the other hand, segmentation results obtained from U-Net failed to preserve boundary.</p>
+</blockquote>
+<p>这篇文章对U-Net不起作用？</p>
+<p>还有个疑问，在与其他方法对比时，不同数据集使用了不同主干网络，没有提及其他主干网络搭配自己的方法，是结果不好吗？</p>
+<p><img src="/20200627l2/image-20200627205528925.png"></p>
+<p><img src="/20200627l2/image-20200627205540306.png"></p>
+<p><img src="/20200627l2/image-20200627205607865.png"></p>
+<p><img src="/20200627l2/image-20200627205624499.png"></p>
+<p><img src="/20200627l2/image-20200627205633733.png"></p>
+<p><img src="/20200627l2/image-20200627205646059.png"></p>
+<p><img src="/20200627l2/image-20200627205704449.png"></p>
+<p><img src="/20200627l2/image-20200627205725397.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/2020/" rel="tag"># 2020</a>
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" rel="tag"># 图像分割</a>
+              <a href="/tags/CVPR/" rel="tag"># CVPR</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20200627l1/" rel="prev" title="【2020 CVPR】Synthetic Learning: Learn From Distributed Asynchronized Discriminator GAN Without Sharing Medical Image Data">
+      <i class="fa fa-chevron-left"></i> 【2020 CVPR】Synthetic Learning: Learn From Distributed Asynchronized Discriminator GAN Without Sharing Medical Image Data
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/20200628l1/" rel="next" title="【2020 MICCAI】PraNet: Parallel Reverse Attention Network for Polyp Segmentation">
+      【2020 MICCAI】PraNet: Parallel Reverse Attention Network for Polyp Segmentation <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#methods"><span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#boundary-key-point-selection-algorithm"><span class="nav-text">Boundary Key Point Selection Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boundary-preserving-block-bpb"><span class="nav-text">Boundary Preserving Block (BPB)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shape-boundary-aware-evaluator-sbe"><span class="nav-text">Shape Boundary-aware Evaluator (SBE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#training-segmentation-network"><span class="nav-text">Training Segmentation Network</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#experiments"><span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#datasets"><span class="nav-text">Datasets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#results"><span class="nav-text">Results</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Smile" src="/images/smile.jpg">
+  <p class="site-author-name" itemprop="name">Smile</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="external nofollow noopener noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+<div id="vm" style="display:none;">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5xrwow1sqzv&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Smile</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">77k</span>
+</div>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"rDokR66hff6J3tNbdsnySiku-MdYXbMMI","app_key":"QGPP90EywVtzrkwx2sR9agV4","server_url":null,"security":false,"betterPerformance":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'rDokR66hff6J3tNbdsnySiku-MdYXbMMI',
+      appKey     : 'QGPP90EywVtzrkwx2sR9agV4',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
