@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -24,29 +24,30 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"smilejet.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ai-smile.coding.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Ubuntu环境配置及踩坑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu环境配置及踩坑">
-<meta property="og:url" content="https://smilejet.github.io/20200808l1/index.html">
+<meta property="og:url" content="https://ai-smile.coding.me/20200808l1/index.html">
 <meta property="og:site_name" content="AI-Smile">
 <meta property="og:description" content="Ubuntu环境配置及踩坑">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://smilejet.github.io/20200808l1/1596857597138.png">
-<meta property="og:image" content="https://smilejet.github.io/20200808l1/1596858171960.png">
-<meta property="og:image" content="https://smilejet.github.io/20200808l1/1596861152750.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200808l1/1596857597138.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200808l1/1596858171960.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200808l1/1596861152750.png">
 <meta property="article:published_time" content="2020-08-08T06:59:58.000Z">
-<meta property="article:modified_time" content="2020-08-08T07:03:35.491Z">
+<meta property="article:modified_time" content="2020-08-17T02:44:53.270Z">
 <meta property="article:author" content="Smile">
 <meta property="article:tag" content="nvidia">
 <meta property="article:tag" content="cuda">
 <meta property="article:tag" content="anaconda">
+<meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://smilejet.github.io/20200808l1/1596857597138.png">
+<meta name="twitter:image" content="https://ai-smile.coding.me/20200808l1/1596857597138.png">
 
-<link rel="canonical" href="https://smilejet.github.io/20200808l1/">
+<link rel="canonical" href="https://ai-smile.coding.me/20200808l1/">
 
 
 <script id="page-configurations">
@@ -88,12 +89,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -191,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://smilejet.github.io/20200808l1/">
+    <link itemprop="mainEntityOfPage" href="https://ai-smile.coding.me/20200808l1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/smile.jpg">
@@ -214,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-08 14:59:58 / 修改时间：15:03:35" itemprop="dateCreated datePublished" datetime="2020-08-08T14:59:58+08:00">2020-08-08</time>
+              <time title="创建时间：2020-08-08 14:59:58" itemprop="dateCreated datePublished" datetime="2020-08-08T14:59:58+08:00">2020-08-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-17 10:44:53" itemprop="dateModified" datetime="2020-08-17T10:44:53+08:00">2020-08-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -255,7 +262,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>3.5k</span>
             </span>
             <div class="post-description">Ubuntu环境配置及踩坑</div>
 
@@ -330,10 +337,47 @@
 <h2 id="下载地址">下载地址</h2>
 <p><a href="https://www.anaconda.com/products/individual" target="_blank" rel="external nofollow noopener noreferrer">https://www.anaconda.com/products/individual</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<h2 id="pip-更换源">pip 更换源</h2>
+<h3 id="常见国内源">常见国内源</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 豆瓣</span><br><span class="line">https:&#x2F;&#x2F;pypi.doubanio.com&#x2F;simple&#x2F;</span><br><span class="line"># 阿里云    </span><br><span class="line">https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line"># 清华大学</span><br><span class="line">https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br><span class="line">https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;pypi&#x2F;web&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="临时使用">临时使用</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install some-package -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<h3 id="设为默认">设为默认</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pip -U</span><br><span class="line">pip config <span class="built_in">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<h1 id="vs-code">VS Code</h1>
+<h2 id="remote-ssh-免密设置">Remote-ssh 免密设置</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h1 id="增加交换空间">增加交换空间</h1>
+<h2 id="查看当前空间">查看当前空间</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+<h2 id="创建swap文件">创建swap文件</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">sudo mkdir swap</span><br><span class="line"><span class="built_in">cd</span> swap/</span><br><span class="line"></span><br><span class="line">$ sudo dd <span class="keyword">if</span>=/dev/zero of=swapfile bs=1M count=2048<span class="comment">#创建2G的swap，大小为bs*count</span></span><br><span class="line">记录了2048+0 的读入</span><br><span class="line">记录了2048+0 的写出</span><br><span class="line">2147483648 bytes (2.1 GB, 2.0 GiB) copied, 4.89824 s, 438 MB/s</span><br></pre></td></tr></table></figure>
+<h2 id="将生成的文件转换成swap文件">将生成的文件转换成swap文件</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap swapfile</span><br></pre></td></tr></table></figure>
+<h2 id="激活swap文件">激活swap文件</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon swapfile</span><br></pre></td></tr></table></figure>
+<h2 id="设置swap分区为开机自动挂载">设置swap分区为开机自动挂载</h2>
+<p>先备份文件/etc/fstab</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/fstab /etc/fstab.bak</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'/swap/swapfile none swap sw 0 0'</span> | sudo tee -a /etc/fstab</span><br></pre></td></tr></table></figure>
+<h1 id="libstdc.so.6-version-glibcxx3.4.22-not-found">libstdc++.so.6: version `GLIBCXX3.4.22’ not found</h1>
+<h2 id="原因">原因</h2>
+<p>当前版本的libstdc++.so.6缺少GLIBCXX_3.4.22</p>
+<h2 id="查看当前glibcxx">查看当前GLIBCXX</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案">解决方案</h2>
+<h3 id="方案一">方案一</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libstdc++6</span><br></pre></td></tr></table></figure>
+<h3 id="方案二">方案二</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ubuntu-toolchain-r/<span class="built_in">test</span> </span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get dist-upgrade</span><br></pre></td></tr></table></figure>
+<p>再次查看当前GLIBCXX</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
 <h1 id="参考文献">参考文献</h1>
 <ul>
 <li><a href="https://blog.csdn.net/lihe4151021/article/details/90083431" target="_blank" rel="external nofollow noopener noreferrer">Ubuntu 16.04 Nvidia驱动安装(run方式)</a></li>
 <li><a href="https://blog.csdn.net/qq_34057614/article/details/81228746" target="_blank" rel="external nofollow noopener noreferrer">cuda历史版本和cudnn的下载地址</a></li>
+<li><a href="https://www.cnblogs.com/believepd/p/10499844.html" target="_blank" rel="external nofollow noopener noreferrer">更换pip源到国内镜像</a></li>
+<li><a href="https://blog.csdn.net/mika001/article/details/72780953" target="_blank" rel="external nofollow noopener noreferrer">Ubuntu 16.04扩展swap分区</a></li>
+<li><a href="https://blog.csdn.net/u011961856/article/details/79644342" target="_blank" rel="external nofollow noopener noreferrer">libstdc++.so.6: version `GLIBCXX3.4.22' not found</a></li>
 </ul>
 
     </div>
@@ -347,6 +391,7 @@
               <a href="/tags/nvidia/" rel="tag"># nvidia</a>
               <a href="/tags/cuda/" rel="tag"># cuda</a>
               <a href="/tags/anaconda/" rel="tag"># anaconda</a>
+              <a href="/tags/vscode/" rel="tag"># vscode</a>
           </div>
 
         
@@ -358,7 +403,10 @@
     <a href="/20200807l1/" rel="prev" title="【2020 EUR J NUCL MED MOL I】CTumorGAN: a unified framework for automatic computed tomography tumor segmentation">
       <i class="fa fa-chevron-left"></i> 【2020 EUR J NUCL MED MOL I】CTumorGAN: a unified framework for automatic computed tomography tumor segmentation
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/20200809l1/" rel="next" title="【2020 ECCV】Semantic Flow for Fast and Accurate Scene Parsing">
+      【2020 ECCV】Semantic Flow for Fast and Accurate Scene Parsing <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -418,7 +466,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia-驱动安装"><span class="nav-text">Nvidia 驱动安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#驱动下载网址"><span class="nav-text">驱动下载网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除原有驱动"><span class="nav-text">删除原有驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用nouveau驱动"><span class="nav-text">禁用nouveau驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启系统"><span class="nav-text">重启系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证nouveau是否被禁用"><span class="nav-text">验证nouveau是否被禁用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取kernel-source"><span class="nav-text">获取Kernel source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驱动安装"><span class="nav-text">驱动安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭图形界面"><span class="nav-text">关闭图形界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给run文件赋予执行权限"><span class="nav-text">给run文件赋予执行权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装过程中的选项"><span class="nav-text">安装过程中的选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看安装结果"><span class="nav-text">查看安装结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cuda-安装"><span class="nav-text">Cuda 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载网址"><span class="nav-text">下载网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新环境变量"><span class="nav-text">更新环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看安装结果-1"><span class="nav-text">查看安装结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anaconda-安装"><span class="nav-text">Anaconda 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-text">下载地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia-驱动安装"><span class="nav-text">Nvidia 驱动安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#驱动下载网址"><span class="nav-text">驱动下载网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除原有驱动"><span class="nav-text">删除原有驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用nouveau驱动"><span class="nav-text">禁用nouveau驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启系统"><span class="nav-text">重启系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证nouveau是否被禁用"><span class="nav-text">验证nouveau是否被禁用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取kernel-source"><span class="nav-text">获取Kernel source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驱动安装"><span class="nav-text">驱动安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭图形界面"><span class="nav-text">关闭图形界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给run文件赋予执行权限"><span class="nav-text">给run文件赋予执行权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装过程中的选项"><span class="nav-text">安装过程中的选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看安装结果"><span class="nav-text">查看安装结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cuda-安装"><span class="nav-text">Cuda 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载网址"><span class="nav-text">下载网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新环境变量"><span class="nav-text">更新环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看安装结果-1"><span class="nav-text">查看安装结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anaconda-安装"><span class="nav-text">Anaconda 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-text">下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip-更换源"><span class="nav-text">pip 更换源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见国内源"><span class="nav-text">常见国内源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临时使用"><span class="nav-text">临时使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设为默认"><span class="nav-text">设为默认</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vs-code"><span class="nav-text">VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#remote-ssh-免密设置"><span class="nav-text">Remote-ssh 免密设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加交换空间"><span class="nav-text">增加交换空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前空间"><span class="nav-text">查看当前空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建swap文件"><span class="nav-text">创建swap文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将生成的文件转换成swap文件"><span class="nav-text">将生成的文件转换成swap文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#激活swap文件"><span class="nav-text">激活swap文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置swap分区为开机自动挂载"><span class="nav-text">设置swap分区为开机自动挂载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#libstdc.so.6-version-glibcxx3.4.22-not-found"><span class="nav-text">libstdc++.so.6: version &#96;GLIBCXX3.4.22’ not found</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前glibcxx"><span class="nav-text">查看当前GLIBCXX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-text">方案二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,7 +481,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -444,7 +492,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -493,7 +541,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">94k</span>
+    <span title="站点总字数">104k</span>
 </div>
 
 <script>
@@ -716,7 +764,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
     });
   }, window.Valine);
 });
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 </body>
 </html>

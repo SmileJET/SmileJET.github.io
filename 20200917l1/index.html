@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+<meta name="google-site-verification" content="OI0wFaQQy7e5U0Of64XcgA6LjlRABNJZY3WKSBjhpUY">
+<meta name="baidu-site-verification" content="rCCbGiWZvt">
+
+  <meta name="keywords" content="博客">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ai-smile.coding.me","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="用于部分监管的多组织分割的先验感知神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation">
+<meta property="og:url" content="https://ai-smile.coding.me/20200917l1/index.html">
+<meta property="og:site_name" content="AI-Smile">
+<meta property="og:description" content="用于部分监管的多组织分割的先验感知神经网络">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200917213925812.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200917214449754.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200918105931642.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200918110416475.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200918110706846.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200918110719838.png">
+<meta property="og:image" content="https://ai-smile.coding.me/20200917l1/image-20200918110910038.png">
+<meta property="article:published_time" content="2020-09-17T13:15:35.000Z">
+<meta property="article:modified_time" content="2020-09-18T06:03:15.306Z">
+<meta property="article:author" content="Smile">
+<meta property="article:tag" content="图像分割">
+<meta property="article:tag" content="约翰霍普金斯大学">
+<meta property="article:tag" content="ICCV">
+<meta property="article:tag" content="2019">
+<meta property="article:tag" content="多器官">
+<meta property="article:tag" content="先验知识">
+<meta property="article:tag" content="牛津大学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ai-smile.coding.me/20200917l1/image-20200917213925812.png">
+
+<link rel="canonical" href="https://ai-smile.coding.me/20200917l1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation | AI-Smile</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AI-Smile</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ai-smile.coding.me/20200917l1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/smile.jpg">
+      <meta itemprop="name" content="Smile">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI-Smile">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-17 21:15:35" itemprop="dateCreated datePublished" datetime="2020-09-17T21:15:35+08:00">2020-09-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-18 14:03:15" itemprop="dateModified" datetime="2020-09-18T14:03:15+08:00">2020-09-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">阅读笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/20200917l1/" class="post-meta-item leancloud_visitors" data-flag-title="【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/20200917l1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/20200917l1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <div class="post-description">用于部分监管的多组织分割的先验感知神经网络</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="motivation">Motivation</h1>
+<ul>
+<li>准确的多器官腹部CT分割对于许多临床应用是必不可少的</li>
+<li>通常数据集倍部分标注，如胰腺数据集仅标注胰腺儿其他部分标记为背景</li>
+<li>背景标签通常包含其他感兴趣器官，在多器官分割中容易引起误导</li>
+</ul>
+<p>3D可视化几个腹部器官，可以看出患者的腹部器官大小分布很相似。</p>
+<p><img src="/20200917l1/image-20200917213925812.png"></p>
+<h1 id="methods">Methods</h1>
+<p>将腹部器官大小的解剖学先验结合起来，假设腹部的平均器官大小分布应该接近它们的经验分布，从完全标记的数据集获得的先前统计数据。</p>
+<p>通过先验感知损失来实现，先验损失作为辅助和软约束，将不同器官的平均输出大小分布应近似于先前的比例。</p>
+<p><img src="/20200917l1/image-20200917214449754.png"></p>
+<h2 id="partial-supervision">Partial Supervision</h2>
+<p>假设医学图像分析中常见的数据集有以下特征：</p>
+<ul>
+<li>数据标准化，扫描数据的内部结构是一致的</li>
+<li>内部器官具有解剖和空间关系，如胃、十二指肠、小肠和结肠以固定顺序连接。</li>
+</ul>
+<p>一个简单的解决方案是直接在完全标注和部分标注数据上交替训练分割模型。然而这种类似EM的方法需要高质量的伪标签，且无法引入准确的解剖学先验。</p>
+<p>本文提出PaNN模型，嵌入解剖学先验，将其作为附加惩罚项，充当软约束使得器官大小的平均分布应接近经验比例。通过计算完全标记数据集的器官大小统计信息获得此先验。</p>
+<h2 id="prior-aware-loss">Prior-aware Loss</h2>
+<p>定义全标注数据的标签分布为<span class="math inline">\(q \in \R^{(|\mathcal{L}|+1)\times 1}\)</span>，部分标注的网络输出为<span class="math inline">\(p\)</span>，则部分标注数据的分布为<span class="math inline">\(\overline{p}=\frac{1}{N}\sum_{t=1}^{T}{\sum_{i\in P_t}{\sum_{j}{p_{ij}}}}\)</span>。</p>
+<p>通过KL散度匹配两个数据的分布，先验损失定义为： <span class="math display">\[
+\mathcal{J}_c = KL(q|\overline{p}) = H(q, \overline{p}) - H(q) = qlog{\overline{p}} + (1-q)log{(1-\overline{p})} + const
+\]</span> 等式的基本原理是不同器官的大小分布p赢近似于它们的经验比例q，通常反映了特定领域知识。</p>
+<p>最终的训练目标为： <span class="math display">\[
+\min _{\boldsymbol{\Theta}, \mathbf{Y}_{\mathrm{P}}} \mathcal{J}_{\mathrm{L}}(\boldsymbol{\Theta})+\lambda_{1} \mathcal{J}_{\mathrm{P}}\left(\boldsymbol{\Theta}, \mathbf{Y}_{\mathrm{P}}\right)-\lambda_{2} \mathcal{J}_{\mathrm{C}}(\boldsymbol{\Theta})
+\]</span> 前两项分别为在全标注数据和部分标注数据上的交叉熵损失，最后一项作为软约束来稳定训练过程。 <span class="math display">\[
+\mathcal{J}_{\mathrm{L}}=-\frac{1}{N} \sum_{i \in \mathrm{L}} \sum_{j} \sum_{l=0}^{|\mathcal{L}|} \mathbb{1}\left(y_{i j}=l\right) \log p_{i j}^{l}
+\]</span></p>
+<p><span class="math display">\[
+\begin{array}{r}
+\mathcal{J}_{\mathrm{P}}=-\frac{1}{N} \sum_{t=1}^{T} \sum_{i \in \mathrm{P}_{t}} \sum_{j} \sum_{l=0}^{|\mathcal{L}|}\left\{\mathbb{1}\left(y_{i j}=l\right) \log p_{i j}^{l}\right. \\
+\left.+\mathbb{1}\left(y_{i j}^{\prime}=l\right) \log p_{i j}^{l}\right\}
+\end{array}
+\]</span></p>
+<h2 id="derivation">Derivation</h2>
+<p>将<span class="math inline">\(\mathcal{J}_C\)</span>展开得到： <span class="math display">\[
+\begin{aligned}
+\mathcal{J}_{\mathrm{C}}=&amp; \sum_{l=0}^{|\mathcal{L}|}\left\{q^{l} \log \frac{1}{N} \sum_{t=1}^{T} \sum_{i \in \mathrm{P}_{t}} \sum_{j} p_{i j}^{l}+\right.\\
+&amp;\left.\left(1-q^{l}\right) \log \left(1-\frac{1}{N} \sum_{t=1}^{T} \sum_{i \in \mathrm{P}_{t}} \sum_{j} p_{i j}^{l}\right)\right\}+\text {const}
+\end{aligned}
+\]</span> 等式引入了器官尺寸分布<span class="math inline">\(\overline{p}\)</span>的对数损失，和标准机器学习损失有很大不同，其他的是平均项在对数损失外部。通过随机梯度下降直接最小化损失项非常困难，随机梯度存在固有的偏差。</p>
+<p>针对此问题，提出了随机的原始对偶梯度优化KL散度项。通过从对数损失中减去样本平均值，将先验损失转化为等效的min-max问题。引入两个辅助变量： <span class="math display">\[
+-\log \alpha=\max _{\beta}(\alpha \beta+1+\log (-\beta))
+\]</span> 定义<span class="math inline">\(\mathcal{v}\in \R^{|\mathcal{L}|\times 1}\)</span>和<span class="math inline">\(\mu\in \R^{|\mathcal{L}|\times 1}\)</span>为<span class="math inline">\(\overline{p}\)</span>和<span class="math inline">\((1-\overline{p})\)</span>的对偶变量： <span class="math display">\[
+\begin{aligned}
+-\log \bar{p}^{l} &amp;=\max _{\nu^{l}}\left(\bar{p}^{l} \nu^{l}+1+\log \left(-\nu^{l}\right)\right) \\
+-\log \left(1-\bar{p}^{l}\right) &amp;=\max _{\mu^{l}}\left(\left(1-\bar{p}^{l}\right) \mu^{l}+1+\log \left(-\mu^{l}\right)\right)
+\end{aligned}
+\]</span> 替换原始公式后得到对偶损失 <span class="math display">\[
+\begin{array}{c}
+\min _{\boldsymbol{\Theta}} \max _{\nu, \boldsymbol{\mu}} \sum_{l} q^{l}\left(\bar{p}^{l} \nu^{l}+1+\log \left(-\nu^{l}\right)\right) \\
+\quad+\sum_{l}\left(1-q^{l}\right)\left(\left(1-\bar{p}^{l}\right) \mu^{l}+1+\log \left(-\mu^{l}\right)\right) \\
+\Leftrightarrow \min _{\boldsymbol{\Theta}} \max _{\nu, \boldsymbol{\mu}} \sum_{l}\left(q^{l} \nu^{l}-\left(1-q^{l}\right) \mu^{l}\right) \bar{p}^{l}+q^{l} \log \left(-\nu^{l}\right) \\
+\quad+\sum_{l}\left(1-q^{l}\right)\left(\mu^{l}+\log \left(-\mu^{l}\right)\right)
+\end{array}
+\]</span> 这样样本的平均值从对数损失中取了出来，上述公式中省略了常数项。</p>
+<h2 id="model-training">Model Training</h2>
+<p>训练分为两个阶段：</p>
+<ul>
+<li>在全标注数据集上训练器官分割模型，目标是找到合适的初始化值<span class="math inline">\(\theta_O\)</span>，可以稳定第二阶段训练过程</li>
+<li>在完全标注数据集和部分标注数据集的并集上训练模型，存在两组变量，网络权重和三个辅助变量<span class="math inline">\(\{ \mathcal{v}, \mu, Y_P \}\)</span>，交替训练优化
+<ul>
+<li>固定网络参数，更新辅助变量：首先估计伪标签<span class="math inline">\(Y_P\)</span>，同时优化另外两个辅助参数，通过随机梯度上升优化参数最大化问题。</li>
+<li>固定辅助变量，更新网络：使用标准的随机梯度下降。</li>
+</ul></li>
+</ul>
+<p><img src="/20200917l1/image-20200918105931642.png"></p>
+<h1 id="experiments">Experiments</h1>
+<p>采用5折交叉验证，评价指标为Dice系数。</p>
+<p><img src="/20200917l1/image-20200918110416475.png"></p>
+<p><img src="/20200917l1/image-20200918110706846.png"></p>
+<p><img src="/20200917l1/image-20200918110719838.png"></p>
+<p><img src="/20200917l1/image-20200918110910038.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" rel="tag"># 图像分割</a>
+              <a href="/tags/%E7%BA%A6%E7%BF%B0%E9%9C%8D%E6%99%AE%E9%87%91%E6%96%AF%E5%A4%A7%E5%AD%A6/" rel="tag"># 约翰霍普金斯大学</a>
+              <a href="/tags/ICCV/" rel="tag"># ICCV</a>
+              <a href="/tags/2019/" rel="tag"># 2019</a>
+              <a href="/tags/%E5%A4%9A%E5%99%A8%E5%AE%98/" rel="tag"># 多器官</a>
+              <a href="/tags/%E5%85%88%E9%AA%8C%E7%9F%A5%E8%AF%86/" rel="tag"># 先验知识</a>
+              <a href="/tags/%E7%89%9B%E6%B4%A5%E5%A4%A7%E5%AD%A6/" rel="tag"># 牛津大学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20200914l1/" rel="prev" title="【2020 MIA】Marginal loss and exclusion loss for partially supervised multi-organ segmentation">
+      <i class="fa fa-chevron-left"></i> 【2020 MIA】Marginal loss and exclusion loss for partially supervised multi-organ segmentation
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#methods"><span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#partial-supervision"><span class="nav-text">Partial Supervision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prior-aware-loss"><span class="nav-text">Prior-aware Loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#derivation"><span class="nav-text">Derivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-training"><span class="nav-text">Model Training</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#experiments"><span class="nav-text">Experiments</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Smile" src="/images/smile.jpg">
+  <p class="site-author-name" itemprop="name">Smile</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="external nofollow noopener noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+<div id="vm" style="display:none;">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5xrwow1sqzv&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Smile</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">104k</span>
+</div>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"rDokR66hff6J3tNbdsnySiku-MdYXbMMI","app_key":"QGPP90EywVtzrkwx2sR9agV4","server_url":null,"security":false,"betterPerformance":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'rDokR66hff6J3tNbdsnySiku-MdYXbMMI',
+      appKey     : 'QGPP90EywVtzrkwx2sR9agV4',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
