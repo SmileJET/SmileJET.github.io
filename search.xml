@@ -143,137 +143,144 @@
 <p><img src="/20200101l1/image-20200420120158234.png"></p>
 <p><img src="/20200101l1/image-20200420120213245.png"></p>
 <h2 id="arxiv">Arxiv</h2>
-<h3 id="section-33"><a href="/20200811l1/" title="YOLOv4: Optimal Speed and Accuracy of Object Detection">YOLOv4: Optimal Speed and Accuracy of Object Detection</a></h3>
+<h3 id="section-33"><a href="/20201022l1/" title="PseudoSeg: Designing pseudo labels for semantic segmentation">PseudoSeg: Designing pseudo labels for semantic segmentation</a></h3>
+<p>pseudo-seg：为语义分割设计伪标签</p>
+<p>Code: <a href="https://github.com/googleinterns/wss" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/googleinterns/wss</a></p>
+<p><img src="/20200101l1/image-20201022192002650.png"></p>
+<h3 id="section-34"><a href="/20200811l1/" title="YOLOv4: Optimal Speed and Accuracy of Object Detection">YOLOv4: Optimal Speed and Accuracy of Object Detection</a></h3>
 <p>YOLOv4：目标检测的最佳速度和准确性</p>
 <p>Code: <a href="https://github.com/AlexeyAB/darknet" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/AlexeyAB/darknet</a></p>
 <p><img src="/20200101l1/image-20200811210340602.png"></p>
-<h3 id="section-34"><a href="/20200801l7/" title="Medical Image Segmentation Using a U-Net type of Architecture">Medical Image Segmentation Using a U-Net type of Architecture</a></h3>
+<h3 id="section-35"><a href="/20200801l7/" title="Medical Image Segmentation Using a U-Net type of Architecture">Medical Image Segmentation Using a U-Net type of Architecture</a></h3>
 <p>使用U-Net类型的架构进行医学图像分割</p>
 <p><img src="/20200101l1/image-20200516170336554.png"></p>
-<h3 id="section-35"><a href="/20200623l1/" title="PointRend: Image Segmentation as Rendering">PointRend: Image Segmentation as Rendering</a></h3>
+<h3 id="section-36"><a href="/20200623l1/" title="PointRend: Image Segmentation as Rendering">PointRend: Image Segmentation as Rendering</a></h3>
 <p>PointRend：将图像分割看作渲染</p>
 <p>Code: <a href="https://github.com/facebookresearch/detectron2/tree/master/projects/PointRend" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/facebookresearch/detectron2/tree/master/projects/PointRend</a></p>
 <p><img src="/20200101l1/image-20200623160128310.png"></p>
 <p><img src="/20200101l1/image-20200623160207304.png"></p>
 <p><img src="/20200101l1/image-20200623160231982.png"></p>
-<h3 id="section-36"><a href="/20200801l8/" title="Progressive Adversarial Semantic Segmentation">Progressive Adversarial Semantic Segmentation</a></h3>
+<h3 id="section-37"><a href="/20200801l8/" title="Progressive Adversarial Semantic Segmentation">Progressive Adversarial Semantic Segmentation</a></h3>
 <p>渐进式对抗语义分割</p>
 <p><img src="/20200101l1/image-20200517102005015.png"></p>
-<h3 id="section-37"><a href="/20200424l1/" title="ResNeSt: Split-Attention Networks">ResNeSt: Split-Attention Networks</a></h3>
+<h3 id="section-38"><a href="/20200424l1/" title="ResNeSt: Split-Attention Networks">ResNeSt: Split-Attention Networks</a></h3>
 <p>ResNeSt：注意力分散网络</p>
 <p>Code: <a href="https://github.com/zhanghang1989/ResNeSt" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zhanghang1989/ResNeSt</a></p>
 <p><img src="/20200101l1/image-20200424121613880.png"></p>
 <p><img src="/20200101l1/image-20200424121729777.png"></p>
-<h3 id="section-38"><a href="/20200724l1/" title="Self-Supervised Nuclei Segmentation in Histopathological Images Using Attention">Self-Supervised Nuclei Segmentation in Histopathological Images Using Attention</a></h3>
+<h3 id="section-39"><a href="/20200724l1/" title="Self-Supervised Nuclei Segmentation in Histopathological Images Using Attention">Self-Supervised Nuclei Segmentation in Histopathological Images Using Attention</a></h3>
 <p>基于注意力的组织病理图像自监督细胞核分割</p>
 <p>Code: <a href="https://github.com/msahasrabudhe/miccai2020_self_sup_nuclei_seg" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/msahasrabudhe/miccai2020_self_sup_nuclei_seg</a></p>
 <p><img src="/20200101l1/image-20200724111338865.png"></p>
-<h3 id="section-39"><a href="/20200720l2/" title="ClassMix: Segmentation-Based Data Augmentation for Semi-Supervised Learning">ClassMix: Segmentation-Based Data Augmentation for Semi-Supervised Learning</a></h3>
+<h3 id="section-40"><a href="/20200720l2/" title="ClassMix: Segmentation-Based Data Augmentation for Semi-Supervised Learning">ClassMix: Segmentation-Based Data Augmentation for Semi-Supervised Learning</a></h3>
 <p>ClassMix：基于分割的半监督学习数据增强</p>
 <p>Code: <a href="https://github.com/WilhelmT/ClassMix" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/WilhelmT/ClassMix</a></p>
 <p><img src="/20200101l1/image-20200720170305343.png"></p>
 <p><img src="/20200101l1/image-20200720170207551.png"></p>
-<h3 id="section-40"><a href="/20200713l1/" title="Uncertainty-based graph convolutional networks for organ segmentation refinement">Uncertainty-based graph convolutional networks for organ segmentation refinement</a></h3>
+<h3 id="section-41"><a href="/20200713l1/" title="Uncertainty-based graph convolutional networks for organ segmentation refinement">Uncertainty-based graph convolutional networks for organ segmentation refinement</a></h3>
 <p>基于不确定度的图卷积网络用于器官分割细化</p>
 <p><img src="/20200101l1/image-20200713134429510.png"></p>
-<h3 id="section-41"><a href="/20200801l4/" title="A novel Region of Interest Extraction Layer for Instance Segmentation">A novel Region of Interest Extraction Layer for Instance Segmentation</a></h3>
+<h3 id="section-42"><a href="/20200801l4/" title="A novel Region of Interest Extraction Layer for Instance Segmentation">A novel Region of Interest Extraction Layer for Instance Segmentation</a></h3>
 <p>用于实例分割的新型兴趣区域提取层</p>
 <p>Code: <a href="https://github.com/IMPLabUniPr/mmdetection-groie" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/IMPLabUniPr/mmdetection-groie</a></p>
 <p><img src="/20200101l1/image-20200508205358554.png"></p>
-<h3 id="section-42"><a href="/20200801l1/" title="An automatic COVID-19 CT segmentation based on U-Net with attention mechanism">An automatic COVID-19 CT segmentation based on U-Net with attention mechanism</a></h3>
+<h3 id="section-43"><a href="/20200801l1/" title="An automatic COVID-19 CT segmentation based on U-Net with attention mechanism">An automatic COVID-19 CT segmentation based on U-Net with attention mechanism</a></h3>
 <p>基于注意力机制的基于U-Net的COVID-19 CT自动分割</p>
 <p><img src="/20200101l1/image-20200801091847025.png"></p>
 <p><img src="/20200101l1/image-20200801091916347.png"></p>
 <p><img src="/20200101l1/image-20200801091943733.png"></p>
-<h1 id="section-43">2019</h1>
+<h1 id="section-44">2019</h1>
 <h2 id="miccai-1">MICCAI</h2>
-<h3 id="section-44"><a href="/20200619l1/" title="Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels">Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels</a></h3>
+<h3 id="section-45"><a href="/20200619l1/" title="Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels">Improving RetinaNet for CT Lesion Detection with Dense Masks from Weak RECIST Labels</a></h3>
 <p>用弱RECIST标记的致密膜改善RetinaNet对CT病变的检测</p>
 <p><img src="/20200101l1/image-20200619111759526.png"></p>
 <h2 id="cvpr-1">CVPR</h2>
-<h3 id="section-45"><a href="/20200801l9/" title="Dual Attention Network for Scene Segmentation">Dual Attention Network for Scene Segmentation</a></h3>
+<h3 id="section-46"><a href="/20200801l9/" title="Dual Attention Network for Scene Segmentation">Dual Attention Network for Scene Segmentation</a></h3>
 <p>双注意力网络用于场景分割</p>
 <p>Code: <a href="https://github.com/junfu1115/DANet/" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/junfu1115/DANet/</a></p>
 <p><img src="/20200101l1/image-20200420120019703.png"></p>
 <p><img src="/20200101l1/image-20200420120052772.png"></p>
 <h2 id="iccv">ICCV</h2>
-<h3 id="section-46"><a href="/20200720l1/" title="CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features">CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features</a></h3>
+<h3 id="section-47"><a href="/20200917l1/" title="Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation">Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation</a></h3>
+<p>用于部分监管的多组织分割的先验感知神经网络</p>
+<p><img src="/20200101l1/image-20200917214449754.png"></p>
+<h3 id="section-48"><a href="/20200720l1/" title="CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features">CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features</a></h3>
 <p>CutMix：正则化策略来训练具有可局部化的强大分类器</p>
 <p>Code: <a href="https://github.com/clovaai/CutMix-PyTorch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/clovaai/CutMix-PyTorch</a></p>
 <p><img src="/20200101l1/image-20200720154731427.png"></p>
-<h3 id="section-47"><a href="/20200731l2/" title="FCOS: Fully Convolutional One-Stage Object Detection">FCOS: Fully Convolutional One-Stage Object Detection</a></h3>
+<h3 id="section-49"><a href="/20200731l2/" title="FCOS: Fully Convolutional One-Stage Object Detection">FCOS: Fully Convolutional One-Stage Object Detection</a></h3>
 <p>FCOS：完全卷积一阶段对象检测</p>
 <p>Code: <a href="https://github.com/tianzhi0549/FCOS" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tianzhi0549/FCOS</a></p>
 <p><img src="/20200101l1/image-20200731165416695.png"></p>
 <p><img src="/20200101l1/image-20200731165642605.png"></p>
-<h3 id="section-48"><a href="/20200723l1/" title="Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization">Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization</a></h3>
+<h3 id="section-50"><a href="/20200723l1/" title="Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization">Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization</a></h3>
 <p>学习特定粒度专家的混合物以进行细粒度分类</p>
 <p><img src="/20200101l1/image-20200727151845765.png"></p>
 <p><img src="/20200101l1/image-20200727151930340.png"></p>
 <h2 id="icml">ICML</h2>
-<h3 id="section-49"><a href="/20200706l1/" title="EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</a></h3>
+<h3 id="section-51"><a href="/20200706l1/" title="EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</a></h3>
 <p>EfficientNet: 对卷积神经网络模型缩放的再思考</p>
 <p>Code: <a href="https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet</a></p>
 <p><img src="/20200101l1/image-20200706155430777.png"></p>
 <p><img src="/20200101l1/image-20200706155556921.png"></p>
 <h2 id="neurips">NeurIPS</h2>
-<h3 id="section-50"><a href="/20200715l1/" title="MixMatch: A Holistic Approach to Semi-Supervised Learning">MixMatch: A Holistic Approach to Semi-Supervised Learning</a></h3>
+<h3 id="section-52"><a href="/20200715l1/" title="MixMatch: A Holistic Approach to Semi-Supervised Learning">MixMatch: A Holistic Approach to Semi-Supervised Learning</a></h3>
 <p>MixMatch：半监督学习的整体方法</p>
 <p>Code: <a href="https://github.com/google-research/mixmatch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/google-research/mixmatch</a></p>
 <p><img src="/20200101l1/image-20200715210313015.png"></p>
 <p><img src="/20200101l1/image-20200715210333773.png"></p>
 <h2 id="arxiv-1">Arxiv</h2>
-<h3 id="section-51"><a href="/20200624l2/" title="See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification">See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification</a></h3>
+<h3 id="section-53"><a href="/20200624l2/" title="See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification">See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification</a></h3>
 <p>看得更清楚再看得更近：用于细粒度视觉分类的弱监督数据增强网络</p>
 <p>Code: <a href="https://github.com/GuYuc/WS-DAN.PyTorch" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/GuYuc/WS-DAN.PyTorch</a></p>
 <p><img src="/20200101l1/image-20200624213638315.png"></p>
 <p><img src="/20200101l1/image-20200624214610530.png"></p>
-<h1 id="section-52">2018</h1>
+<h1 id="section-54">2018</h1>
 <h2 id="eccv-1">ECCV</h2>
-<h3 id="section-53"><a href="/20200707l1/" title="DeepLabv3+:Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation">DeepLabv3+:Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation</a></h3>
+<h3 id="section-55"><a href="/20200707l1/" title="DeepLabv3+:Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation">DeepLabv3+:Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation</a></h3>
 <p>DeepLab v3+</p>
 <p>Code: <a href="https://github.com/tensorflow/models/tree/master/research/deeplab" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/tensorflow/models/tree/master/research/deeplab</a></p>
 <p><img src="/20200101l1/image-20200709104913290.png"></p>
 <p><img src="/20200101l1/image-20200709105003493.png"></p>
 <h2 id="iclr-1">ICLR</h2>
-<h3 id="section-54"><a href="/20200714l1/" title="mixup: Beyond Empirical Risk Minimization">mixup: Beyond Empirical Risk Minimization</a></h3>
+<h3 id="section-56"><a href="/20200714l1/" title="mixup: Beyond Empirical Risk Minimization">mixup: Beyond Empirical Risk Minimization</a></h3>
 <p>mixup: 超越经验风险最小化</p>
 <p>Code: <a href="https://github.com/facebookresearch/mixup-cifar10" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/facebookresearch/mixup-cifar10</a></p>
 <p><img src="/20200101l1/image-20200714171323416.png"></p>
 <h2 id="arxiv-2">Arxiv</h2>
-<h3 id="section-55"><a href="/20200710l1/" title="Self-Attention Generative Adversarial Networks">Self-Attention Generative Adversarial Networks</a></h3>
+<h3 id="section-57"><a href="/20200710l1/" title="Self-Attention Generative Adversarial Networks">Self-Attention Generative Adversarial Networks</a></h3>
 <p>自注意力生成对抗网络</p>
 <p>Code: <a href="https://github.com/brain-research/self-attention-gan" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/brain-research/self-attention-gan</a></p>
 <p><img src="/20200101l1/image-20200710170445992.png"></p>
 <p><img src="/20200101l1/image-20200710170828360.png"></p>
-<h3 id="section-56"><a href="/20200721l1/" title="Bag of Tricks for Image Classification with Convolutional Neural Networks">Bag of Tricks for Image Classification with Convolutional Neural Networks</a></h3>
+<h3 id="section-58"><a href="/20200721l1/" title="Bag of Tricks for Image Classification with Convolutional Neural Networks">Bag of Tricks for Image Classification with Convolutional Neural Networks</a></h3>
 <p>使用卷积神经网络进行图像分类的技巧包</p>
 <p><img src="/20200101l1/image-20200721105523992.png"></p>
-<h1 id="section-57">2017</h1>
+<h1 id="section-59">2017</h1>
 <h2 id="tpami">TPAMI</h2>
-<h3 id="section-58"><a href="/20200709l1/" title="DeepLabv2: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs">DeepLabv2: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs</a></h3>
+<h3 id="section-60"><a href="/20200709l1/" title="DeepLabv2: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs">DeepLabv2: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs</a></h3>
 <p>DeepLab v2</p>
 <p>Code: <a href="https://bitbucket.org/aquariusjay/deeplab-public-ver2/src/master/" target="_blank" rel="external nofollow noopener noreferrer">https://bitbucket.org/aquariusjay/deeplab-public-ver2/src/master/</a></p>
 <p><img src="/20200101l1/image-20200709091315408.png"></p>
 <p><img src="/20200101l1/image-20200709091744292.png"></p>
 <h2 id="arxiv-3">Arxiv</h2>
-<h3 id="section-59"><a href="/20200709l2/" title="DeepLabv3:Rethinking Atrous Convolution for Semantic Image Segmentation">DeepLabv3:Rethinking Atrous Convolution for Semantic Image Segmentation</a></h3>
+<h3 id="section-61"><a href="/20200709l2/" title="DeepLabv3:Rethinking Atrous Convolution for Semantic Image Segmentation">DeepLabv3:Rethinking Atrous Convolution for Semantic Image Segmentation</a></h3>
 <p>DeepLab v3</p>
 <p>Code: <a href="https://github.com/eveningdong/DeepLabV3-Tensorflow" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/eveningdong/DeepLabV3-Tensorflow</a></p>
 <p><img src="/20200101l1/image-20200709103023997.png"></p>
 <p><img src="/20200101l1/image-20200709104325142.png"></p>
-<h3 id="section-60"><a href="/20200712l2/" title="Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network">Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network</a></h3>
+<h3 id="section-62"><a href="/20200712l2/" title="Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network">Large Kernel Matters — Improve Semantic Segmentation by Global Convolutional Network</a></h3>
 <p>大型内核问题—通过全局卷积网络改进语义分割</p>
 <p><img src="/20200101l1/image-20200712202943356.png"></p>
 <p><img src="/20200101l1/image-20200801130339163.png"></p>
-<h1 id="section-61">2016</h1>
+<h1 id="section-63">2016</h1>
 <h2 id="arxiv-4">Arxiv</h2>
-<h3 id="section-62"><a href="/20200825l1/" title="VoxResNet: Deep Voxelwise Residual Networks for Volumetric Brain Segmentation">VoxResNet: Deep Voxelwise Residual Networks for Volumetric Brain Segmentation</a></h3>
+<h3 id="section-64"><a href="/20200825l1/" title="VoxResNet: Deep Voxelwise Residual Networks for Volumetric Brain Segmentation">VoxResNet: Deep Voxelwise Residual Networks for Volumetric Brain Segmentation</a></h3>
 <p>VoxResNet：用于体积脑分割的深体素残差网络</p>
 <p><img src="/20200101l1/image-20200825105117693.png"></p>
-<h1 id="section-63">2015</h1>
+<h1 id="section-65">2015</h1>
 <h2 id="iclr-2">ICLR</h2>
-<h3 id="section-64"><a href="/20200708l1/" title="DeepLabv1: Semantic image segmentation with deep convolutional nets and fully connected CRFs">DeepLabv1: Semantic image segmentation with deep convolutional nets and fully connected CRFs</a></h3>
+<h3 id="section-66"><a href="/20200708l1/" title="DeepLabv1: Semantic image segmentation with deep convolutional nets and fully connected CRFs">DeepLabv1: Semantic image segmentation with deep convolutional nets and fully connected CRFs</a></h3>
 <p>DeepLab v1</p>
 <p>Code: <a href="https://github.com/TheLegendAli/DeepLab-Context" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/TheLegendAli/DeepLab-Context</a></p>
 <p><img src="/20200101l1/image-20200709084713666.png"></p>
@@ -283,6 +290,81 @@
       </categories>
       <tags>
         <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】PseudoSeg: Designing pseudo labels for semantic segmentation</title>
+    <url>/20201022l1/</url>
+    <content><![CDATA[<p>Code: <a href="https://github.com/googleinterns/wss" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/googleinterns/wss</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>语义分割任务需要大量密集的标签，标注成本高</li>
+<li>分割中结构化的输出应用在现有的半监督任务中存在特殊的困难（设计伪标签和数据增强）</li>
+</ul>
+<p>本文提出PsudoSeg框架，利用图像级标签或无标签数据改善图像分割，贡献有三点：</p>
+<ul>
+<li>提出一个简单的单阶段框架，通过数量有限的像素标记数据和足够的未标记数据或图像级标记数据来改善语义分割。框架与网络结构无关。</li>
+<li>直接应用在图像分类中验证的一致性训练方法会给分割带来特殊挑战。通过融合多源预测结果来获得较好的软伪标签以极大改善分割的一致性训练。</li>
+<li>在多个数据集上进行实验，验证了方法的有效性。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>框架结构图如下：</p>
+<p><img src="/20201022l1/image-20201022192002650.png"></p>
+<h2 id="问题定义">问题定义</h2>
+<p>有监督损失为<span class="math inline">\(\mathcal{L}_s\)</span>应用于有标注数据<span class="math inline">\(\mathcal{D}_l\)</span>，一致性损失<span class="math inline">\(\mathcal{L}_u\)</span>应用于无标签数据<span class="math inline">\(\mathcal{D}_u\)</span>。</p>
+<p><span class="math inline">\(\mathcal{L}_s\)</span>为标准的cross-entropy loss： <span class="math display">\[
+\mathcal{L}_{\mathrm{s}}=\frac{1}{N \times\left|\mathcal{D}_{l}\right|} \sum_{x \in \mathcal{D}_{l}} \sum_{i=0}^{N-1} \text { Cross Entropy }\left(y_{i}, f_{\theta}\left(\omega\left(x_{i}\right)\right)\right)
+\]</span> 一致性损失使用的提出的方法估计的伪标签<span class="math inline">\(\widetilde{y}\)</span>进行训练 <span class="math display">\[
+\mathcal{L}_{\mathrm{u}}=\frac{1}{N \times\left|\mathcal{D}_{u}\right|} \sum_{x \in \mathcal{D}_{u}} \sum_{i=0}^{N-1} \text { CrossEntropy }\left(\widetilde{y}_{i}, f_{\theta}\left(\beta \circ \omega\left(x_{i}\right)\right)\right)
+\]</span></p>
+<h2 id="框架设计">框架设计</h2>
+<p>如何生成想要的伪标签<span class="math inline">\(\widetilde{y}\)</span>？</p>
+<p>最直接的想法是使用训练好的分割模型的decoder的输出作为伪标签。然而在少量数据下这样生成的硬/软标签以及其他输出的后处理的结果都很差。</p>
+<p>针对上述问题，本文方法有两个关键点：</p>
+<ul>
+<li>寻求一种独特而有效的决策机制来补偿decoder输出的潜在错误。</li>
+<li>融合多源预测结果生成一个较好的伪标签。</li>
+</ul>
+<h3 id="开始定位">开始定位</h3>
+<p>与分割任务相比，定位任务相对简单，首先从定位角度提升decoder的预测结果。</p>
+<p>CAM广泛应用于弱监督定位任务，本文采用Grad-CAM的一个变体进行定位。</p>
+<h3 id="从定位到分割">从定位到分割</h3>
+<p>尽管CAM仅仅定位感兴趣的部分区域，但如果知道区域之间成对的相似性，可以将CAM分数从判别区域传播到其他未关注区域，可以利用这个特点实现从定位到分割的转换。本文中发现相似性度量方法Hypercolumn在这里很有效。</p>
+<p>给定所有C个类别的Grad-CAM输出，将其看做spatially-flatten 2-D向量<span class="math inline">\(m \in \mathbb{R}^{L \times C}\)</span>，每一行<span class="math inline">\(m_i\)</span>是区域<span class="math inline">\(i\)</span>的每个类别的对应权重。使用核函数<span class="math inline">\(\mathcal{K}(·,·): \mathbb{R}^H \times \mathbb{R}^H \rightarrow \mathbb{R}\)</span>测量给定特征的逐像素相似性。可以如下计算传播分数<span class="math inline">\(\hat{m_i} \in \mathbb{R}^C\)</span>： <span class="math display">\[
+\hat{m}_{i}=\left(m_{i}+\sum_{j=0}^{L-1} \frac{e^{\mathcal{K}\left(W_{k} h_{i}, W_{v} h_{j}\right)}}{\sum_{k=0}^{L-1} e^{\mathcal{K}\left(W_{k} h_{i}, W_{v} h_{k}\right)}} m_{j}\right) \cdot W_{c}
+\]</span> 这个函数用于训练模型，使得m中的高值传播到特征空间的相邻区域，其中<span class="math inline">\(m_i\)</span>为skip-connection。公式可以用自监督的乘法实现，最终得到self-attention Grad-CAM(SGC) maps。</p>
+<p><img src="/20201022l1/image-20201022203725820.png"></p>
+<h3 id="预测结果的融合">预测结果的融合</h3>
+<p>SGC图从低分辨率缩放到需要的大小，不能够很好输出清晰的边界，但与分割的decoder相比，能够更好生成的局部一致的分割图。</p>
+<p>通过下面公式将SGC图和decoder的结果融合： <span class="math display">\[
+\mathcal{F}(\hat{p}, \hat{m})=\operatorname{Sharpen}\left(\gamma \operatorname{Softmax}\left(\frac{\hat{p}}{\operatorname{Norm}(\hat{p}, \hat{m})}\right)+(1-\gamma) \operatorname{Softmax}\left(\frac{\hat{m}}{\operatorname{Norm}(\hat{p}, \hat{m})}\right), T\right)
+\]</span> 融合结果的成功来自两点：</p>
+<ul>
+<li><span class="math inline">\(\hat{p}\)</span>和<span class="math inline">\(\hat{m}\)</span>来自不同决策机制，拥有不同程度的置信度。</li>
+<li>分布的sharpening操作<span class="math inline">\(Sharpen(a, T)_i = \frac{a_i^{\frac{1}{T}}}{\sum_{j}^{C}{a_i^{\frac{1}{T}}}}\)</span></li>
+</ul>
+<p>下图为不同阶段结果：</p>
+<p><img src="/20201022l1/image-20201022202827800.png"></p>
+<h3 id="训练">训练</h3>
+<p>最终的训练目标有两个额外的损失：分类损失<span class="math inline">\(\mathcal{L}_x\)</span>和分割损失<span class="math inline">\(\mathcal{L}_{sa}\)</span>。</p>
+<p>首先，计算Grad-CAM时，在分割backbone后加一层分类头以及一个多标签的分类损失<span class="math inline">\(\mathcal{L}_x\)</span>。</p>
+<p>其次，SGC图使用一层卷积进行缩放，预测SGC图需要完全标注数据，使用到额外的分割损失<span class="math inline">\(\mathcal{L}_{sa}\)</span>。</p>
+<p>强数据增强使用到了color jittering，去除了所有形态学操作。此外还用到了随机CutOut操作进行结果提升。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20201022l1/image-20201022203602649.png"></p>
+<p><img src="/20201022l1/image-20201022203612558.png"></p>
+<p><img src="/20201022l1/image-20201022203625432.png"></p>
+<p><img src="/20201022l1/image-20201022203639236.png"></p>
+<p><img src="/20201022l1/image-20201022203651123.png"></p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>2020</tag>
+        <tag>图像分割</tag>
+        <tag>code</tag>
+        <tag>伪标签</tag>
       </tags>
   </entry>
   <entry>

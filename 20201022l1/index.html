@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+<meta name="google-site-verification" content="zeBcSVsU1Y8BwOYTajcV2br9wuZMjdPEgk_AjOfy3Tg">
+<meta name="baidu-site-verification" content="code-KAl0HAeYcq">
+
+  <meta name="keywords" content="博客">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ai-smile.site","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="pseudo-seg：为语义分割设计伪标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2020】PseudoSeg: Designing pseudo labels for semantic segmentation">
+<meta property="og:url" content="https://ai-smile.site/20201022l1/index.html">
+<meta property="og:site_name" content="AI-Smile">
+<meta property="og:description" content="pseudo-seg：为语义分割设计伪标签">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022192002650.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203725820.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022202827800.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203602649.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203612558.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203625432.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203639236.png">
+<meta property="og:image" content="https://ai-smile.site/20201022l1/image-20201022203651123.png">
+<meta property="article:published_time" content="2020-10-22T11:07:45.000Z">
+<meta property="article:modified_time" content="2020-10-22T12:38:33.395Z">
+<meta property="article:author" content="Smile">
+<meta property="article:tag" content="2020">
+<meta property="article:tag" content="图像分割">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="伪标签">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ai-smile.site/20201022l1/image-20201022192002650.png">
+
+<link rel="canonical" href="https://ai-smile.site/20201022l1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【2020】PseudoSeg: Designing pseudo labels for semantic segmentation | AI-Smile</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?233a5373f1bd859a68edbf8944cbdf2b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AI-Smile</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-signal fa-fw"></i>阅读排行</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ai-smile.site/20201022l1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/smile.jpg">
+      <meta itemprop="name" content="Smile">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI-Smile">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【2020】PseudoSeg: Designing pseudo labels for semantic segmentation<a href="https://github.com/SmileJET/blog/tree/master/source/_posts/PseudoSeg-Designing-pseudo-labels-for-semantic-segmentation.md" class="post-edit-link" title="编辑" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-pencil-alt"></i></a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-22 19:07:45 / 修改时间：20:38:33" itemprop="dateCreated datePublished" datetime="2020-10-22T19:07:45+08:00">2020-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">阅读笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/20201022l1/" class="post-meta-item leancloud_visitors" data-flag-title="【2020】PseudoSeg: Designing pseudo labels for semantic segmentation" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/20201022l1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/20201022l1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <div class="post-description">pseudo-seg：为语义分割设计伪标签</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Code: <a href="https://github.com/googleinterns/wss" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/googleinterns/wss</a></p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>语义分割任务需要大量密集的标签，标注成本高</li>
+<li>分割中结构化的输出应用在现有的半监督任务中存在特殊的困难（设计伪标签和数据增强）</li>
+</ul>
+<p>本文提出PsudoSeg框架，利用图像级标签或无标签数据改善图像分割，贡献有三点：</p>
+<ul>
+<li>提出一个简单的单阶段框架，通过数量有限的像素标记数据和足够的未标记数据或图像级标记数据来改善语义分割。框架与网络结构无关。</li>
+<li>直接应用在图像分类中验证的一致性训练方法会给分割带来特殊挑战。通过融合多源预测结果来获得较好的软伪标签以极大改善分割的一致性训练。</li>
+<li>在多个数据集上进行实验，验证了方法的有效性。</li>
+</ul>
+<h1 id="methods">Methods</h1>
+<p>框架结构图如下：</p>
+<p><img src="/20201022l1/image-20201022192002650.png"></p>
+<h2 id="问题定义">问题定义</h2>
+<p>有监督损失为<span class="math inline">\(\mathcal{L}_s\)</span>应用于有标注数据<span class="math inline">\(\mathcal{D}_l\)</span>，一致性损失<span class="math inline">\(\mathcal{L}_u\)</span>应用于无标签数据<span class="math inline">\(\mathcal{D}_u\)</span>。</p>
+<p><span class="math inline">\(\mathcal{L}_s\)</span>为标准的cross-entropy loss： <span class="math display">\[
+\mathcal{L}_{\mathrm{s}}=\frac{1}{N \times\left|\mathcal{D}_{l}\right|} \sum_{x \in \mathcal{D}_{l}} \sum_{i=0}^{N-1} \text { Cross Entropy }\left(y_{i}, f_{\theta}\left(\omega\left(x_{i}\right)\right)\right)
+\]</span> 一致性损失使用的提出的方法估计的伪标签<span class="math inline">\(\widetilde{y}\)</span>进行训练 <span class="math display">\[
+\mathcal{L}_{\mathrm{u}}=\frac{1}{N \times\left|\mathcal{D}_{u}\right|} \sum_{x \in \mathcal{D}_{u}} \sum_{i=0}^{N-1} \text { CrossEntropy }\left(\widetilde{y}_{i}, f_{\theta}\left(\beta \circ \omega\left(x_{i}\right)\right)\right)
+\]</span></p>
+<h2 id="框架设计">框架设计</h2>
+<p>如何生成想要的伪标签<span class="math inline">\(\widetilde{y}\)</span>？</p>
+<p>最直接的想法是使用训练好的分割模型的decoder的输出作为伪标签。然而在少量数据下这样生成的硬/软标签以及其他输出的后处理的结果都很差。</p>
+<p>针对上述问题，本文方法有两个关键点：</p>
+<ul>
+<li>寻求一种独特而有效的决策机制来补偿decoder输出的潜在错误。</li>
+<li>融合多源预测结果生成一个较好的伪标签。</li>
+</ul>
+<h3 id="开始定位">开始定位</h3>
+<p>与分割任务相比，定位任务相对简单，首先从定位角度提升decoder的预测结果。</p>
+<p>CAM广泛应用于弱监督定位任务，本文采用Grad-CAM的一个变体进行定位。</p>
+<h3 id="从定位到分割">从定位到分割</h3>
+<p>尽管CAM仅仅定位感兴趣的部分区域，但如果知道区域之间成对的相似性，可以将CAM分数从判别区域传播到其他未关注区域，可以利用这个特点实现从定位到分割的转换。本文中发现相似性度量方法Hypercolumn在这里很有效。</p>
+<p>给定所有C个类别的Grad-CAM输出，将其看做spatially-flatten 2-D向量<span class="math inline">\(m \in \mathbb{R}^{L \times C}\)</span>，每一行<span class="math inline">\(m_i\)</span>是区域<span class="math inline">\(i\)</span>的每个类别的对应权重。使用核函数<span class="math inline">\(\mathcal{K}(·,·): \mathbb{R}^H \times \mathbb{R}^H \rightarrow \mathbb{R}\)</span>测量给定特征的逐像素相似性。可以如下计算传播分数<span class="math inline">\(\hat{m_i} \in \mathbb{R}^C\)</span>： <span class="math display">\[
+\hat{m}_{i}=\left(m_{i}+\sum_{j=0}^{L-1} \frac{e^{\mathcal{K}\left(W_{k} h_{i}, W_{v} h_{j}\right)}}{\sum_{k=0}^{L-1} e^{\mathcal{K}\left(W_{k} h_{i}, W_{v} h_{k}\right)}} m_{j}\right) \cdot W_{c}
+\]</span> 这个函数用于训练模型，使得m中的高值传播到特征空间的相邻区域，其中<span class="math inline">\(m_i\)</span>为skip-connection。公式可以用自监督的乘法实现，最终得到self-attention Grad-CAM(SGC) maps。</p>
+<p><img src="/20201022l1/image-20201022203725820.png"></p>
+<h3 id="预测结果的融合">预测结果的融合</h3>
+<p>SGC图从低分辨率缩放到需要的大小，不能够很好输出清晰的边界，但与分割的decoder相比，能够更好生成的局部一致的分割图。</p>
+<p>通过下面公式将SGC图和decoder的结果融合： <span class="math display">\[
+\mathcal{F}(\hat{p}, \hat{m})=\operatorname{Sharpen}\left(\gamma \operatorname{Softmax}\left(\frac{\hat{p}}{\operatorname{Norm}(\hat{p}, \hat{m})}\right)+(1-\gamma) \operatorname{Softmax}\left(\frac{\hat{m}}{\operatorname{Norm}(\hat{p}, \hat{m})}\right), T\right)
+\]</span> 融合结果的成功来自两点：</p>
+<ul>
+<li><span class="math inline">\(\hat{p}\)</span>和<span class="math inline">\(\hat{m}\)</span>来自不同决策机制，拥有不同程度的置信度。</li>
+<li>分布的sharpening操作<span class="math inline">\(Sharpen(a, T)_i = \frac{a_i^{\frac{1}{T}}}{\sum_{j}^{C}{a_i^{\frac{1}{T}}}}\)</span></li>
+</ul>
+<p>下图为不同阶段结果：</p>
+<p><img src="/20201022l1/image-20201022202827800.png"></p>
+<h3 id="训练">训练</h3>
+<p>最终的训练目标有两个额外的损失：分类损失<span class="math inline">\(\mathcal{L}_x\)</span>和分割损失<span class="math inline">\(\mathcal{L}_{sa}\)</span>。</p>
+<p>首先，计算Grad-CAM时，在分割backbone后加一层分类头以及一个多标签的分类损失<span class="math inline">\(\mathcal{L}_x\)</span>。</p>
+<p>其次，SGC图使用一层卷积进行缩放，预测SGC图需要完全标注数据，使用到额外的分割损失<span class="math inline">\(\mathcal{L}_{sa}\)</span>。</p>
+<p>强数据增强使用到了color jittering，去除了所有形态学操作。此外还用到了随机CutOut操作进行结果提升。</p>
+<h1 id="experiments">Experiments</h1>
+<p><img src="/20201022l1/image-20201022203602649.png"></p>
+<p><img src="/20201022l1/image-20201022203612558.png"></p>
+<p><img src="/20201022l1/image-20201022203625432.png"></p>
+<p><img src="/20201022l1/image-20201022203639236.png"></p>
+<p><img src="/20201022l1/image-20201022203651123.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/2020/" rel="tag"># 2020</a>
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" rel="tag"># 图像分割</a>
+              <a href="/tags/code/" rel="tag"># code</a>
+              <a href="/tags/%E4%BC%AA%E6%A0%87%E7%AD%BE/" rel="tag"># 伪标签</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/20200917l1/" rel="prev" title="【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation">
+      <i class="fa fa-chevron-left"></i> 【2019 ICCV】Prior-aware Neural Network for Partially-Supervised Multi-Organ Segmentation
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#methods"><span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题定义"><span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架设计"><span class="nav-text">框架设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始定位"><span class="nav-text">开始定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从定位到分割"><span class="nav-text">从定位到分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测结果的融合"><span class="nav-text">预测结果的融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练"><span class="nav-text">训练</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#experiments"><span class="nav-text">Experiments</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Smile" src="/images/smile.jpg">
+  <p class="site-author-name" itemprop="name">Smile</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SmileJET" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SmileJET" rel="external nofollow noopener noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:397790001@qq.com" title="E-Mail → mailto:397790001@qq.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+<div id="vm" style="display:none;">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=5xrwow1sqzv&amp;m=1&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Smile</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">107k</span>
+</div>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"rDokR66hff6J3tNbdsnySiku-MdYXbMMI","app_key":"QGPP90EywVtzrkwx2sR9agV4","server_url":null,"security":false,"betterPerformance":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'rDokR66hff6J3tNbdsnySiku-MdYXbMMI',
+      appKey     : 'QGPP90EywVtzrkwx2sR9agV4',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
