@@ -297,7 +297,24 @@
       </tags>
   </entry>
   <entry>
-    <title>AbdomenCT-1K: Is Abdominal Organ Segmentation A Solved Problem?</title>
+    <title>【踩坑】tmux</title>
+    <url>/20201031l1/</url>
+    <content><![CDATA[<p>Tmux用于将会话与窗口进行“解绑”，将它们彻底分离。</p>
+<p>快捷键使用<code>ctrl+b Pageup</code>可进行翻页查看一定范围的输出记录。</p>
+<p>然而最近发现，当进行翻页的时候自己忘记了按<code>esc</code>取消翻页，导致程序一直停留在远处，浪费很多时间。【谨记】</p>
+<p>如下图，原本20分钟的程序，停滞了7个多小时。</p>
+<p><img src="/20201031l1/Snipaste_2020-10-31_07-09-15.png"></p>
+]]></content>
+      <categories>
+        <category>踩坑</category>
+      </categories>
+      <tags>
+        <tag>踩坑</tag>
+        <tag>tmux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【2020】AbdomenCT-1K: Is Abdominal Organ Segmentation A Solved Problem?</title>
     <url>/20201030l1/</url>
     <content><![CDATA[<p>Code: <a href="https://github.com/JunMa11/AbdomenCT-1K" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/JunMa11/AbdomenCT-1K</a></p>
 <p>Pdf: <a href="https://arxiv.org/abs/2010.14808" target="_blank" rel="external nofollow noopener noreferrer">https://arxiv.org/abs/2010.14808</a></p>
